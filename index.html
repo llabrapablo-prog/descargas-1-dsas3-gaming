@@ -5,23 +5,137 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Un Desastre Gaming — Descargas</title>
 <style>
-:root{color-scheme:light dark}*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:light-dark(#eef1f6,#10131b);color:light-dark(#151923,#f4f6fb)}#app{min-height:100vh;padding:34px 18px 48px}.wrap{max-width:760px;margin:0 auto}.top{display:flex;align-items:center;gap:14px;margin-bottom:34px}.logo{width:58px;height:58px;border-radius:17px;display:grid;place-items:center;background:#e53d48;color:white;font-size:28px}.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:light-dark(#616b7d,#aab3c6)}h1{margin:4px 0 0;font-size:clamp(27px,5vw,42px);line-height:1.08;letter-spacing:-.04em}.hero{padding:clamp(24px,5vw,42px);border-radius:26px;background:light-dark(#fff,#1a1f2b);border:1px solid light-dark(#dce1ea,#303849);box-shadow:0 20px 60px #00000012}.tag{display:inline-flex;border-radius:999px;padding:7px 11px;background:light-dark(#fff0f0,#3a2027);color:light-dark(#b42331,#ffb4bb);font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}h2{font-size:clamp(23px,4vw,31px);margin:17px 0 10px;letter-spacing:-.03em}p{line-height:1.65;color:light-dark(#50596a,#c2cada)}.steps{display:grid;gap:13px;margin:26px 0 22px}.step{display:flex;align-items:flex-start;gap:14px;padding:17px;border:1px solid light-dark(#e1e5ed,#303849);border-radius:16px;background:light-dark(#f8f9fc,#202634)}.num{flex:0 0 34px;width:34px;height:34px;display:grid;place-items:center;border-radius:11px;background:light-dark(#e7eaf1,#343d50);font-weight:850}.step strong{display:block;margin:2px 0 4px}.step p{margin:0;font-size:14px}.button{display:flex;justify-content:center;align-items:center;gap:10px;width:100%;padding:15px 18px;border:0;border-radius:13px;text-decoration:none;font-size:15px;font-weight:800;cursor:pointer}.subscribe{color:white;background:#e62129}.reveal{color:light-dark(#fff,#10131b);background:light-dark(#171b25,#f2f4f8);margin-top:12px}.download-list{display:grid;gap:12px;margin-top:18px}.download-item{padding:16px;border:1px solid light-dark(#e1e5ed,#303849);border-radius:15px;background:light-dark(#f8f9fc,#202634)}.download-item h3{margin:0 0 6px;font-size:17px}.download-item p{margin:0;font-size:14px}.coming-soon{display:inline-block;margin-top:12px;padding:7px 10px;border-radius:9px;background:light-dark(#e7eaf1,#343d50);color:light-dark(#50596a,#c2cada);font-size:12px;font-weight:800}.notice{font-size:12px;margin-top:14px}.panel{display:none;margin-top:22px;padding-top:22px;border-top:1px solid light-dark(#e1e5ed,#303849)}.panel.show{display:block}.small{font-size:12px}footer{text-align:center;font-size:12px;color:light-dark(#737d8e,#8e99ad);padding:22px 8px 0}@media(min-width:620px){.steps{grid-template-columns:1fr 1fr}}
-.pixel-banner{position:relative;isolation:isolate;overflow:hidden;margin:0 0 26px;min-height:220px;border-radius:3px;border:4px solid #f4d35e;background:linear-gradient(180deg,#101b56 0%,#34217d 48%,#9b285f 100%);display:flex;align-items:end;padding:25px;color:#fff;box-shadow:8px 8px 0 #171329,0 16px 34px #7c3aed35}.pixel-banner:before{content:"";position:absolute;z-index:-1;inset:0;opacity:.72;background-image:linear-gradient(90deg,transparent 0 82%,#ffca5c 82% 88%,transparent 88%),linear-gradient(transparent 0 62%,#ffca5c 62% 68%,transparent 68%),linear-gradient(90deg,#ffffff16 2px,transparent 2px),linear-gradient(#ffffff16 2px,transparent 2px);background-size:96px 72px,112px 88px,12px 12px,12px 12px;image-rendering:pixelated}.pixel-banner-content{position:relative;z-index:1;max-width:470px}.pixel-banner h2{color:#fff;margin:8px 0;text-shadow:3px 3px 0 #24134e}.pixel-banner p{color:#f4eaff;margin:0}.pixel-badge{display:inline-block;padding:7px 10px;border:2px solid #f4d35e;border-radius:0;background:#170d4c;color:#f4d35e;font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;box-shadow:4px 4px 0 #171329}
+  :root { color-scheme: light dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: light-dark(#eef1f6,#10131b); color: light-dark(#151923,#f4f6fb); }
+  #app { min-height: 100vh; width: 100%; background: light-dark(#eef1f6,#10131b); color: light-dark(#151923,#f4f6fb); padding: 34px 18px 48px; }
+  .wrap { max-width: 760px; margin: 0 auto; }
+  .top { display: flex; align-items: center; gap: 14px; margin-bottom: 34px; }
+  .logo { width: 58px; height: 58px; border-radius: 17px; display: grid; place-items: center; background: #e53d48; color: white; font-size: 28px; box-shadow: 0 8px 24px #e53d4830; }
+  .eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; font-weight: 800; color: light-dark(#616b7d,#aab3c6); }
+  h1 { margin: 4px 0 0; font-size: clamp(27px,5vw,42px); line-height: 1.08; letter-spacing: -.04em; }
+  .hero { padding: clamp(24px,5vw,42px); border-radius: 26px; background: light-dark(#fff,#1a1f2b); border: 1px solid light-dark(#dce1ea,#303849); box-shadow: 0 20px 60px #00000012; }
+  .pixel-banner { position: relative; isolation: isolate; overflow: hidden; margin: 0 0 26px; min-height: 220px; border-radius: 3px; border: 4px solid #f4d35e; background: linear-gradient(180deg,#101b56 0%,#34217d 48%,#9b285f 100%); display: flex; align-items: end; padding: 25px; color: #fff; box-shadow: 8px 8px 0 #171329, 0 16px 34px #7c3aed35; }
+  .pixel-banner:before { content: ""; position: absolute; z-index: -1; inset: 0; opacity: .72; background-image: linear-gradient(90deg,transparent 0 82%,#ffca5c 82% 88%,transparent 88%),linear-gradient(transparent 0 62%,#ffca5c 62% 68%,transparent 68%),linear-gradient(90deg,#ffffff16 2px,transparent 2px),linear-gradient(#ffffff16 2px,transparent 2px); background-size: 96px 72px,112px 88px,12px 12px,12px 12px; image-rendering: pixelated; }
+  .pixel-banner-content { position: relative; z-index: 1; max-width: 470px; }
+  .pixel-banner h2 { color: #fff; margin: 8px 0; text-shadow: 3px 3px 0 #24134e; }
+  .pixel-banner p { color: #f4eaff; margin: 0; }
+  .pixel-badge { display: inline-block; padding: 7px 10px; border: 2px solid #f4d35e; border-radius: 0; background: #170d4c; color: #f4d35e; font-size: 11px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; box-shadow: 4px 4px 0 #171329; }
+  .pixel-gallery { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; margin: 22px 0; }
+  .pixel-card { min-height: 135px; position: relative; overflow: hidden; display: flex; align-items: end; padding: 14px; border-radius: 16px; border: 1px solid #ffffff30; color: white; box-shadow: inset 0 -65px 55px #090b20a8; }
+  .pixel-card:before { content: ""; position: absolute; inset: 0; opacity: .7; background-size: 16px 16px; background-image: linear-gradient(90deg,#ffffff12 1px,transparent 1px),linear-gradient(#ffffff12 1px,transparent 1px); }
+  .pixel-card span { position: relative; font-weight: 900; text-shadow: 2px 2px 0 #171329; }
+  .pixel-card:nth-child(1) { background: radial-gradient(ellipse at 70% 20%,#ffda61 0 7%,transparent 8%),linear-gradient(145deg,#0c8e8c,#142c60 58%,#311c58); }
+  .pixel-card:nth-child(2) { background: radial-gradient(ellipse at 70% 28%,#ff647c 0 10%,transparent 11%),linear-gradient(140deg,#401b69,#bd356a 48%,#ffad52); }
+  .pixel-card:nth-child(3) { background: radial-gradient(ellipse at 26% 30%,#a9ff75 0 8%,transparent 9%),linear-gradient(150deg,#164e38,#167d68 48%,#162d59); }
+  .pixel-card:nth-child(4) { background: radial-gradient(ellipse at 70% 25%,#8cf4ff 0 8%,transparent 9%),linear-gradient(140deg,#14275f,#3455ba 50%,#8738a8); }
+  .pixel-card:nth-child(5) { background: radial-gradient(ellipse at 45% 28%,#fff37a 0 7%,transparent 8%),linear-gradient(145deg,#b73c27,#f28c38 45%,#63328a); }
+  .pixel-card:nth-child(6) { background: radial-gradient(ellipse at 72% 25%,#ff8ad8 0 8%,transparent 9%),linear-gradient(140deg,#202653,#563b9a 48%,#c34378); }
+  @media (min-width: 620px) { .pixel-gallery { grid-template-columns: repeat(3,minmax(0,1fr)); } .pixel-card { min-height: 160px; } }
+  .tag { display: inline-flex; border-radius: 999px; padding: 7px 11px; background: light-dark(#fff0f0,#3a2027); color: light-dark(#b42331,#ffb4bb); font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+  h2 { font-size: clamp(23px,4vw,31px); margin: 17px 0 10px; letter-spacing: -.03em; }
+  p { line-height: 1.65; color: light-dark(#50596a,#c2cada); }
+  .steps { display: grid; gap: 13px; margin: 26px 0 22px; }
+  .step { display: flex; align-items: flex-start; gap: 14px; padding: 17px; border: 1px solid light-dark(#e1e5ed,#303849); border-radius: 16px; background: light-dark(#f8f9fc,#202634); }
+  .num { flex: 0 0 34px; width: 34px; height: 34px; display: grid; place-items: center; border-radius: 11px; background: light-dark(#e7eaf1,#343d50); font-weight: 850; }
+  .step strong { display: block; margin: 2px 0 4px; }
+  .step p { margin: 0; font-size: 14px; }
+  .button { display: flex; justify-content: center; align-items: center; gap: 10px; width: 100%; padding: 15px 18px; border: 0; border-radius: 13px; text-decoration: none; font-size: 15px; font-weight: 800; cursor: pointer; transition: transform .15s, opacity .15s; }
+  .button:hover { transform: translateY(-1px); }
+  .subscribe { color: white; background: #e62129; box-shadow: 0 8px 20px #e6212930; }
+  .reveal { color: light-dark(#fff,#10131b); background: light-dark(#171b25,#f2f4f8); margin-top: 12px; }
+  .download { color: white; background: #198754; margin-top: 14px; }
+  .download-list { display: grid; gap: 12px; margin-top: 18px; }
+  .download-item { padding: 16px; border: 1px solid light-dark(#e1e5ed,#303849); border-radius: 15px; background: light-dark(#f8f9fc,#202634); }
+  .download-item h3 { margin: 0 0 6px; font-size: 17px; }
+  .download-item p { margin: 0; font-size: 14px; }
+  .coming-soon { display: inline-block; margin-top: 12px; padding: 7px 10px; border-radius: 9px; background: light-dark(#e7eaf1,#343d50); color: light-dark(#50596a,#c2cada); font-size: 12px; font-weight: 800; }
+  .notice { font-size: 12px; margin-top: 14px; }
+  .panel { display: none; margin-top: 22px; padding-top: 22px; border-top: 1px solid light-dark(#e1e5ed,#303849); }
+  .panel.show { display: block; }
+  .field-label { display: block; font-weight: 750; font-size: 14px; margin: 15px 0 8px; }
+  input { width: 100%; padding: 13px 14px; border-radius: 11px; border: 1px solid light-dark(#cfd5e0,#465066); background: light-dark(#fff,#111722); color: inherit; font: inherit; }
+  .small { font-size: 12px; }
+  .error { color: light-dark(#b42331,#ff9da7); font-size: 13px; display: none; margin-top: 8px; }
+  footer { text-align: center; font-size: 12px; color: light-dark(#737d8e,#8e99ad); padding: 22px 8px 0; }
+  @media (min-width: 620px) { .steps { grid-template-columns: 1fr 1fr; } }
+  /* Tema retro pixel para toda la página */
+  body { background: #090d25; color: #f8f4ff; image-rendering: pixelated; }
+  #app { background: radial-gradient(ellipse at top,#25205b 0%,#10152f 48%,#080b1b 100%); color: #f8f4ff; }
+  .wrap { max-width: 900px; }
+  .top { padding: 14px; border: 3px solid #56f6d2; background: #15183b; box-shadow: 6px 6px 0 #050713; }
+  .logo { border-radius: 2px; border: 3px solid #f4d35e; background: #e83f75; box-shadow: 4px 4px 0 #050713; animation: mascot-hop 1.4s steps(2,end) infinite; }
+  .eyebrow { color: #56f6d2; }
+  h1, h2, h3, strong, .tag, .button, .coming-soon, .pixel-badge { font-family: "Courier New", monospace; }
+  .hero { border: 3px solid #8c73ff; border-radius: 3px; background: #151936; box-shadow: 8px 8px 0 #050713; }
+  .tag { border: 2px solid #ff6ea8; border-radius: 0; background: #3c194b; color: #ffb4d2; }
+  .steps { gap: 16px; }
+  .step, .download-item { border: 2px solid #454b83; border-radius: 2px; background: #20264b; box-shadow: 4px 4px 0 #080b1b; }
+  .num { border: 2px solid #56f6d2; border-radius: 0; background: #142f49; color: #56f6d2; }
+  .button { border: 3px solid #fff0a6; border-radius: 0; box-shadow: 4px 4px 0 #050713; }
+  .button:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #050713; }
+  .subscribe { background: #e83f75; }
+  .reveal { background: #8c73ff; color: #fff; }
+  .download { background: #168f86; }
+  .download-list { gap: 16px; }
+  .coming-soon { border: 2px dashed #f4d35e; border-radius: 0; background: #353052; color: #ffe58a; }
+  .pixel-card { border: 3px solid #f4d35e; border-radius: 0; box-shadow: 5px 5px 0 #080b1b; animation: card-float 3s steps(3,end) infinite; }
+  .pixel-card:nth-child(even) { animation-delay: -1.5s; }
+  .pixel-card span { color: #fff7c2; font-family: "Courier New", monospace; }
+  .pixel-banner { animation: banner-glow 3s steps(2,end) infinite; }
+  .pixel-banner:after { content: "👾"; position: absolute; right: 7%; top: 18%; font-size: clamp(42px,9vw,76px); filter: drop-shadow(5px 5px 0 #171329); animation: mascot-hop 1.2s steps(2,end) infinite; }
+  .pixel-banner-content { max-width: 70%; }
+  .pixel-banner p { color: #fff; }
+  footer { color: #a6b1e8; border-top: 2px dashed #454b83; margin-top: 28px; padding-top: 22px; }
+  @keyframes mascot-hop { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+  @keyframes card-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+  @keyframes banner-glow { 0%,100% { box-shadow: 8px 8px 0 #171329, 0 0 18px #7c3aed35; } 50% { box-shadow: 8px 8px 0 #171329, 0 0 28px #56f6d255; } }
+  @media (prefers-reduced-motion: reduce) { .logo, .pixel-card, .pixel-banner, .pixel-banner:after { animation: none; } }
 </style>
 </head>
-<body><div id="app"><main class="wrap">
-<header class="top"><div class="logo" aria-hidden="true">🎮</div><div><div class="eyebrow">Archivos de la comunidad</div><h1>Un Desastre Gaming</h1></div></header>
-<section class="pixel-banner" aria-label="Banner de videojuegos pixel art"><div class="pixel-banner-content"><span class="pixel-badge">RETRO PIXEL ZONE</span><h2>¡Tu próxima aventura empieza acá!</h2><p>Ports, juegos y nostalgia pixelada para la comunidad gamer.</p></div></section>
-
-<section class="hero"><span class="tag">Zona de descargas</span><h2>¡Buenas, gente querida!</h2>
-<p>Acá vas a encontrar los archivos y packs que compartimos en los videos del canal. Si te gusta el contenido, suscribite para apoyar a <strong>Un Desastre Gaming</strong>. ¡Gracias por estar del otro lado! 💙</p>
-<div class="steps"><div class="step"><div class="num">1</div><div><strong>Visitá el canal</strong><p>Abrí YouTube y, si querés apoyar el canal, tocá <b>Suscribirse</b>.</p></div></div><div class="step"><div class="num">2</div><div><strong>Volvé a esta página</strong><p>Después, tocá el botón para mostrar el enlace de descarga.</p></div></div></div>
-<a class="button subscribe" href="https://www.youtube.com/channel/UC3df3xTqYwnomS9FwvD1lwA" target="_blank" rel="noopener noreferrer">▶ Abrir Un Desastre Gaming en YouTube</a>
-<button class="button reveal" id="revealButton" type="button">Ya fui al canal — mostrar descarga</button>
-<p class="notice">Importante: esta página no puede comprobar si te suscribiste. El botón de abajo solo muestra el enlace después de pulsarlo; confiamos en el apoyo de la comunidad.</p>
-<div class="panel" id="downloadPanel"><h2 style="font-size:23px;margin-top:0">📦 Descargas disponibles</h2><p>Elegí la categoría que buscás. Los enlaces definitivos se agregarán cuando estén cargados los archivos.</p>
-<div class="download-list"><article class="download-item"><h3>🕹️ Juegos y packs para R36S</h3><p>Juegos, recopilaciones y contenido para tu consola portátil.</p><div class="download-list"><div class="download-item"><h3>DarkOS para R36S y clones</h3><p>Archivos de DarkOS alojados en Google Drive.</p><a class="button" style="color:white;background:#4285F4;margin-top:14px" href="https://drive.google.com/drive/folders/1iRSAzLw4TplYmxgNe6BwMLp-wsUOoEk3?usp=drive_link" target="_blank" rel="noopener noreferrer">⬇ Descargar desde Google Drive</a></div></div></article><article class="download-item"><h3>🎮 Ports y novedades</h3><p>Ports, novedades y archivos relacionados con los videos del canal.</p><span class="coming-soon">Enlaces próximamente</span></article><article class="download-item"><h3>💻 Herramientas y archivos para PC</h3><p>Utilidades y recursos compartidos en los videos.</p><span class="coming-soon">Enlaces próximamente</span></article></div>
-<p class="small">Para activar una descarga, subí el archivo a Google Drive, configurá el acceso como “Cualquier persona que tenga el enlace” y agregá ese enlace a la categoría correspondiente.</p></div></section>
-<footer>Un Desastre Gaming · Gracias por apoyar el canal y compartir la pasión por los videojuegos.</footer></main></div>
-<script>const revealButton=document.getElementById('revealButton');const panel=document.getElementById('downloadPanel');revealButton.addEventListener('click',()=>{panel.classList.add('show');revealButton.textContent='Enlace de descarga mostrado';panel.scrollIntoView({behavior:'smooth',block:'nearest'});});</script>
-</body></html>
+<body>
+<div id="app">
+  <main class="wrap">
+    <header class="top">
+      <div class="logo" aria-hidden="true">🎮</div>
+      <div><div class="eyebrow">Archivos de la comunidad</div><h1>Un Desastre Gaming</h1></div>
+    </header>
+    <section class="pixel-banner" aria-label="Banner de videojuegos pixel art"><div class="pixel-banner-content"><span class="pixel-badge">RETRO PIXEL ZONE</span><h2>¡Tu próxima aventura empieza acá!</h2><p>Ports, juegos y nostalgia pixelada para la comunidad gamer.</p></div></section>
+    <section class="hero">
+      <span class="tag">Zona de descargas</span>
+      <h2>¡Buenas, gente querida!</h2>
+      <p>Acá vas a encontrar los archivos y packs que compartimos en los videos del canal. Si te gusta el contenido, suscribite para apoyar a <strong>Un Desastre Gaming</strong>. ¡Gracias por estar del otro lado! 💙</p>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><div><strong>Visitá el canal</strong><p>Abrí YouTube y, si querés apoyar el canal, tocá <b>Suscribirse</b>.</p></div></div>
+        <div class="step"><div class="num">2</div><div><strong>Volvé a esta página</strong><p>Después, tocá el botón para mostrar el enlace de descarga.</p></div></div>
+      </div>
+      <a class="button subscribe" href="https://www.youtube.com/channel/UC3df3xTqYwnomS9FwvD1lwA" target="_blank" rel="noopener noreferrer">▶ Abrir Un Desastre Gaming en YouTube</a>
+      <button class="button reveal" id="revealButton" type="button">Ya fui al canal — mostrar descarga</button>
+      <p class="notice">Importante: esta página no puede comprobar si te suscribiste. El botón de abajo solo muestra el enlace después de pulsarlo; confiamos en el apoyo de la comunidad.</p>
+      <div class="panel" id="downloadPanel">
+        <h2 style="font-size:23px;margin-top:0">📦 Descargas disponibles</h2>
+        <p>Elegí la categoría que buscás y entrá al enlace de descarga correspondiente.</p>
+        <div class="pixel-gallery" aria-label="Galería de arte pixelado"><div class="pixel-card"><span>AVENTURA 8-BIT</span></div><div class="pixel-card"><span>ARCADE ACTION</span></div><div class="pixel-card"><span>PIXEL QUEST</span></div><div class="pixel-card"><span>RETRO WORLD</span></div><div class="pixel-card"><span>LEVEL UP!</span></div><div class="pixel-card"><span>GAME ON</span></div></div>
+        <div class="download-list">
+          <article class="download-item"><h3>🕹️ Juegos y packs para R36S</h3><p>Juegos, recopilaciones y contenido para tu consola portátil.</p><div class="download-list"><div class="download-item"><h3>DarkOS para R36S y clones</h3><p>Archivos de DarkOS alojados en Google Drive.</p><a class="button download" style="background:#4285F4" href="https://drive.google.com/drive/folders/1iRSAzLw4TplYmxgNe6BwMLp-wsUOoEk3?usp=drive_link" target="_blank" rel="noopener noreferrer">⬇ Descargar desde Google Drive</a></div></div></article>
+          <article class="download-item"><h3>🎮 Ports y novedades</h3><p>Ports, novedades y archivos relacionados con los videos del canal.</p><div class="download-list"><div class="download-item"><h3>Hollow Knight para R36S y clones</h3><p>Archivos del port compartidos por MediaFire.</p><a class="button download" href="https://www.mediafire.com/folder/0sniz6zdhborm/HollowKnight_r36s_y_clones" target="_blank" rel="noopener noreferrer">⬇ Descargar desde MediaFire</a></div><div class="download-item"><h3>📁 Próximas descargas por MediaFire</h3><p>Sección preparada para agregar futuros enlaces de MediaFire.</p><span class="coming-soon">Enlace pendiente</span></div></div></article>
+          <article class="download-item"><h3>☁️ Descargas por MEGA</h3><p>Acá agregaremos enlaces de MEGA para los próximos ports, juegos y packs.</p><span class="coming-soon">Sección preparada · Enlace pendiente</span></article>
+          <article class="download-item"><h3>💻 Herramientas y archivos para PC</h3><p>Utilidades y recursos compartidos en los videos.</p><span class="coming-soon">Enlaces próximamente</span></article>
+        </div>
+        <p class="small">Las descargas se abren en el servicio donde están alojados los archivos. Revisá las instrucciones del port antes de instalarlo.</p>
+      </div>
+    </section>
+    <footer>Un Desastre Gaming · Gracias por apoyar el canal y compartir la pasión por los videojuegos.</footer>
+  </main>
+</div>
+<script>
+  const revealButton = document.getElementById('revealButton');
+  const panel = document.getElementById('downloadPanel');
+  revealButton.addEventListener('click', () => {
+    panel.classList.add('show');
+    revealButton.textContent = 'Enlace de descarga mostrado';
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+</script>
+</body>
+</html>
