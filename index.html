@@ -125,10 +125,75 @@
   .hero { margin-top:0; }
   .download-list > .download-item { border-color:#56f6d2; }
   @media (max-width:480px) { .feature-grid { grid-template-columns:1fr; } .pixel-banner-content { max-width:100%; } .pixel-banner:after { opacity:.45; right:5%; top:8%; } }
+
+  /* Ilustraciones laterales: solo en pantallas grandes, sin tapar el contenido */
+  .side-art { display:none; position:fixed; z-index:0; top:0; bottom:0; width:clamp(145px,calc((100vw - 950px)/2),330px); overflow:hidden; pointer-events:none; opacity:.92; }
+  .side-art.left { left:0; }
+  .side-art.right { right:0; }
+  .side-art svg { display:block; width:100%; height:100%; }
+  .side-art:after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,#090d25 0%,transparent 30%,transparent 72%,#090d25 100%); }
+  .wrap { position:relative; z-index:1; }
+  @media (min-width:1250px) {
+    .side-art { display:block; }
+    #app { padding-left:18px; padding-right:18px; }
+  }
+  @media (min-width:1250px) and (max-width:1450px) {
+    .side-art { opacity:.68; }
+  }
+
 </style>
 </head>
 <body>
 <div id="app">
+
+<div class="side-art left" aria-hidden="true">
+  <svg viewBox="0 0 300 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs><linearGradient id="cyberbg" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#101c55"/><stop offset=".55" stop-color="#24206b"/><stop offset="1" stop-color="#090d25"/></linearGradient><linearGradient id="armor" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a5c6d7"/><stop offset=".5" stop-color="#506e9a"/><stop offset="1" stop-color="#202b5c"/></linearGradient></defs>
+    <rect width="300" height="900" fill="url(#cyberbg)"/>
+    <g fill="#56f6d2" opacity=".75"><rect x="28" y="90" width="8" height="70"/><rect x="46" y="120" width="5" height="34"/><rect x="232" y="190" width="7" height="95"/><rect x="215" y="225" width="5" height="38"/><rect x="34" y="650" width="7" height="110"/></g>
+    <g fill="#8c73ff" opacity=".8"><path d="M0 260h70v10H0zM0 286h48v5H0zM220 410h80v9h-80zM250 435h50v5h-50z"/><path d="M0 790h110v8H0z"/></g>
+    <g transform="translate(12 225)" stroke="#10152f" stroke-width="10" stroke-linejoin="miter">
+      <path d="M64 244l-18 120 12 150h48l25-142 28 142h49l5-160-23-119z" fill="#25335f"/>
+      <path d="M70 230l-32 36-16 130 42 12 38-123M176 231l38 22 36 116-39 18-45-103" fill="url(#armor)"/>
+      <path d="M74 107l-18 72 22 65 52 34 56-36 20-66-26-70z" fill="url(#armor)"/>
+      <path d="M80 106l-22-41 12-40 45 8 18 42 21-42 46-8 14 40-24 44-19 27-73 0z" fill="#718fae"/>
+      <path d="M72 65l35 9-6 20-34-4zM159 74l34-9 5 25-34 4z" fill="#56f6d2" stroke="#172044" stroke-width="7"/>
+      <path d="M99 130l29 18 27-18-9 42h-37z" fill="#1b2549"/>
+      <path d="M85 190l40 10 40-10-14 36-27 14-27-14z" fill="#ff6ea8"/>
+      <path d="M37 275l-14 60 28 4 20-58M199 275l28 58 24-8-20-62" fill="#9eb9cb"/>
+      <path d="M87 255l-18 100 29 10 22-94M151 260l20 95 28-12-15-91" fill="#536f9b"/>
+      <path d="M115 45h32v12h-32z" fill="#f4d35e" stroke="none"/>
+    </g>
+    <g fill="#f4d35e"><rect x="48" y="150" width="15" height="15"/><rect x="220" y="530" width="10" height="10"/><rect x="78" y="715" width="14" height="14"/></g>
+    <path d="M0 840h300v60H0z" fill="#10152f" opacity=".8"/><text x="18" y="872" font-family="monospace" font-weight="bold" font-size="15" fill="#56f6d2">PLAYER 01</text>
+  </svg>
+</div>
+<div class="side-art right" aria-hidden="true">
+  <svg viewBox="0 0 300 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs><linearGradient id="fantasybg" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#3a1c68"/><stop offset=".48" stop-color="#572b64"/><stop offset="1" stop-color="#090d25"/></linearGradient><linearGradient id="fur" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d6ad7d"/><stop offset=".5" stop-color="#89634d"/><stop offset="1" stop-color="#49334b"/></linearGradient></defs>
+    <rect width="300" height="900" fill="url(#fantasybg)"/>
+    <g fill="#ff6ea8" opacity=".75"><rect x="238" y="100" width="7" height="100"/><rect x="253" y="130" width="5" height="38"/><rect x="28" y="340" width="8" height="70"/><rect x="46" y="365" width="5" height="30"/></g>
+    <g fill="#f4d35e" opacity=".7"><path d="M0 205h72v8H0zM0 230h45v5H0zM210 610h90v8h-90zM242 635h58v5h-58z"/></g>
+    <g transform="translate(3 222)" stroke="#201329" stroke-width="10" stroke-linejoin="miter">
+      <path d="M66 255l-10 116 6 148h49l18-143 25 143h51l4-151-24-113z" fill="#49334b"/>
+      <path d="M68 227l-41 34-6 113 43 11 31-99M178 230l39 19 30 113-39 20-40-101" fill="#80604f"/>
+      <path d="M70 111l-7 82 24 49 42 30 48-30 23-53-20-72z" fill="url(#fur)"/>
+      <path d="M68 106L36 67 22 17l51 31 33 35M180 105l34-38 13-50-53 31-28 35" fill="#f4d7a4" stroke="#fff0ca" stroke-width="8"/>
+      <path d="M74 107l-16-54 35-42 61 0 35 42-16 54-31 22h-37z" fill="#987052"/>
+      <path d="M79 67l34 12-6 17-34-5zM151 79l34-12 6 24-34 5z" fill="#ffe58a" stroke="#35213c" stroke-width="7"/>
+      <path d="M108 125l22 16 23-16-6 34-17 14-17-14z" fill="#21182d"/>
+      <path d="M96 177l34 11 34-11-13 30-21 15-21-15z" fill="#d8c3a0"/>
+      <path d="M44 270l-20 70 25 8 24-66M197 269l26 65 23-11-22-68" fill="#a78362"/>
+      <path d="M83 252l-11 101 30 8 18-91M146 262l17 93 29-11-12-92" fill="#6b4b50"/>
+      <path d="M207 228l33-123 17 5-19 133z" fill="#c9d5e8" stroke="#171329" stroke-width="8"/>
+      <path d="M216 116l-13-34 18-39 23 36-5 37z" fill="#56f6d2" stroke="#171329" stroke-width="7"/>
+      <path d="M202 87l-20-22 7-29 22 12M241 85l20-22-7-29-22 12" fill="#8c73ff" stroke="#171329" stroke-width="7"/>
+    </g>
+    <g fill="#f4d35e"><rect x="48" y="150" width="13" height="13"/><rect x="232" y="520" width="12" height="12"/><rect x="75" y="725" width="14" height="14"/></g>
+    <path d="M0 840h300v60H0z" fill="#10152f" opacity=".8"/><text x="18" y="872" font-family="monospace" font-weight="bold" font-size="15" fill="#ffe58a">PLAYER 02</text>
+  </svg>
+</div>
+
   <main class="wrap">
     <header class="top" id="inicio">
       <div class="logo" aria-hidden="true">🎮</div>
