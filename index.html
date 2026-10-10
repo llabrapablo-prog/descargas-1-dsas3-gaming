@@ -257,6 +257,13 @@
     revealButton.textContent = 'Enlace de descarga mostrado';
     panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   });
+  document.querySelector('.site-nav a[href="#ports-library"]').addEventListener('click', (event) => {
+    event.preventDefault();
+    panel.classList.add('show');
+    revealButton.textContent = 'Enlace de descarga mostrado';
+    document.getElementById('ports-library').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    history.replaceState(null, '', '#ports-library');
+  });
   document.querySelectorAll('a.feature-card').forEach((card) => {
     card.addEventListener('click', (event) => {
       const href = card.getAttribute('href');
