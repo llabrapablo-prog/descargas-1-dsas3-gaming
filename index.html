@@ -120,6 +120,10 @@
   .feature-card .feature-icon { font-size:31px; }
   .feature-card h3 { margin:10px 0 6px; color:#ffe58a; font-size:15px; }
   .feature-card p { margin:0; color:#d9defe; font-size:13px; }
+  a.feature-card { display:block; position:relative; z-index:2; color:inherit; text-decoration:none; cursor:pointer; transition:transform .16s, border-color .16s, box-shadow .16s; }
+  a.feature-card:hover, a.feature-card:focus-visible { transform:translate(-3px,-3px); border-color:#56f6d2; box-shadow:7px 7px 0 #050713, 0 0 18px #56f6d233; outline:none; }
+  a.feature-card:focus-visible { outline:3px solid #f4d35e; outline-offset:4px; }
+  a.feature-card h3::after { content:"  ↗"; color:#56f6d2; }
   .video-feature { padding:18px; border:3px solid #56f6d2; background:linear-gradient(135deg,#18214b,#321b58); box-shadow:5px 5px 0 #050713; margin-bottom:25px; }
   .video-feature p { margin:5px 0 15px; }
   .hero { margin-top:0; }
@@ -199,11 +203,11 @@
       <div class="logo" aria-hidden="true">🎮</div>
       <div><div class="eyebrow">Tu portal gamer retro</div><h1>Un Desastre Gaming</h1></div>
     </header>
-    <nav class="site-nav" aria-label="Navegación principal"><a href="#videos">▶ Videos</a><a href="#descargas">⬇ Descargas</a><a href="#r36s">🎮 R36S</a><a href="#pc">💻 PC</a></nav>
+    <nav class="site-nav" aria-label="Navegación principal"><a href="#videos">▶ Videos</a><a href="#descargas">⬇ Descargas</a><a href="#descargas">🎮 R36S</a><a href="#pc-tools">💻 PC</a></nav>
     <section class="pixel-banner" aria-label="Banner de videojuegos pixel art"><div class="pixel-banner-content"><span class="pixel-badge">RETRO PIXEL ZONE</span><h2>¡Tu próxima aventura empieza acá!</h2><p>Gameplays, ports, herramientas y descargas para la comunidad gamer.</p></div></section>
     <p class="intro-line">Bienvenido al rincón gamer de la comunidad. Explorá los videos, encontrá los archivos y seguí sumando niveles con <strong>Un Desastre Gaming</strong>.</p>
     <section id="videos" aria-labelledby="videos-heading"><h2 class="section-heading" id="videos-heading">▶ EN EL CANAL</h2><div class="video-feature"><span class="pixel-badge">ÚLTIMOS GAMEPLAYS Y TUTORIALES</span><h2>¡Nuevas aventuras, ports y descubrimientos!</h2><p>Pasá por el canal para ver los gameplays de PC, los ports para consolas retro y los tutoriales de la comunidad.</p><a class="button subscribe" href="https://www.youtube.com/channel/UC3df3xTqYwnomS9FwvD1lwA" target="_blank" rel="noopener noreferrer">▶ Ver videos en YouTube</a></div></section>
-    <section aria-labelledby="explorar-heading"><h2 class="section-heading" id="explorar-heading">▣ EXPLORÁ LA ZONA GAMER</h2><div class="feature-grid"><article class="feature-card" id="r36s"><div class="feature-icon">🎮</div><h3>R36S Y CONSOLAS CLONES</h3><p>Sistemas, ports y recursos para tu portátil retro.</p></article><article class="feature-card"><div class="feature-icon">🕹️</div><h3>PORTS Y JUEGOS CLÁSICOS</h3><p>Descubrí aventuras y archivos relacionados con los videos.</p></article><article class="feature-card"><div class="feature-icon">🖥️</div><h3>GAMEPLAYS DE PC</h3><p>Partidas, novedades y juegos para explorar.</p></article><article class="feature-card" id="pc"><div class="feature-icon">🧰</div><h3>HERRAMIENTAS PARA PC</h3><p>Utilidades y recursos para configurar y jugar.</p></article></div></section>
+    <section aria-labelledby="explorar-heading"><h2 class="section-heading" id="explorar-heading">▣ EXPLORÁ LA ZONA GAMER</h2><div class="feature-grid"><a class="feature-card" href="#descargas"><div class="feature-icon">🎮</div><h3>R36S Y CONSOLAS CLONES</h3><p>Sistemas, ports y recursos para tu portátil retro.</p></a><a class="feature-card" href="#ports-downloads"><div class="feature-icon">🕹️</div><h3>PORTS Y JUEGOS CLÁSICOS</h3><p>Descubrí aventuras y archivos relacionados con los videos.</p></a><a class="feature-card" href="#videos"><div class="feature-icon">🖥️</div><h3>GAMEPLAYS DE PC</h3><p>Partidas, novedades y juegos para explorar.</p></a><a class="feature-card" href="#pc-tools"><div class="feature-icon">🧰</div><h3>HERRAMIENTAS PARA PC</h3><p>Utilidades y recursos para configurar y jugar.</p></a></div></section>
     <section class="hero" id="descargas">
       <span class="tag">Zona de descargas</span>
       <h2>¡Buenas, gente querida!</h2>
@@ -221,9 +225,9 @@
         <div class="pixel-gallery" aria-label="Galería de arte pixelado"><div class="pixel-card"><span>AVENTURA 8-BIT</span></div><div class="pixel-card"><span>ARCADE ACTION</span></div><div class="pixel-card"><span>PIXEL QUEST</span></div><div class="pixel-card"><span>RETRO WORLD</span></div><div class="pixel-card"><span>LEVEL UP!</span></div><div class="pixel-card"><span>GAME ON</span></div></div>
         <div class="download-list">
           <article class="download-item"><h3>🕹️ Juegos y packs para R36S</h3><p>Juegos, recopilaciones y contenido para tu consola portátil.</p><div class="download-list"><div class="download-item"><h3>DarkOS para R36S y clones</h3><p>Archivos de DarkOS alojados en Google Drive.</p><a class="button download" style="background:#4285F4" href="https://drive.google.com/drive/folders/1iRSAzLw4TplYmxgNe6BwMLp-wsUOoEk3?usp=drive_link" target="_blank" rel="noopener noreferrer">⬇ Descargar desde Google Drive</a></div></div></article>
-          <article class="download-item"><h3>🎮 Ports y novedades</h3><p>Ports, novedades y archivos relacionados con los videos del canal.</p><div class="download-list"><div class="download-item"><h3>Hollow Knight para R36S y clones</h3><p>Archivos del port compartidos por MediaFire.</p><a class="button download" href="https://www.mediafire.com/folder/0sniz6zdhborm/HollowKnight_r36s_y_clones" target="_blank" rel="noopener noreferrer">⬇ Descargar desde MediaFire</a></div><div class="download-item"><h3>📁 Próximas descargas por MediaFire</h3><p>Sección preparada para agregar futuros enlaces de MediaFire.</p><span class="coming-soon">Enlace pendiente</span></div></div></article>
+          <article class="download-item" id="ports-downloads"><h3>🎮 Ports y novedades</h3><p>Ports, novedades y archivos relacionados con los videos del canal.</p><div class="download-list"><div class="download-item"><h3>Hollow Knight para R36S y clones</h3><p>Archivos del port compartidos por MediaFire.</p><a class="button download" href="https://www.mediafire.com/folder/0sniz6zdhborm/HollowKnight_r36s_y_clones" target="_blank" rel="noopener noreferrer">⬇ Descargar desde MediaFire</a></div><div class="download-item"><h3>📁 Próximas descargas por MediaFire</h3><p>Sección preparada para agregar futuros enlaces de MediaFire.</p><span class="coming-soon">Enlace pendiente</span></div></div></article>
           <article class="download-item"><h3>☁️ Descargas por MEGA</h3><p>Acá agregaremos enlaces de MEGA para los próximos ports, juegos y packs.</p><span class="coming-soon">Sección preparada · Enlace pendiente</span></article>
-          <article class="download-item"><h3>💻 Herramientas y archivos para PC</h3><p>Utilidades y recursos compartidos en los videos.</p><span class="coming-soon">Enlaces próximamente</span></article>
+          <article class="download-item" id="pc-tools"><h3>💻 Herramientas y archivos para PC</h3><p>Utilidades y recursos compartidos en los videos.</p><span class="coming-soon">Enlaces próximamente</span></article>
         </div>
         <p class="small">Las descargas se abren en el servicio donde están alojados los archivos. Revisá las instrucciones del port antes de instalarlo.</p>
       </div>
@@ -238,6 +242,18 @@
     panel.classList.add('show');
     revealButton.textContent = 'Enlace de descarga mostrado';
     panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+  document.querySelectorAll('a.feature-card').forEach((card) => {
+    card.addEventListener('click', (event) => {
+      const href = card.getAttribute('href');
+      if (href === '#ports-downloads' || href === '#pc-tools') {
+        event.preventDefault();
+        panel.classList.add('show');
+        revealButton.textContent = 'Enlace de descarga mostrado';
+        const target = document.querySelector(href);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
   });
 </script>
 </body>
