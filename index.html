@@ -159,6 +159,22 @@
     .side-art { opacity:.68; }
   }
 
+
+  .systems-library { margin:30px 0; padding:clamp(20px,4vw,34px); border:3px solid #56f6d2; background:#151936; box-shadow:8px 8px 0 #050713; }
+  .systems-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin:18px 0 0; }
+  .system-card { min-width:0; padding:17px; border:3px solid #454b83; background:#20264b; box-shadow:4px 4px 0 #050713; }
+  .system-card h3 { margin:8px 0; color:#ffe58a; font-size:18px; }
+  .system-card p { margin:0; color:#d9defe; font-size:13px; }
+  .system-card.darkos { border-color:#56f6d2; }
+  .system-open { width:100%; margin-top:14px; padding:11px; border:2px solid #f4d35e; background:#8c73ff; color:#fff; cursor:pointer; font:900 12px "Courier New",monospace; box-shadow:3px 3px 0 #050713; }
+  .system-detail { display:none; margin-top:20px; padding:18px; border:3px solid #f4d35e; background:#10152f; box-shadow:5px 5px 0 #050713; }
+  .system-detail.show { display:block; }
+  .system-gallery { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin:16px 0; }
+  .system-shot { min-height:130px; display:flex; flex-direction:column; justify-content:space-between; padding:12px; border:2px solid #8c73ff; background:linear-gradient(145deg,#111b50,#263c79 55%,#17132f); color:#fff; font:900 12px "Courier New",monospace; }
+  .system-shot strong { color:#56f6d2; font-size:18px; }
+  .system-detail .spec-grid { margin-bottom:18px; }
+  @media (max-width:480px) { .system-gallery,.systems-grid { grid-template-columns:1fr; } }
+
 </style>
 </head>
 <body>
@@ -217,7 +233,7 @@
       <div class="logo" aria-hidden="true">🎮</div>
       <div><div class="eyebrow">Tu portal gamer retro</div><h1>Un Desastre Gaming</h1></div>
     </header>
-    <nav class="site-nav" aria-label="Navegación principal"><a href="#videos">▶ Videos</a><a href="#descargas">🕹️ Sistemas</a><a href="#ports-library">📚 Biblioteca</a><a href="#pc-tools">💻 PC</a></nav>
+    <nav class="site-nav" aria-label="Navegación principal"><a href="#videos">▶ Videos</a><a href="#systems-library">🕹️ Sistemas</a><a href="#ports-library">📚 Biblioteca</a><a href="#pc-tools">💻 PC</a></nav>
     <section class="pixel-banner" aria-label="Banner de videojuegos pixel art"><div class="pixel-banner-content"><span class="pixel-badge">RETRO PIXEL ZONE</span><h2>¡Tu próxima aventura empieza acá!</h2><p>Gameplays, ports, herramientas y descargas para la comunidad gamer.</p></div></section>
     <p class="intro-line">Bienvenido al rincón gamer de la comunidad. Explorá los videos, encontrá los archivos y seguí sumando niveles con <strong>Un Desastre Gaming</strong>.</p>
     <section id="videos" aria-labelledby="videos-heading"><h2 class="section-heading" id="videos-heading">▶ EN EL CANAL</h2><div class="video-feature"><span class="pixel-badge">ÚLTIMOS GAMEPLAYS Y TUTORIALES</span><h2>¡Nuevas aventuras, ports y descubrimientos!</h2><p>Pasá por el canal para ver los gameplays de PC, los ports para consolas retro y los tutoriales de la comunidad.</p><a class="button subscribe" href="https://www.youtube.com/channel/UC3df3xTqYwnomS9FwvD1lwA" target="_blank" rel="noopener noreferrer">▶ Ver videos en YouTube</a></div></section>
@@ -245,6 +261,9 @@
         <p class="small">Las descargas se abren en el servicio donde están alojados los archivos. Revisá las instrucciones del port antes de instalarlo.</p>
       </div>
     </section>
+
+    <section class="systems-library" id="systems-library" aria-labelledby="systems-title"><span class="pixel-badge">SISTEMAS PARA CONSOLAS RETRO</span><h2 class="section-heading" id="systems-title">🕹️ BIBLIOTECA DE SISTEMAS</h2><p>Esta sección es independiente de la biblioteca de ports. Acá vas a encontrar sistemas operativos, distribuciones y archivos para tu consola retro. Vamos a sumar más opciones a medida que estén disponibles.</p><div class="systems-grid"><article class="system-card darkos"><span class="pixel-badge">SISTEMA DISPONIBLE</span><h3>DarkOS</h3><p>Sistema para R36S y consolas clones. Abrí la ficha para ver la galería, características y descarga.</p><button class="system-open" id="open-darkos" type="button">VER DARKOS Y DESCARGA ↗</button></article><article class="system-card"><span class="pixel-badge">SISTEMA</span><h3>Arcos</h3><p>Espacio reservado para archivos, versiones e instrucciones del sistema Arcos.</p><span class="coming-soon">Próximamente</span></article><article class="system-card"><span class="pixel-badge">SISTEMA</span><h3>Frogmouth</h3><p>Espacio reservado para descargas y guías de Frogmouth.</p><span class="coming-soon">Próximamente</span></article><article class="system-card"><span class="pixel-badge">NUEVOS SISTEMAS</span><h3>Más sistemas en camino</h3><p>La biblioteca queda preparada para agregar otros sistemas y sus recursos en el futuro.</p><span class="coming-soon">En actualización</span></article></div><article class="system-detail" id="darkos-detail" aria-labelledby="darkos-title"><span class="pixel-badge">FICHA DEL SISTEMA · R36S Y CLONES</span><h2 id="darkos-title">DarkOS</h2><p>Una opción de sistema para consolas portátiles retro R36S y clones compatibles. Antes de instalarlo, comprobá que la versión corresponda a tu modelo y a la revisión de tu placa.</p><div class="system-gallery" aria-label="Vistas ilustrativas de la interfaz DarkOS"><div class="system-shot"><span>VISTA DEL SISTEMA</span><strong>DarkOS</strong><span>INTERFAZ · MENÚ PRINCIPAL</span></div><div class="system-shot"><span>ENTORNO RETRO</span><strong>R36S</strong><span>JUEGOS · EMULACIÓN</span></div></div><p class="small">Estas vistas son ilustrativas del estilo de la ficha; todavía no son capturas reales de DarkOS. Podemos reemplazarlas por las imágenes originales del sistema.</p><div class="spec-grid"><div class="spec"><strong>DISPOSITIVOS</strong>R36S y clones compatibles; verificar la versión exacta</div><div class="spec"><strong>TIPO</strong>Sistema para consola portátil retro</div><div class="spec"><strong>ANTES DE INSTALAR</strong>Hacé una copia de seguridad de la tarjeta SD actual</div><div class="spec"><strong>COMPATIBILIDAD</strong>Confirmá modelo, placa y versión antes de flashear</div></div><a class="button download" href="https://drive.google.com/drive/folders/1iRSAzLw4TplYmxgNe6BwMLp-wsUOoEk3?usp=drive_link" target="_blank" rel="noopener noreferrer">⬇ DESCARGAR DARKOS DESDE GOOGLE DRIVE</a><button class="button back-library" id="close-darkos" type="button">← Volver a sistemas</button></article></section>
+
     <section aria-labelledby="explorar-heading"><h2 class="section-heading" id="explorar-heading">▣ EXPLORÁ LA ZONA GAMER</h2><div class="feature-grid"><a class="feature-card" href="#descargas"><div class="feature-icon">🎮</div><h3>R36S Y CONSOLAS CLONES</h3><p>Sistemas, ports y recursos para tu portátil retro.</p></a><a class="feature-card" href="#ports-downloads"><div class="feature-icon">🕹️</div><h3>PORTS Y JUEGOS CLÁSICOS</h3><p>Descubrí aventuras y archivos relacionados con los videos.</p></a><a class="feature-card" href="#videos"><div class="feature-icon">🖥️</div><h3>GAMEPLAYS DE PC</h3><p>Partidas, novedades y juegos para explorar.</p></a><a class="feature-card" href="#pc-tools"><div class="feature-icon">🧰</div><h3>HERRAMIENTAS PARA PC</h3><p>Utilidades y recursos para configurar y jugar.</p></a></div></section>
     <footer>Un Desastre Gaming · Gracias por apoyar el canal y compartir la pasión por los videojuegos.</footer>
   </main>
@@ -284,6 +303,16 @@
   document.getElementById('back-library').addEventListener('click', () => {
     gameDetail.classList.remove('show');
     document.getElementById('ports-library').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  const darkosDetail = document.getElementById('darkos-detail');
+  document.getElementById('open-darkos').addEventListener('click', () => {
+    darkosDetail.classList.add('show');
+    darkosDetail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  document.getElementById('close-darkos').addEventListener('click', () => {
+    darkosDetail.classList.remove('show');
+    document.getElementById('systems-library').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 </script>
 </body>
