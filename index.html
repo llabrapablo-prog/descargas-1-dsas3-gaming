@@ -104,40 +104,42 @@
   @keyframes card-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
   @keyframes banner-glow { 0%,100% { box-shadow: 8px 8px 0 #171329, 0 0 18px #7c3aed35; } 50% { box-shadow: 8px 8px 0 #171329, 0 0 28px #56f6d255; } }
   @media (prefers-reduced-motion: reduce) { .logo, .pixel-card, .pixel-banner, .pixel-banner:after { animation: none; } }
+  .top { position: relative; margin-bottom: 18px; }
+  .top .logo { width: 68px; height: 68px; font-size: 36px; }
+  .site-nav { display:flex; flex-wrap:wrap; gap:10px; margin:0 0 22px; }
+  .site-nav a { flex:1 1 auto; text-align:center; padding:11px 13px; color:#f8f4ff; text-decoration:none; font:800 12px "Courier New",monospace; text-transform:uppercase; border:2px solid #454b83; background:#15183b; box-shadow:3px 3px 0 #050713; }
+  .site-nav a:hover { border-color:#56f6d2; color:#56f6d2; }
+  .pixel-banner { min-height:290px; margin-bottom:22px; background:linear-gradient(180deg,#101b56 0%,#34217d 55%,#9b285f 100%); }
+  .pixel-banner:after { content:"👾"; font-size:clamp(62px,13vw,112px); right:8%; top:16%; }
+  .pixel-banner-content { max-width:76%; }
+  .pixel-banner h2 { font-size:clamp(25px,5vw,39px); }
+  .intro-line { margin:0 0 22px; color:#d9defe; }
+  .section-heading { margin:30px 0 14px; color:#ffe58a; font:900 clamp(21px,4vw,29px) "Courier New",monospace; }
+  .feature-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin:16px 0 26px; }
+  .feature-card { min-width:0; padding:17px 13px; border:3px solid #454b83; background:#15183b; box-shadow:4px 4px 0 #050713; }
+  .feature-card .feature-icon { font-size:31px; }
+  .feature-card h3 { margin:10px 0 6px; color:#ffe58a; font-size:15px; }
+  .feature-card p { margin:0; color:#d9defe; font-size:13px; }
+  .video-feature { padding:18px; border:3px solid #56f6d2; background:linear-gradient(135deg,#18214b,#321b58); box-shadow:5px 5px 0 #050713; margin-bottom:25px; }
+  .video-feature p { margin:5px 0 15px; }
+  .hero { margin-top:0; }
+  .download-list > .download-item { border-color:#56f6d2; }
+  @media (max-width:480px) { .feature-grid { grid-template-columns:1fr; } .pixel-banner-content { max-width:100%; } .pixel-banner:after { opacity:.45; right:5%; top:8%; } }
 </style>
 </head>
 <body>
 <div id="app">
   <main class="wrap">
-    <header class="top">
+    <header class="top" id="inicio">
       <div class="logo" aria-hidden="true">🎮</div>
-      <div><div class="eyebrow">Archivos de la comunidad</div><h1>Un Desastre Gaming</h1></div>
+      <div><div class="eyebrow">Tu portal gamer retro</div><h1>Un Desastre Gaming</h1></div>
     </header>
-    <section class="pixel-banner" aria-label="Banner de videojuegos pixel art"><div class="pixel-banner-content"><span class="pixel-badge">RETRO PIXEL ZONE</span><h2>¡Tu próxima aventura empieza acá!</h2><p>Ports, juegos y nostalgia pixelada para la comunidad gamer.</p></div></section>
-    <section class="universe-grid" aria-label="Universos clásicos de Blizzard">
-      <article class="universe-card starcraft" aria-label="Universo StarCraft Terran">
-        <span class="pixel-badge">TRANSMISIÓN TERRAN</span>
-        <h2>STARCRAFT · TERRAN</h2>
-        <p>Inteligencia artificial, Marines clásicos de StarCraft 1 y Ghosts. ¡Prepará tus tropas, comandante! 🚀</p>
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 320'%3E%3Cdefs%3E%3ClinearGradient id='b' x2='0' y2='1'%3E%3Cstop stop-color='%230b3150'/%3E%3Cstop offset='1' stop-color='%23070b20'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='640' height='320' fill='url(%23b)'/%3E%3Cpath d='M0 260L130 180 220 250 360 130 510 240 640 170V320H0' fill='%23134c65'/%3E%3Cpath d='M220 320l20-110 45-42 70 8 38 57 22 87' fill='%235f7e8c' stroke='%23b3d9e6' stroke-width='8'/%3E%3Crect x='268' y='76' width='92' height='95' rx='12' fill='%237c9eaa' stroke='%23d6edf5' stroke-width='8'/%3E%3Cpath d='M270 100l-45-20 15 68 32 8M358 100l45-20-15 68-32 8' fill='%23d0d9db' stroke='%23eefaff' stroke-width='8'/%3E%3Crect x='284' y='110' width='20' height='12' fill='%23ffcf55'/%3E%3Crect x='326' y='110' width='20' height='12' fill='%23ffcf55'/%3E%3Cpath d='M290 145h48' stroke='%230b1a2b' stroke-width='9'/%3E%3Ctext x='24' y='42' fill='%2356f6d2' font-family='monospace' font-size='22' font-weight='bold'%3ETERRAN MARINE%3C/text%3E%3C/svg%3E" alt="Marine Terran de StarCraft" loading="lazy">
-        <div class="universe-portraits">
-          <figure><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Crect width='320' height='180' fill='%231a2855'/%3E%3Ccircle cx='160' cy='85' r='53' fill='%2384a5ba' stroke='%23d7edf8' stroke-width='7'/%3E%3Crect x='125' y='62' width='70' height='38' fill='%230c1633'/%3E%3Crect x='134' y='72' width='18' height='10' fill='%2356f6d2'/%3E%3Crect x='168' y='72' width='18' height='10' fill='%2356f6d2'/%3E%3Cpath d='M100 180v-30l60-24 60 24v30' fill='%234c6b83'/%3E%3Ctext x='12' y='24' fill='%23ffe58a' font-family='monospace' font-size='13'%3EADJUTANT AI%3C/text%3E%3C/svg%3E" alt="Adjuntante, la IA de StarCraft" loading="lazy"><figcaption>IA · ADJUNTANTE</figcaption></figure>
-          <figure><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Crect width='320' height='180' fill='%230b1a36'/%3E%3Cpath d='M95 180l15-82 40-30h40l40 30 15 82' fill='%23394c72' stroke='%2388b4d4' stroke-width='6'/%3E%3Cpath d='M120 62l20-34h40l20 34-20 44h-40z' fill='%235e7796' stroke='%23c8e5f6' stroke-width='6'/%3E%3Cpath d='M132 62h56' stroke='%23ff6ea8' stroke-width='10'/%3E%3Crect x='145' y='77' width='30' height='9' fill='%23f4d35e'/%3E%3Ctext x='12' y='24' fill='%2356f6d2' font-family='monospace' font-size='13'%3EGHOST UNIT%3C/text%3E%3C/svg%3E" alt="Ghost terran de StarCraft" loading="lazy"><figcaption>GHOST · TERRAN</figcaption></figure>
-          <figure><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Crect width='320' height='180' fill='%23101e42'/%3E%3Cpath d='M75 180l20-85 38-30h55l38 30 20 85' fill='%237a8e9b' stroke='%23dce8ed' stroke-width='6'/%3E%3Crect x='120' y='40' width='80' height='70' rx='8' fill='%235b7889' stroke='%23dce8ed' stroke-width='6'/%3E%3Crect x='132' y='61' width='20' height='12' fill='%23ffcf55'/%3E%3Crect x='168' y='61' width='20' height='12' fill='%23ffcf55'/%3E%3Cpath d='M140 91h40' stroke='%23091428' stroke-width='7'/%3E%3Ctext x='12' y='24' fill='%23ffe58a' font-family='monospace' font-size='13'%3ESTARCRAFT I%3C/text%3E%3C/svg%3E" alt="Marine Terran clásico de StarCraft 1" loading="lazy"><figcaption>MARINE · STARCRAFT 1</figcaption></figure>
-        </div>
-      </article>
-      <article class="universe-card warcraft" aria-label="Universo Warcraft">
-        <span class="pixel-badge">PORTAL DE AZEROTH</span>
-        <h2>WARCRAFT · HÉROES</h2>
-        <p>Tauren, paladines y trolls: elegí tu facción y preparate para la batalla. ⚔️</p>
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 320'%3E%3Cdefs%3E%3ClinearGradient id='w' x2='0' y2='1'%3E%3Cstop stop-color='%23553d2d'/%3E%3Cstop offset='1' stop-color='%23151025'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='640' height='320' fill='url(%23w)'/%3E%3Ccircle cx='320' cy='135' r='92' fill='%237f684d' stroke='%23d8c69b' stroke-width='9'/%3E%3Cpath d='M242 93L170 28 198 130 245 151M398 93l72-65-28 102-47 21' fill='%23f0e0b8' stroke='%23fff1d0' stroke-width='12'/%3E%3Cpath d='M270 110l32 12-32 12M370 110l-32 12 32 12' fill='%23ffe58a'/%3E%3Cpath d='M286 165l34 22 34-22-9 44h-50z' fill='%23201418'/%3E%3Cpath d='M205 320l25-82 90-36 90 36 25 82' fill='%23553f37' stroke='%23b49a75' stroke-width='9'/%3E%3Ctext x='22' y='40' fill='%23ffe58a' font-family='monospace' font-size='24' font-weight='bold'%3EWARCRAFT · TAUREN%3C/text%3E%3C/svg%3E" alt="Guerrero Tauren de Warcraft" loading="lazy">
-        <div class="universe-portraits">
-          <figure><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Crect width='320' height='180' fill='%2345322b'/%3E%3Cpath d='M110 180l15-70 35-25 35 25 15 70' fill='%238d9da5' stroke='%23e6e4d5' stroke-width='6'/%3E%3Cpath d='M124 55l18-28h36l18 28-18 40h-36z' fill='%23c8d3d8' stroke='%23fff1c5' stroke-width='5'/%3E%3Cpath d='M160 35v53M137 58h46' stroke='%23f4d35e' stroke-width='8'/%3E%3Ctext x='12' y='22' fill='%23ffe58a' font-family='monospace' font-size='13'%3EPALADIN%3C/text%3E%3C/svg%3E" alt="Paladín de Warcraft" loading="lazy"><figcaption>PALADÍN</figcaption></figure>
-          <figure><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Crect width='320' height='180' fill='%231f423b'/%3E%3Cpath d='M105 180l12-65 43-25 43 25 12 65' fill='%233a796a' stroke='%2389cbb1' stroke-width='6'/%3E%3Cpath d='M119 66l20-34h42l20 34-20 42h-42z' fill='%234b987d' stroke='%23b5e6c9' stroke-width='5'/%3E%3Cpath d='M132 55l-24-23 10 44M188 55l24-23-10 44' fill='%23d5e6d4'/%3E%3Crect x='133' y='68' width='16' height='9' fill='%23ffcf55'/%3E%3Crect x='171' y='68' width='16' height='9' fill='%23ffcf55'/%3E%3Ctext x='12' y='22' fill='%2356f6d2' font-family='monospace' font-size='13'%3ETROLL%3C/text%3E%3C/svg%3E" alt="Troll de Warcraft" loading="lazy"><figcaption>TROLL</figcaption></figure>
-        </div>
-      </article>
-    </section>
-    <section class="hero">
+    <nav class="site-nav" aria-label="Navegación principal"><a href="#videos">▶ Videos</a><a href="#descargas">⬇ Descargas</a><a href="#r36s">🎮 R36S</a><a href="#pc">💻 PC</a></nav>
+    <section class="pixel-banner" aria-label="Banner de videojuegos pixel art"><div class="pixel-banner-content"><span class="pixel-badge">RETRO PIXEL ZONE</span><h2>¡Tu próxima aventura empieza acá!</h2><p>Gameplays, ports, herramientas y descargas para la comunidad gamer.</p></div></section>
+    <p class="intro-line">Bienvenido al rincón gamer de la comunidad. Explorá los videos, encontrá los archivos y seguí sumando niveles con <strong>Un Desastre Gaming</strong>.</p>
+    <section id="videos" aria-labelledby="videos-heading"><h2 class="section-heading" id="videos-heading">▶ EN EL CANAL</h2><div class="video-feature"><span class="pixel-badge">ÚLTIMOS GAMEPLAYS Y TUTORIALES</span><h2>¡Nuevas aventuras, ports y descubrimientos!</h2><p>Pasá por el canal para ver los gameplays de PC, los ports para consolas retro y los tutoriales de la comunidad.</p><a class="button subscribe" href="https://www.youtube.com/channel/UC3df3xTqYwnomS9FwvD1lwA" target="_blank" rel="noopener noreferrer">▶ Ver videos en YouTube</a></div></section>
+    <section aria-labelledby="explorar-heading"><h2 class="section-heading" id="explorar-heading">▣ EXPLORÁ LA ZONA GAMER</h2><div class="feature-grid"><article class="feature-card" id="r36s"><div class="feature-icon">🎮</div><h3>R36S Y CONSOLAS CLONES</h3><p>Sistemas, ports y recursos para tu portátil retro.</p></article><article class="feature-card"><div class="feature-icon">🕹️</div><h3>PORTS Y JUEGOS CLÁSICOS</h3><p>Descubrí aventuras y archivos relacionados con los videos.</p></article><article class="feature-card"><div class="feature-icon">🖥️</div><h3>GAMEPLAYS DE PC</h3><p>Partidas, novedades y juegos para explorar.</p></article><article class="feature-card" id="pc"><div class="feature-icon">🧰</div><h3>HERRAMIENTAS PARA PC</h3><p>Utilidades y recursos para configurar y jugar.</p></article></div></section>
+    <section class="hero" id="descargas">
       <span class="tag">Zona de descargas</span>
       <h2>¡Buenas, gente querida!</h2>
       <p>Acá vas a encontrar los archivos y packs que compartimos en los videos del canal. Si te gusta el contenido, suscribite para apoyar a <strong>Un Desastre Gaming</strong>. ¡Gracias por estar del otro lado! 💙</p>
@@ -146,7 +148,7 @@
         <div class="step"><div class="num">2</div><div><strong>Volvé a esta página</strong><p>Después, tocá el botón para mostrar el enlace de descarga.</p></div></div>
       </div>
       <a class="button subscribe" href="https://www.youtube.com/channel/UC3df3xTqYwnomS9FwvD1lwA" target="_blank" rel="noopener noreferrer">▶ Abrir Un Desastre Gaming en YouTube</a>
-      <button class="button reveal" id="revealButton" type="button">Ya fui al canal — mostrar descarga</button>
+      <button class="button reveal" id="revealButton" type="button">Mostrar descargas disponibles</button>
       <p class="notice">Importante: esta página no puede comprobar si te suscribiste. El botón de abajo solo muestra el enlace después de pulsarlo; confiamos en el apoyo de la comunidad.</p>
       <div class="panel" id="downloadPanel">
         <h2 style="font-size:23px;margin-top:0">📦 Descargas disponibles</h2>
