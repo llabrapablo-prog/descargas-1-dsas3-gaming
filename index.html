@@ -128,6 +128,20 @@
   .video-feature p { margin:5px 0 15px; }
   .hero { margin-top:0; }
   .download-list > .download-item { border-color:#56f6d2; }
+  .library-heading { margin:26px 0 8px; color:#ffe58a; font:900 22px "Courier New",monospace; }
+  .library-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin:16px 0 24px; }
+  .game-cover { display:block; width:100%; padding:0; text-align:left; color:#fff; cursor:pointer; border:3px solid #f4d35e; background:#11152f; box-shadow:5px 5px 0 #050713; font:inherit; transition:transform .15s,border-color .15s; }
+  .game-cover:hover,.game-cover:focus-visible { transform:translate(-2px,-2px); border-color:#56f6d2; outline:3px solid #56f6d2; }
+  .game-cover img { display:block; width:100%; aspect-ratio:16/9; object-fit:cover; background:linear-gradient(145deg,#101b56,#34217d,#11152f); }
+  .game-cover span { display:block; padding:12px; font:900 13px "Courier New",monospace; color:#ffe58a; }
+  .game-detail { display:none; margin:18px 0; padding:16px; border:3px solid #56f6d2; background:#10152f; box-shadow:5px 5px 0 #050713; }
+  .game-detail.show { display:block; }
+  .game-detail img { display:block; width:100%; max-height:280px; object-fit:cover; margin:12px 0; border:2px solid #8c73ff; }
+  .spec-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; margin:14px 0; }
+  .spec { padding:10px; border:1px solid #454b83; background:#20264b; font-size:13px; }
+  .spec strong { display:block; color:#56f6d2; margin-bottom:4px; }
+  .back-library { margin-top:10px; background:#8c73ff; color:#fff; }
+  @media (max-width:480px) { .library-grid,.spec-grid { grid-template-columns:1fr; } }
   @media (max-width:480px) { .feature-grid { grid-template-columns:1fr; } .pixel-banner-content { max-width:100%; } .pixel-banner:after { opacity:.45; right:5%; top:8%; } }
 
   /* Ilustraciones laterales: solo en pantallas grandes, sin tapar el contenido */
@@ -223,6 +237,7 @@
         <h2 style="font-size:23px;margin-top:0">📦 Descargas disponibles</h2>
         <p>Elegí la categoría que buscás y entrá al enlace de descarga correspondiente.</p>
         <div class="pixel-gallery" aria-label="Galería de arte pixelado"><div class="pixel-card"><span>AVENTURA 8-BIT</span></div><div class="pixel-card"><span>ARCADE ACTION</span></div><div class="pixel-card"><span>PIXEL QUEST</span></div><div class="pixel-card"><span>RETRO WORLD</span></div><div class="pixel-card"><span>LEVEL UP!</span></div><div class="pixel-card"><span>GAME ON</span></div></div>
+        <section id="ports-library" aria-labelledby="library-title"><h2 class="library-heading" id="library-title">📚 BIBLIOTECA DE PORTS</h2><p>Elegí una carátula para ver la ficha del juego, sus características e imágenes.</p><div class="library-grid"><button class="game-cover" type="button" data-game="hollow-knight"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/header.jpg" alt="Carátula de Hollow Knight"><span>HOLLOW KNIGHT · VER FICHA ↗</span></button><button class="game-cover" type="button" disabled aria-label="Próximamente"><img src="https://placehold.co/640x360/17183b/ffe58a?text=PROXIMAMENTE" alt="Próximo juego de la biblioteca"><span>PRÓXIMAMENTE</span></button></div><article class="game-detail" id="hollow-knight-detail" aria-labelledby="hollow-title"><span class="pixel-badge">FICHA TÉCNICA · PORT PARA R36S Y CLONES</span><h2 id="hollow-title">Hollow Knight</h2><p>Una aventura de acción y exploración en 2D ambientada en Hallownest, un reino subterráneo lleno de criaturas, secretos y desafíos. Explorá a tu ritmo, mejorá habilidades y enfrentate a jefes en un mundo dibujado a mano.</p><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/header.jpg" alt="Imagen promocional de Hollow Knight"><div class="spec-grid"><div class="spec"><strong>GÉNERO</strong>Metroidvania · Acción y aventura</div><div class="spec"><strong>ESTILO</strong>Plataformas 2D · Exploración</div><div class="spec"><strong>DESARROLLADOR</strong>Team Cherry</div><div class="spec"><strong>PORT</strong>R36S y consolas clones compatibles, según versión</div><div class="spec"><strong>REQUISITOS</strong>Seguí las instrucciones incluidas con los archivos</div><div class="spec"><strong>INSTALACIÓN</strong>Revisá la guía del port antes de copiar los archivos</div></div><h3>🖼️ Sobre el juego</h3><p>La ficha se puede ampliar con más capturas de pantalla, requisitos específicos y una guía de instalación cuando confirmemos los detalles de la versión del port.</p><a class="button download" href="https://www.mediafire.com/folder/0sniz6zdhborm/HollowKnight_r36s_y_clones" target="_blank" rel="noopener noreferrer">⬇ DESCARGAR PORT DESDE MEDIAFIRE</a><button class="button back-library" id="back-library" type="button">← Volver a la biblioteca</button></article></section>
         <div class="download-list">
           <article class="download-item"><h3>🕹️ Juegos y packs para R36S</h3><p>Juegos, recopilaciones y contenido para tu consola portátil.</p><div class="download-list"><div class="download-item"><h3>DarkOS para R36S y clones</h3><p>Archivos de DarkOS alojados en Google Drive.</p><a class="button download" style="background:#4285F4" href="https://drive.google.com/drive/folders/1iRSAzLw4TplYmxgNe6BwMLp-wsUOoEk3?usp=drive_link" target="_blank" rel="noopener noreferrer">⬇ Descargar desde Google Drive</a></div></div></article>
           <article class="download-item" id="ports-downloads"><h3>🎮 Ports y novedades</h3><p>Ports, novedades y archivos relacionados con los videos del canal.</p><div class="download-list"><div class="download-item"><h3>Hollow Knight para R36S y clones</h3><p>Archivos del port compartidos por MediaFire.</p><a class="button download" href="https://www.mediafire.com/folder/0sniz6zdhborm/HollowKnight_r36s_y_clones" target="_blank" rel="noopener noreferrer">⬇ Descargar desde MediaFire</a></div><div class="download-item"><h3>📁 Próximas descargas por MediaFire</h3><p>Sección preparada para agregar futuros enlaces de MediaFire.</p><span class="coming-soon">Enlace pendiente</span></div></div></article>
@@ -250,10 +265,19 @@
         event.preventDefault();
         panel.classList.add('show');
         revealButton.textContent = 'Enlace de descarga mostrado';
-        const target = document.querySelector(href);
+        const target = document.querySelector(href === '#ports-downloads' ? '#ports-library' : href);
         if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
+  });
+  const gameDetail = document.getElementById('hollow-knight-detail');
+  document.querySelector('[data-game="hollow-knight"]').addEventListener('click', () => {
+    gameDetail.classList.add('show');
+    gameDetail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  document.getElementById('back-library').addEventListener('click', () => {
+    gameDetail.classList.remove('show');
+    document.getElementById('ports-library').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 </script>
 </body>
