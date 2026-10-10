@@ -18,6 +18,19 @@
   .pixel-banner { position: relative; isolation: isolate; overflow: hidden; margin: 0 0 26px; min-height: 220px; border-radius: 3px; border: 4px solid #f4d35e; background: linear-gradient(180deg,#101b56 0%,#34217d 48%,#9b285f 100%); display: flex; align-items: end; padding: 25px; color: #fff; box-shadow: 8px 8px 0 #171329, 0 16px 34px #7c3aed35; }
   .pixel-banner:before { content: ""; position: absolute; z-index: -1; inset: 0; opacity: .72; background-image: linear-gradient(90deg,transparent 0 82%,#ffca5c 82% 88%,transparent 88%),linear-gradient(transparent 0 62%,#ffca5c 62% 68%,transparent 68%),linear-gradient(90deg,#ffffff16 2px,transparent 2px),linear-gradient(#ffffff16 2px,transparent 2px); background-size: 96px 72px,112px 88px,12px 12px,12px 12px; image-rendering: pixelated; }
   .pixel-banner-content { position: relative; z-index: 1; max-width: 470px; }
+  .starcraft-feature { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; align-items: center; margin: 0 0 26px; padding: 14px; border: 3px solid #56f6d2; background: #10152f; box-shadow: 5px 5px 0 #050713; }
+  .universe-grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin: 0 0 26px; }
+  .universe-card { min-width: 0; padding: 13px; border: 3px solid #56f6d2; background: #10152f; box-shadow: 5px 5px 0 #050713; }
+  .universe-card.warcraft { border-color: #f4d35e; }
+  .universe-card h2 { margin: 10px 0 6px; color: #ffe58a; font-size: clamp(20px,3vw,27px); }
+  .universe-card p { margin: 0 0 12px; color: #e2e6ff; font-size: 14px; }
+  .universe-card img { display: block; width: 100%; height: 175px; object-fit: cover; border: 2px solid #8c73ff; background: #20264b; }
+  .warcraft .universe-portraits { border-color: #f4d35e; }
+  .universe-portraits { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; margin-top: 10px; }
+  .universe-portraits figure { margin: 0; min-width: 0; }
+  .universe-portraits img { height: 100px; }
+  .universe-portraits figcaption { padding-top: 6px; color: #fff7c2; font: 800 11px "Courier New", monospace; text-align: center; }
+  @media (min-width: 620px) { .universe-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
   .pixel-banner h2 { color: #fff; margin: 8px 0; text-shadow: 3px 3px 0 #24134e; }
   .pixel-banner p { color: #f4eaff; margin: 0; }
   .pixel-badge { display: inline-block; padding: 7px 10px; border: 2px solid #f4d35e; border-radius: 0; background: #170d4c; color: #f4d35e; font-size: 11px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; box-shadow: 4px 4px 0 #171329; }
@@ -101,6 +114,29 @@
       <div><div class="eyebrow">Archivos de la comunidad</div><h1>Un Desastre Gaming</h1></div>
     </header>
     <section class="pixel-banner" aria-label="Banner de videojuegos pixel art"><div class="pixel-banner-content"><span class="pixel-badge">RETRO PIXEL ZONE</span><h2>¡Tu próxima aventura empieza acá!</h2><p>Ports, juegos y nostalgia pixelada para la comunidad gamer.</p></div></section>
+    <section class="universe-grid" aria-label="Universos clásicos de Blizzard">
+      <article class="universe-card starcraft" aria-label="Universo StarCraft Terran">
+        <span class="pixel-badge">TRANSMISIÓN TERRAN</span>
+        <h2>STARCRAFT · TERRAN</h2>
+        <p>Inteligencia artificial, Marines clásicos de StarCraft 1 y Ghosts. ¡Prepará tus tropas, comandante! 🚀</p>
+        <img src="https://media.tenor.com/0Z8F6kJ2QWAAAAAC/starcraft-marine.gif" alt="Marine Terran de StarCraft" loading="lazy">
+        <div class="universe-portraits">
+          <figure><img src="https://images.blz-contentstack.com/v3/assets/blt0e5ec1de4817c440/blt9cfa3e7f8b1a7e8a/5f7f5c7a1f2f4a2b4c8a2f6b/starcraft-adjutant.jpg" alt="Adjuntante, la IA de StarCraft" loading="lazy"><figcaption>IA · ADJUNTANTE</figcaption></figure>
+          <figure><img src="https://images.blz-contentstack.com/v3/assets/blt0e5ec1de4817c440/blt5a5b6d5f5b2a9c1e/5f7f5c7a1f2f4a2b4c8a2f6c/starcraft-ghost.jpg" alt="Ghost terran de StarCraft" loading="lazy"><figcaption>GHOST · TERRAN</figcaption></figure>
+          <figure><img src="https://static.wikia.nocookie.net/starcraft/images/5/5c/Marine_SC1_Game1.jpg" alt="Marine Terran clásico de StarCraft 1" loading="lazy"><figcaption>MARINE · STARCRAFT 1</figcaption></figure>
+        </div>
+      </article>
+      <article class="universe-card warcraft" aria-label="Universo Warcraft">
+        <span class="pixel-badge">PORTAL DE AZEROTH</span>
+        <h2>WARCRAFT · HÉROES</h2>
+        <p>Tauren, paladines y trolls: elegí tu facción y preparate para la batalla. ⚔️</p>
+        <img src="https://images.blz-contentstack.com/v3/assets/blt0e5ec1de4817c440/blt8a5e0a7f7b1a2c3d/warcraft-tauren.jpg" alt="Guerrero Tauren de Warcraft" loading="lazy">
+        <div class="universe-portraits">
+          <figure><img src="https://images.blz-contentstack.com/v3/assets/blt0e5ec1de4817c440/blt8a5e0a7f7b1a2c3d/warcraft-paladin.jpg" alt="Paladín de Warcraft" loading="lazy"><figcaption>PALADÍN</figcaption></figure>
+          <figure><img src="https://images.blz-contentstack.com/v3/assets/blt0e5ec1de4817c440/blt8a5e0a7f7b1a2c3d/warcraft-troll.jpg" alt="Troll de Warcraft" loading="lazy"><figcaption>TROLL</figcaption></figure>
+        </div>
+      </article>
+    </section>
     <section class="hero">
       <span class="tag">Zona de descargas</span>
       <h2>¡Buenas, gente querida!</h2>
