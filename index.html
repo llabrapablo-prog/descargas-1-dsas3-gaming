@@ -358,6 +358,9 @@
     let audioContext = null;
     let masterGain = null;
     let oscillators = [];
+    let rainSource = null;
+    let cricketGain = null;
+    let cricketTimer = null;
     let running = false;
     let triedAutoplay = false;
 
@@ -380,32 +383,42 @@
           masterGain = audioContext.createGain();
           masterGain.gain.value = 0;
           masterGain.connect(audioContext.destination);
-          const notes = [
-            { frequency: 110.00, volume: 0.20, detune: -3 },
-            { frequency: 164.81, volume: 0.14, detune: 2 },
-            { frequency: 220.00, volume: 0.10, detune: -2 },
-            { frequency: 329.63, volume: 0.055, detune: 3 }
-          ];
-          notes.forEach((note, index) => {
-            const osc = audioContext.createOscillator();
-            const gain = audioContext.createGain();
-            const tremolo = audioContext.createOscillator();
-            const tremoloGain = audioContext.createGain();
-            osc.type = 'sine';
-            osc.frequency.value = note.frequency;
-            osc.detune.value = note.detune;
-            gain.gain.value = note.volume;
-            tremolo.type = 'sine';
-            tremolo.frequency.value = 0.035 + index * 0.012;
-            tremoloGain.gain.value = note.volume * 0.12;
-            tremolo.connect(tremoloGain);
-            tremoloGain.connect(gain.gain);
-            osc.connect(gain);
-            gain.connect(masterGain);
-            osc.start();
-            tremolo.start();
-            oscillators.push(osc, tremolo);
-          });
+          // Lluvia suave: ruido generado localmente, filtrado para sonar continuo y relajante.
+          const bufferLength = Math.floor(audioContext.sampleRate * 3);
+          const noiseBuffer = audioContext.createBuffer(1, bufferLength, audioContext.sampleRate);
+          const noiseData = noiseBuffer.getChannelData(0);
+          for (let i = 0; i < bufferLength; i++) noiseData[i] = (Math.random() * 2 - 1) * 0.55;
+          rainSource = audioContext.createBufferSource();
+          rainSource.buffer = noiseBuffer;
+          rainSource.loop = true;
+          const rainFilter = audioContext.createBiquadFilter();
+          rainFilter.type = 'lowpass';
+          rainFilter.frequency.value = 1450;
+          rainFilter.Q.value = 0.35;
+          const rainGain = audioContext.createGain();
+          rainGain.gain.value = 0.24;
+          rainSource.connect(rainFilter);
+          rainFilter.connect(rainGain);
+          rainGain.connect(masterGain);
+          rainSource.start();
+          oscillators.push(rainSource);
+
+          // Grillos estilizados: pequeños chirridos agudos con pausas, sintetizados en el navegador.
+          const cricket = audioContext.createOscillator();
+          cricketGain = audioContext.createGain();
+          const cricketFilter = audioContext.createBiquadFilter();
+          cricket.type = 'sine';
+          cricket.frequency.value = 4300;
+          cricketFilter.type = 'bandpass';
+          cricketFilter.frequency.value = 4300;
+          cricketFilter.Q.value = 5;
+          cricketGain.gain.value = 0;
+          cricket.connect(cricketFilter);
+          cricketFilter.connect(cricketGain);
+          cricketGain.connect(masterGain);
+          cricket.start();
+          oscillators.push(cricket);
+
         }
         await audioContext.resume();
         if (audioContext.state !== 'running') {
@@ -416,13 +429,31 @@
         masterGain.gain.cancelScheduledValues(now);
         masterGain.gain.setTargetAtTime(0.16, now, fromClick ? 0.8 : 1.8);
         running = true;
-        setButton(true, '♫ AMBIENTE: ON');
+        if (cricketGain && !cricketTimer) scheduleCricketChirps();
+        setButton(true, '☔ LLUVIA + GRILLOS: ON');
         return true;
       } catch (error) {
         running = false;
         setButton(false, '♫ ACTIVAR AMBIENTE');
         return false;
       }
+    }
+
+    function scheduleCricketChirps() {
+      if (!running || !audioContext || !cricketGain) return;
+      const now = audioContext.currentTime;
+      // Tres chirridos cortos, con pausas entre cada uno.
+      for (let i = 0; i < 3; i++) {
+        const startAt = now + 0.08 + i * 0.13;
+        cricketGain.gain.setValueAtTime(0, startAt);
+        cricketGain.gain.linearRampToValueAtTime(0.045, startAt + 0.025);
+        cricketGain.gain.setValueAtTime(0.045, startAt + 0.075);
+        cricketGain.gain.linearRampToValueAtTime(0, startAt + 0.11);
+      }
+      cricketTimer = setTimeout(() => {
+        cricketTimer = null;
+        scheduleCricketChirps();
+      }, 2850);
     }
 
     function stopAmbient() {
@@ -433,6 +464,14 @@
       const now = audioContext.currentTime;
       masterGain.gain.cancelScheduledValues(now);
       masterGain.gain.setTargetAtTime(0, now, 0.25);
+      if (cricketTimer) {
+        clearTimeout(cricketTimer);
+        cricketTimer = null;
+      }
+      if (cricketGain) {
+        cricketGain.gain.cancelScheduledValues(now);
+        cricketGain.gain.setValueAtTime(0, now);
+      }
       running = false;
       setButton(false);
     }
