@@ -471,12 +471,18 @@
         window.speechSynthesis.cancel();
         const message = new SpeechSynthesisUtterance('Bienvenidos a Un Desastre Gaming.');
         const voices = window.speechSynthesis.getVoices();
-        const spanishVoice = voices.find(voice => /^es-AR/i.test(voice.lang))
+        // Priorizar una voz española de timbre femenino para acercarse a una IA de ciencia ficción,
+        // en lugar de caer por defecto en una voz masculina del sistema.
+        const femaleSpanishVoice = voices.find(voice =>
+          /^es/i.test(voice.lang) && /female|helena|sabina|mónica|monica|paulina|laura|elena|lucía|lucia|soledad|google español/i.test(voice.name)
+        );
+        const spanishVoice = femaleSpanishVoice
+          || voices.find(voice => /^es-AR/i.test(voice.lang))
           || voices.find(voice => /^es/i.test(voice.lang));
         if (spanishVoice) message.voice = spanishVoice;
         message.lang = spanishVoice ? spanishVoice.lang : 'es-AR';
-        message.rate = 0.82;
-        message.pitch = 0.62;
+        message.rate = 0.88;
+        message.pitch = 1.18;
         message.volume = 0.9;
         message.onstart = () => { welcomePending = true; };
         message.onend = () => { welcomeSpoken = true; welcomePending = false; };
@@ -521,8 +527,10 @@
       }
     });
 
-    // Intentar iniciar el ambiente y la bienvenida al entrar. El navegador puede
-    // bloquear cualquiera de los dos hasta que el visitante interactúe con la página.
+    // Intentar iniciar el ambiente y la bienvenida al entrar. Si el navegador bloquea
+    // la reproducción automática, la primera interacción del visitante la habilita.
+    // La voz se elige entre las voces instaladas: el timbre exacto de StarCraft requiere
+    // una grabación o voz personalizada, no disponible de forma uniforme en todos los navegadores.
     window.addEventListener('load', () => {
       if (!triedAutoplay) {
         triedAutoplay = true;
