@@ -403,21 +403,10 @@
           rainSource.start();
           oscillators.push(rainSource);
 
-          // Grillos estilizados: pequeños chirridos agudos con pausas, sintetizados en el navegador.
-          const cricket = audioContext.createOscillator();
+          // Los grillos se crearán como breves ráfagas de ruido filtrado, no como un tono continuo.
           cricketGain = audioContext.createGain();
-          const cricketFilter = audioContext.createBiquadFilter();
-          cricket.type = 'sine';
-          cricket.frequency.value = 4300;
-          cricketFilter.type = 'bandpass';
-          cricketFilter.frequency.value = 4300;
-          cricketFilter.Q.value = 5;
-          cricketGain.gain.value = 0;
-          cricket.connect(cricketFilter);
-          cricketFilter.connect(cricketGain);
+          cricketGain.gain.value = 0.16;
           cricketGain.connect(masterGain);
-          cricket.start();
-          oscillators.push(cricket);
 
         }
         await audioContext.resume();
@@ -442,18 +431,35 @@
     function scheduleCricketChirps() {
       if (!running || !audioContext || !cricketGain) return;
       const now = audioContext.currentTime;
-      // Tres chirridos cortos, con pausas entre cada uno.
+      // Chirríos muy breves de ruido filtrado, suaves y separados, para evitar el efecto de alarma.
       for (let i = 0; i < 3; i++) {
-        const startAt = now + 0.08 + i * 0.13;
-        cricketGain.gain.setValueAtTime(0, startAt);
-        cricketGain.gain.linearRampToValueAtTime(0.045, startAt + 0.025);
-        cricketGain.gain.setValueAtTime(0.045, startAt + 0.075);
-        cricketGain.gain.linearRampToValueAtTime(0, startAt + 0.11);
+        const duration = 0.085;
+        const length = Math.floor(audioContext.sampleRate * duration);
+        const buffer = audioContext.createBuffer(1, length, audioContext.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let j = 0; j < length; j++) data[j] = (Math.random() * 2 - 1) * 0.65;
+        const chirp = audioContext.createBufferSource();
+        chirp.buffer = buffer;
+        const filter = audioContext.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.value = 3600 + Math.random() * 700;
+        filter.Q.value = 1.8;
+        const envelope = audioContext.createGain();
+        const startAt = now + 0.1 + i * 0.24;
+        envelope.gain.setValueAtTime(0, startAt);
+        envelope.gain.linearRampToValueAtTime(0.025, startAt + 0.018);
+        envelope.gain.setValueAtTime(0.025, startAt + 0.045);
+        envelope.gain.linearRampToValueAtTime(0, startAt + duration);
+        chirp.connect(filter);
+        filter.connect(envelope);
+        envelope.connect(cricketGain);
+        chirp.start(startAt);
+        chirp.stop(startAt + duration + 0.01);
       }
       cricketTimer = setTimeout(() => {
         cricketTimer = null;
         scheduleCricketChirps();
-      }, 2850);
+      }, 3900);
     }
 
     function stopAmbient() {
