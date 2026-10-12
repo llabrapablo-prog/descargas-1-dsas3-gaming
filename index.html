@@ -364,11 +364,13 @@
     let running = false;
     let triedAutoplay = false;
     let userDisabled = false;
+    let welcomeSpoken = false;
+    let welcomePending = false;
 
     function setButton(active, message) {
       button.setAttribute('aria-pressed', String(active));
       button.textContent = message || (active ? '♫ AMBIENTE: ON' : '♫ ACTIVAR AMBIENTE');
-      button.setAttribute('aria-label', active ? 'Silenciar música ambiental suave' : 'Activar música ambiental suave');
+      button.setAttribute('aria-label', active ? 'Silenciar ambiente sonoro' : 'Activar ambiente sonoro');
     }
 
     async function startAmbient(fromClick = false) {
@@ -463,22 +465,47 @@
       }, 3900);
     }
 
-    function stopAmbient() {
-      if (!audioContext || !masterGain) {
-        setButton(false);
-        return;
+    function speakWelcome() {
+      if (welcomeSpoken || userDisabled || !('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)) return false;
+      try {
+        window.speechSynthesis.cancel();
+        const message = new SpeechSynthesisUtterance('Bienvenidos a Un Desastre Gaming.');
+        const voices = window.speechSynthesis.getVoices();
+        const spanishVoice = voices.find(voice => /^es-AR/i.test(voice.lang))
+          || voices.find(voice => /^es/i.test(voice.lang));
+        if (spanishVoice) message.voice = spanishVoice;
+        message.lang = spanishVoice ? spanishVoice.lang : 'es-AR';
+        message.rate = 0.82;
+        message.pitch = 0.62;
+        message.volume = 0.9;
+        message.onstart = () => { welcomePending = true; };
+        message.onend = () => { welcomeSpoken = true; welcomePending = false; };
+        message.onerror = () => { welcomePending = false; };
+        window.speechSynthesis.speak(message);
+        welcomePending = true;
+        return true;
+      } catch (error) {
+        welcomePending = false;
+        return false;
       }
-      const now = audioContext.currentTime;
-      masterGain.gain.cancelScheduledValues(now);
-      masterGain.gain.setTargetAtTime(0, now, 0.25);
+    }
+
+    function stopAmbient() {
+      if (audioContext && masterGain) {
+        const now = audioContext.currentTime;
+        masterGain.gain.cancelScheduledValues(now);
+        masterGain.gain.setTargetAtTime(0, now, 0.25);
+      }
       if (cricketTimer) {
         clearTimeout(cricketTimer);
         cricketTimer = null;
       }
-      if (cricketGain) {
-        cricketGain.gain.cancelScheduledValues(now);
-        cricketGain.gain.setValueAtTime(0, now);
+      if (cricketGain && audioContext) {
+        cricketGain.gain.cancelScheduledValues(audioContext.currentTime);
+        cricketGain.gain.setValueAtTime(0, audioContext.currentTime);
       }
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      welcomePending = false;
       running = false;
       setButton(false);
     }
@@ -490,19 +517,24 @@
       } else {
         userDisabled = false;
         startAmbient(true);
+        if (!welcomeSpoken) speakWelcome();
       }
     });
 
-    // Intentar iniciar el ambiente al entrar. Si el navegador bloquea el autoplay,
-    // se activa automáticamente con la primera interacción del visitante.
+    // Intentar iniciar el ambiente y la bienvenida al entrar. El navegador puede
+    // bloquear cualquiera de los dos hasta que el visitante interactúe con la página.
     window.addEventListener('load', () => {
-      if (triedAutoplay) return;
-      triedAutoplay = true;
-      startAmbient(false);
+      if (!triedAutoplay) {
+        triedAutoplay = true;
+        startAmbient(false);
+        speakWelcome();
+      }
     }, { once: true });
 
-    const unlockAmbient = () => {
+    const unlockAmbient = (event) => {
+      if (event && event.target && event.target.closest && event.target.closest('#ambient-toggle') && running) return;
       if (!running && !userDisabled) startAmbient(true);
+      if (!welcomeSpoken && !welcomePending && !userDisabled) speakWelcome();
     };
     window.addEventListener('pointerdown', unlockAmbient, { passive: true });
     window.addEventListener('keydown', unlockAmbient);
