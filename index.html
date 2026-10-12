@@ -363,6 +363,7 @@
     let cricketTimer = null;
     let running = false;
     let triedAutoplay = false;
+    let userDisabled = false;
 
     function setButton(active, message) {
       button.setAttribute('aria-pressed', String(active));
@@ -483,16 +484,28 @@
     }
 
     button.addEventListener('click', () => {
-      if (running) stopAmbient();
-      else startAmbient(true);
+      if (running) {
+        userDisabled = true;
+        stopAmbient();
+      } else {
+        userDisabled = false;
+        startAmbient(true);
+      }
     });
 
+    // Intentar iniciar el ambiente al entrar. Si el navegador bloquea el autoplay,
+    // se activa automáticamente con la primera interacción del visitante.
     window.addEventListener('load', () => {
       if (triedAutoplay) return;
       triedAutoplay = true;
-      // Los navegadores pueden bloquear audio automático hasta que haya un clic del usuario.
       startAmbient(false);
     }, { once: true });
+
+    const unlockAmbient = () => {
+      if (!running && !userDisabled) startAmbient(true);
+    };
+    window.addEventListener('pointerdown', unlockAmbient, { passive: true });
+    window.addEventListener('keydown', unlockAmbient);
   })();
 
   document.querySelector('.site-nav a[href="#ports-library"]').addEventListener('click', (event) => {
