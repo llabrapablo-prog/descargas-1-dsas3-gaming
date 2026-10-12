@@ -197,6 +197,11 @@
   .systems-empty h3 { margin:0 0 10px; color:#56f6d2; font:900 18px "Courier New",monospace; }
   .systems-empty p { max-width:720px; margin:8px auto; color:#d9defe; line-height:1.6; }
   .systems-empty .systems-note { color:#ffe58a; font-size:13px; }
+  .system-gallery .system-shot-image { min-width:0; margin:0; padding:8px; border:2px solid #8c73ff; background:#10152f; }
+  .system-shot-image img { display:block; width:100%; height:190px; object-fit:contain; background:#080b1c; }
+  .system-shot-image figcaption { padding:8px 2px 2px; color:#56f6d2; font:900 12px "Courier New",monospace; text-align:center; }
+  .system-card .game-action { display:inline-flex; align-items:center; justify-content:center; margin-top:16px; padding:12px 16px; border:2px solid #f4d35e; background:#8c73ff; color:#fff; text-decoration:none; font:900 12px "Courier New",monospace; box-shadow:3px 3px 0 #050713; }
+  .system-card .game-action:hover { filter:brightness(1.12); }
   .game-video { margin: 24px 0; }
   .game-video h3 { margin-bottom: 12px; }
   .video-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 12px; background: #08090d; }
@@ -272,13 +277,32 @@
     </section>
     <section id="systems-library" aria-labelledby="systems-title" class="systems-section">
       <h2 class="section-heading" id="systems-title">🧪 Sistemas testeados en R36S y clones</h2>
-      <p class="intro-line">En esta sección vamos a registrar los sistemas operativos y firmwares que probamos en la consola, con notas sobre compatibilidad, rendimiento, errores y configuración. La idea es compartir solamente pruebas reales.</p>
-      <div class="systems-empty">
-        <div class="systems-empty-icon" aria-hidden="true">💾</div>
-        <h3>Próximamente: primeros testeos</h3>
-        <p>Acá iremos agregando cada sistema probado, la versión utilizada, el modelo de consola y los resultados de la prueba.</p>
-        <p class="systems-note">¿Probaste un sistema en tu R36S o clon? Estate atento a las próximas actualizaciones de 1dsas3 Gaming.</p>
-      </div>
+      <p class="intro-line">En esta sección compartimos sistemas y firmwares que vamos probando en nuestras consolas, con imágenes, videos y observaciones reales.</p>
+      <article class="system-card darkos" style="margin-top:18px;">
+        <h3>💾 dArkOS EN (Enhanced)</h3>
+        <p>Prueba en un clon R36S modelo v1.3 con DarkOS EN. En esta ficha mostramos el logo, el menú y algunas opciones del sistema. Las observaciones de compatibilidad y rendimiento se irán completando a partir de las pruebas realizadas en la consola.</p>
+        <div class="system-gallery">
+          <figure class="system-shot-image">
+            <img src="https://handhelds.wiki/images/thumb/2/26/DArkOSen_Logo.jpg/600px-DArkOSen_Logo.jpg" alt="Logo de dArkOS EN" loading="lazy" onerror="this.closest('figure').hidden=true">
+            <figcaption>Logo de dArkOS EN</figcaption>
+          </figure>
+          <figure class="system-shot-image">
+            <img src="https://junubgames.com/wp-content/smush-webp/2026/07/r36s-darkosen-main-menu.jpg.webp" alt="Menú principal de dArkOS EN en R36S" loading="lazy" onerror="this.closest('figure').hidden=true">
+            <figcaption>Menú principal</figcaption>
+          </figure>
+          <figure class="system-shot-image">
+            <img src="https://junubgames.com/wp-content/smush-webp/2026/07/r36s-darkosen-system-options.jpg.webp" alt="Opciones del sistema dArkOS EN" loading="lazy" onerror="this.closest('figure').hidden=true">
+            <figcaption>Opciones del sistema</figcaption>
+          </figure>
+        </div>
+        <div class="spec-grid">
+          <div class="spec"><strong>CONSOLA</strong>Clon R36S v1.3</div>
+          <div class="spec"><strong>SISTEMA</strong>dArkOS EN (Enhanced)</div>
+          <div class="spec"><strong>ESTADO</strong>En pruebas</div>
+        </div>
+        <a class="game-action" href="https://youtu.be/QnpzYyubaLY" target="_blank" rel="noopener noreferrer">▶ VER VIDEO EN YOUTUBE</a>
+      </article>
+      <p class="systems-note">Los resultados y posibles problemas se añadirán a medida que se documenten las pruebas en la consola.</p>
     </section>
     <footer>Un Desastre Gaming · Gracias por apoyar el canal y compartir la pasión por los videojuegos.</footer>
   </main>
