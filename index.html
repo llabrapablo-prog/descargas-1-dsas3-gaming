@@ -548,29 +548,30 @@
       } catch (error) {}
     }
 
+    // Audio de bienvenida: efecto clásico "Nuclear Launch Detected".
+    // El navegador puede bloquear la reproducción automática; se reintenta al primer gesto del visitante.
+    const nuclearWelcomeAudio = new Audio('https://www.myinstants.com/media/sounds/tadupd04.mp3');
+    nuclearWelcomeAudio.preload = 'auto';
+    nuclearWelcomeAudio.volume = 0.72;
+
     function speakWelcome() {
-      if (welcomeSpoken || userDisabled || !('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)) return false;
+      if (welcomeSpoken || welcomePending || userDisabled) return false;
       try {
-        window.speechSynthesis.cancel();
-        // Señal de arranque retro y una voz española más clara, evitando el tono excesivamente grave.
-        const message = new SpeechSynthesisUtterance('Sistema iniciado. Bienvenidos a Un Desastre Gaming.');
-        const voices = window.speechSynthesis.getVoices();
-        const spanishVoice = voices.find(voice =>
-          /^es/i.test(voice.lang) && /helena|sabina|mónica|monica|paulina|laura|elena|lucía|lucia|soledad/i.test(voice.name)
-        ) || voices.find(voice => /^es/i.test(voice.lang));
-        if (spanishVoice) message.voice = spanishVoice;
-        message.lang = spanishVoice ? spanishVoice.lang : 'es-AR';
-        message.rate = 0.88;
-        message.pitch = 1.08;
-        message.volume = 0.9;
-        message.onstart = () => { welcomePending = true; };
-        message.onend = () => { welcomeSpoken = true; welcomePending = false; };
-        message.onerror = () => { welcomePending = false; };
-        playComputerStartup();
-        window.setTimeout(() => {
-          if (!userDisabled && !welcomeSpoken) window.speechSynthesis.speak(message);
-        }, 420);
+        nuclearWelcomeAudio.pause();
+        nuclearWelcomeAudio.currentTime = 0;
         welcomePending = true;
+        const playback = nuclearWelcomeAudio.play();
+        if (playback && typeof playback.then === 'function') {
+          playback.then(() => {
+            welcomeSpoken = true;
+            welcomePending = false;
+          }).catch(() => {
+            welcomePending = false;
+          });
+        } else {
+          welcomeSpoken = true;
+          welcomePending = false;
+        }
         return true;
       } catch (error) {
         welcomePending = false;
@@ -600,7 +601,8 @@
         thunderGain.gain.cancelScheduledValues(audioContext.currentTime);
         thunderGain.gain.setValueAtTime(0, audioContext.currentTime);
       }
-      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      nuclearWelcomeAudio.pause();
+      nuclearWelcomeAudio.currentTime = 0;
       welcomePending = false;
       running = false;
       setButton(false);
@@ -617,10 +619,8 @@
       }
     });
 
-    // Intentar iniciar el ambiente y la bienvenida al entrar. Si el navegador bloquea
+    // Intentar iniciar el ambiente y el efecto de bienvenida al entrar. Si el navegador bloquea
     // la reproducción automática, la primera interacción del visitante la habilita.
-    // La voz se elige entre las voces instaladas: el timbre exacto de StarCraft requiere
-    // una grabación o voz personalizada, no disponible de forma uniforme en todos los navegadores.
     window.addEventListener('load', () => {
       if (!triedAutoplay) {
         triedAutoplay = true;
