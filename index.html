@@ -638,6 +638,29 @@
     window.addEventListener('keydown', unlockAmbient);
   })();
 
+  // Efecto corto de confirmación estilo StarCraft para las fichas de juegos.
+  // El archivo se reproduce desde MyInstants; si el servidor externo no responde, la página sigue funcionando.
+  const gameConfirmSound = new Audio('https://www.myinstants.com/media/sounds/starcraft-confirm.mp3');
+  gameConfirmSound.preload = 'auto';
+  gameConfirmSound.volume = 0.32;
+  let lastGameSoundAt = 0;
+  function playGameConfirmSound() {
+    const now = Date.now();
+    // Evita que el hover y el clic disparen dos sonidos casi simultáneos.
+    if (now - lastGameSoundAt < 280) return;
+    lastGameSoundAt = now;
+    try {
+      gameConfirmSound.pause();
+      gameConfirmSound.currentTime = 0;
+      const playback = gameConfirmSound.play();
+      if (playback && typeof playback.catch === 'function') playback.catch(() => {});
+    } catch (_) {}
+  }
+  document.querySelectorAll('.game-cover').forEach((cover) => {
+    cover.addEventListener('pointerenter', playGameConfirmSound);
+    cover.addEventListener('click', playGameConfirmSound);
+  });
+
   document.querySelector('.site-nav a[href="#ports-library"]').addEventListener('click', (event) => {
     event.preventDefault();
     document.getElementById('ports-library').scrollIntoView({ behavior: 'smooth', block: 'start' });
