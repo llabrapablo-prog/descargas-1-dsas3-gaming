@@ -361,6 +361,8 @@
     let rainSource = null;
     let cricketGain = null;
     let cricketTimer = null;
+    let thunderTimer = null;
+    let thunderGain = null;
     let running = false;
     let triedAutoplay = false;
     let userDisabled = false;
@@ -386,30 +388,41 @@
           masterGain = audioContext.createGain();
           masterGain.gain.value = 0;
           masterGain.connect(audioContext.destination);
-          // Lluvia suave: ruido generado localmente, filtrado para sonar continuo y relajante.
-          const bufferLength = Math.floor(audioContext.sampleRate * 3);
-          const noiseBuffer = audioContext.createBuffer(1, bufferLength, audioContext.sampleRate);
-          const noiseData = noiseBuffer.getChannelData(0);
-          for (let i = 0; i < bufferLength; i++) noiseData[i] = (Math.random() * 2 - 1) * 0.55;
+          // Lluvia: ruido continuo en capas, filtrado y con volumen moderado.
+          const bufferLength = Math.floor(audioContext.sampleRate * 5);
+          const noiseBuffer = audioContext.createBuffer(2, bufferLength, audioContext.sampleRate);
+          for (let channel = 0; channel < 2; channel++) {
+            const noiseData = noiseBuffer.getChannelData(channel);
+            let smooth = 0;
+            for (let i = 0; i < bufferLength; i++) {
+              smooth = smooth * 0.72 + (Math.random() * 2 - 1) * 0.28;
+              noiseData[i] = smooth * 1.9;
+            }
+          }
           rainSource = audioContext.createBufferSource();
           rainSource.buffer = noiseBuffer;
           rainSource.loop = true;
           const rainFilter = audioContext.createBiquadFilter();
           rainFilter.type = 'lowpass';
-          rainFilter.frequency.value = 1450;
-          rainFilter.Q.value = 0.35;
+          rainFilter.frequency.value = 2100;
+          rainFilter.Q.value = 0.45;
           const rainGain = audioContext.createGain();
-          rainGain.gain.value = 0.24;
+          rainGain.gain.value = 0.38;
           rainSource.connect(rainFilter);
           rainFilter.connect(rainGain);
           rainGain.connect(masterGain);
           rainSource.start();
           oscillators.push(rainSource);
 
-          // Los grillos se crearán como breves ráfagas de ruido filtrado, no como un tono continuo.
+          // Grillos: pequeños pulsos suaves de ruido filtrado, espaciados y sin tonos agudos continuos.
           cricketGain = audioContext.createGain();
-          cricketGain.gain.value = 0.16;
+          cricketGain.gain.value = 0.12;
           cricketGain.connect(masterGain);
+
+          // Truenos lejanos: graves, amortiguados y poco frecuentes; nunca son un pitido.
+          thunderGain = audioContext.createGain();
+          thunderGain.gain.value = 0.18;
+          thunderGain.connect(masterGain);
 
         }
         await audioContext.resume();
@@ -422,7 +435,8 @@
         masterGain.gain.setTargetAtTime(0.16, now, fromClick ? 0.8 : 1.8);
         running = true;
         if (cricketGain && !cricketTimer) scheduleCricketChirps();
-        setButton(true, '☔ LLUVIA + GRILLOS: ON');
+        if (thunderGain && !thunderTimer) scheduleThunder();
+        setButton(true, '⛈️ LLUVIA + TRUENOS + GRILLOS: ON');
         return true;
       } catch (error) {
         running = false;
@@ -434,24 +448,25 @@
     function scheduleCricketChirps() {
       if (!running || !audioContext || !cricketGain) return;
       const now = audioContext.currentTime;
-      // Chirríos muy breves de ruido filtrado, suaves y separados, para evitar el efecto de alarma.
-      for (let i = 0; i < 3; i++) {
-        const duration = 0.085;
+      // Grupos cortos de grillos con frecuencias moderadas, volumen bajo y pausas irregulares.
+      const groups = 2 + Math.floor(Math.random() * 2);
+      for (let i = 0; i < groups; i++) {
+        const duration = 0.11;
         const length = Math.floor(audioContext.sampleRate * duration);
         const buffer = audioContext.createBuffer(1, length, audioContext.sampleRate);
         const data = buffer.getChannelData(0);
-        for (let j = 0; j < length; j++) data[j] = (Math.random() * 2 - 1) * 0.65;
+        for (let j = 0; j < length; j++) data[j] = (Math.random() * 2 - 1) * 0.45;
         const chirp = audioContext.createBufferSource();
         chirp.buffer = buffer;
         const filter = audioContext.createBiquadFilter();
         filter.type = 'bandpass';
-        filter.frequency.value = 3600 + Math.random() * 700;
-        filter.Q.value = 1.8;
+        filter.frequency.value = 2600 + Math.random() * 500;
+        filter.Q.value = 1.1;
         const envelope = audioContext.createGain();
-        const startAt = now + 0.1 + i * 0.24;
+        const startAt = now + 0.2 + i * (0.3 + Math.random() * 0.12);
         envelope.gain.setValueAtTime(0, startAt);
-        envelope.gain.linearRampToValueAtTime(0.025, startAt + 0.018);
-        envelope.gain.setValueAtTime(0.025, startAt + 0.045);
+        envelope.gain.linearRampToValueAtTime(0.012, startAt + 0.025);
+        envelope.gain.setValueAtTime(0.012, startAt + 0.065);
         envelope.gain.linearRampToValueAtTime(0, startAt + duration);
         chirp.connect(filter);
         filter.connect(envelope);
@@ -462,7 +477,47 @@
       cricketTimer = setTimeout(() => {
         cricketTimer = null;
         scheduleCricketChirps();
-      }, 3900);
+      }, 5200 + Math.random() * 2200);
+    }
+
+    function scheduleThunder() {
+      if (!running || !audioContext || !thunderGain) return;
+      // Espera aleatoria larga entre truenos para que suenen lejanos y relajantes.
+      thunderTimer = setTimeout(() => {
+        if (!running || !audioContext || !thunderGain) {
+          thunderTimer = null;
+          return;
+        }
+        const duration = 4.8;
+        const length = Math.floor(audioContext.sampleRate * duration);
+        const buffer = audioContext.createBuffer(1, length, audioContext.sampleRate);
+        const data = buffer.getChannelData(0);
+        let low = 0;
+        for (let i = 0; i < length; i++) {
+          low = low * 0.985 + (Math.random() * 2 - 1) * 0.015;
+          const swell = Math.sin(Math.PI * i / length);
+          data[i] = low * swell * 2.8;
+        }
+        const source = audioContext.createBufferSource();
+        source.buffer = buffer;
+        const filter = audioContext.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.value = 190;
+        filter.Q.value = 0.6;
+        const envelope = audioContext.createGain();
+        const startAt = audioContext.currentTime;
+        envelope.gain.setValueAtTime(0.0001, startAt);
+        envelope.gain.linearRampToValueAtTime(0.18, startAt + 1.1);
+        envelope.gain.setValueAtTime(0.18, startAt + 1.8);
+        envelope.gain.linearRampToValueAtTime(0.0001, startAt + duration);
+        source.connect(filter);
+        filter.connect(envelope);
+        envelope.connect(thunderGain);
+        source.start(startAt);
+        source.stop(startAt + duration + 0.05);
+        thunderTimer = null;
+        scheduleThunder();
+      }, 16000 + Math.random() * 17000);
     }
 
     function speakWelcome() {
@@ -506,9 +561,17 @@
         clearTimeout(cricketTimer);
         cricketTimer = null;
       }
+      if (thunderTimer) {
+        clearTimeout(thunderTimer);
+        thunderTimer = null;
+      }
       if (cricketGain && audioContext) {
         cricketGain.gain.cancelScheduledValues(audioContext.currentTime);
         cricketGain.gain.setValueAtTime(0, audioContext.currentTime);
+      }
+      if (thunderGain && audioContext) {
+        thunderGain.gain.cancelScheduledValues(audioContext.currentTime);
+        thunderGain.gain.setValueAtTime(0, audioContext.currentTime);
       }
       if ('speechSynthesis' in window) window.speechSynthesis.cancel();
       welcomePending = false;
