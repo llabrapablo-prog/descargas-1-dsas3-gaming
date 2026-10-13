@@ -524,20 +524,17 @@
       if (welcomeSpoken || userDisabled || !('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)) return false;
       try {
         window.speechSynthesis.cancel();
-        const message = new SpeechSynthesisUtterance('Bienvenidos a Un Desastre Gaming.');
+        // Cadencia más pausada y tono grave para acercarse a una computadora de ciencia ficción.
+        // La voz disponible depende del navegador y del sistema operativo.
+        const message = new SpeechSynthesisUtterance('Bienvenidos... a... Un Desastre Gaming.');
         const voices = window.speechSynthesis.getVoices();
-        // Priorizar una voz española de timbre femenino para acercarse a una IA de ciencia ficción,
-        // en lugar de caer por defecto en una voz masculina del sistema.
-        const femaleSpanishVoice = voices.find(voice =>
-          /^es/i.test(voice.lang) && /female|helena|sabina|mónica|monica|paulina|laura|elena|lucía|lucia|soledad|google español/i.test(voice.name)
-        );
-        const spanishVoice = femaleSpanishVoice
-          || voices.find(voice => /^es-AR/i.test(voice.lang))
-          || voices.find(voice => /^es/i.test(voice.lang));
+        const spanishVoice = voices.find(voice =>
+          /^es/i.test(voice.lang) && /helena|sabina|mónica|monica|paulina|laura|elena|lucía|lucia|soledad/i.test(voice.name)
+        ) || voices.find(voice => /^es/i.test(voice.lang));
         if (spanishVoice) message.voice = spanishVoice;
         message.lang = spanishVoice ? spanishVoice.lang : 'es-AR';
-        message.rate = 0.88;
-        message.pitch = 1.18;
+        message.rate = 0.76;
+        message.pitch = 0.52;
         message.volume = 0.9;
         message.onstart = () => { welcomePending = true; };
         message.onend = () => { welcomeSpoken = true; welcomePending = false; };
