@@ -727,6 +727,15 @@
       document.getElementById('ports-library').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
+  // La sección de novedades conserva como máximo cuatro ports.
+  // Al agregar una novedad nueva, colocar su tarjeta al principio de .recent-ports-grid;
+  // las tarjetas más antiguas que superen el límite se quitan de esta sección,
+  // pero sus fichas permanecen en la biblioteca completa.
+  const recentPortsGrid = document.querySelector('.recent-ports-grid');
+  if (recentPortsGrid) {
+    const recentCards = Array.from(recentPortsGrid.querySelectorAll('[data-recent-detail]'));
+    recentCards.slice(4).forEach((card) => card.remove());
+  }
   document.querySelectorAll('[data-recent-detail]').forEach((button) => {
     button.addEventListener('click', () => {
       const article = document.getElementById(button.dataset.recentDetail);
