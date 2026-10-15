@@ -438,7 +438,7 @@
           rainFilter.frequency.value = 2100;
           rainFilter.Q.value = 0.45;
           const rainGain = audioContext.createGain();
-          rainGain.gain.value = 0.38;
+          rainGain.gain.value = 0.28;
           rainSource.connect(rainFilter);
           rainFilter.connect(rainGain);
           rainGain.connect(masterGain);
