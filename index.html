@@ -143,6 +143,10 @@
   .discord-button { background:#5865f2; color:#fff; }
   .download-list > .download-item { border-color:#56f6d2; }
   .library-heading { margin:26px 0 8px; color:#ffe58a; font:900 22px "Courier New",monospace; }
+  .recent-ports { margin: 0 0 28px; padding: clamp(18px,4vw,28px); border: 3px solid #56f6d2; background: #10152f; color: #f4f6fb; box-shadow: 6px 6px 0 #050713; }
+  .recent-ports > p { color: #e2e6ff; }
+  .recent-ports .library-heading { color: #ffe58a; }
+  .recent-ports-grid { margin-top: 16px; }
   .library-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin:16px 0 24px; }
   .game-cover { display:block; width:100%; padding:0; text-align:left; color:#fff; cursor:pointer; border:3px solid #f4d35e; background:#11152f; box-shadow:5px 5px 0 #050713; font:inherit; transition:transform .15s,border-color .15s; }
   .game-cover:hover,.game-cover:focus-visible { transform:translate(-2px,-2px); border-color:#56f6d2; outline:3px solid #56f6d2; }
@@ -284,6 +288,15 @@
     <section class="pixel-banner" aria-label="Banner de videojuegos pixel art"><div class="pixel-banner-content"><span class="pixel-badge">UN DESASTRE GAMING</span><h2>Ports para consolas retro</h2><p>Juegos, fichas e instrucciones para disfrutar nuevas aventuras en tu consola.</p></div></section>
     <section class="discord-notice" aria-label="Información sobre descargas por Discord"><h2>🎮 ¿Querés descargar los juegos?</h2><p>En esta página mostramos las portadas de los juegos que tenemos almacenados en nuestro servidor de Discord. Para consultar las descargas disponibles, unite a nuestra comunidad.</p><a class="button discord-button" href="https://discord.gg/JUhuwp9xa" target="_blank" rel="noopener noreferrer">💬 UNIRME AL DISCORD DEL CANAL</a></section>
     <p class="intro-line">Bienvenido a la biblioteca de <strong>1DSAS3 GAMING</strong>. Acá vas a encontrar fichas de juegos, información de los ports y videos publicados en el canal.</p>
+    <section class="recent-ports" aria-labelledby="recent-ports-title">
+      <span class="tag">Novedades de la biblioteca</span>
+      <h2 class="library-heading" id="recent-ports-title">🆕 ÚLTIMOS PORTS AGREGADOS</h2>
+      <p>Los ports que sumamos más recientemente aparecen acá para que los encuentres rápido.</p>
+      <div class="library-grid recent-ports-grid">
+        <button class="game-cover recent-port" type="button" data-recent-detail="zelda-wind-waker-detail"><img src="https://upload.wikimedia.org/wikipedia/en/2/2b/The_Legend_of_Zelda_The_Wind_Waker.jpg" alt="The Legend of Zelda: The Wind Waker" loading="lazy" onerror="this.style.display='none';this.closest('button').classList.add('image-unavailable')"><span>ZELDA: THE WIND WAKER · VER FICHA ↗</span></button>
+        <button class="game-cover recent-port" type="button" data-recent-detail="asphalt-5-detail"><img src="https://cdn.mobygames.com/covers/2769374-asphalt-5-android-front-cover.jpg" alt="Asphalt 5" loading="lazy" onerror="this.style.display='none';this.closest('button').classList.add('image-unavailable')"><span>ASPHALT 5 · VER FICHA ↗</span></button>
+      </div>
+    </section>
     <section class="hero" id="descargas">
       <span class="tag">Biblioteca de ports</span>
       <h2>Elegí tu próxima aventura</h2>
@@ -711,6 +724,14 @@
     document.getElementById(back).addEventListener('click', () => {
       article.classList.remove('show');
       document.getElementById('ports-library').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+  document.querySelectorAll('[data-recent-detail]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const article = document.getElementById(button.dataset.recentDetail);
+      if (!article) return;
+      article.classList.add('show');
+      article.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
   const marvelDetail = document.getElementById('marvel-cosmic-invasion-detail');
