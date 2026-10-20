@@ -230,7 +230,7 @@
 <a class="visitor-counter" href="https://hits.sh/llabrapablo-prog.github.io/descargas-1-dsas3-gaming/" target="_blank" rel="noopener noreferrer" aria-label="Ver estadísticas de visitas de 1dsas3 Gaming" title="Contador de visitas: ver estadísticas">
   <img src="https://hits.sh/llabrapablo-prog.github.io/descargas-1-dsas3-gaming.svg?view=total&amp;style=flat&amp;label=VISITAS&amp;color=56f6d2&amp;labelColor=151936" alt="Contador de visitas de 1dsas3 Gaming" loading="eager">
 </a>
-<button class="ambient-toggle" id="ambient-toggle" type="button" aria-pressed="false" aria-label="Activar música ambiental suave">♫ ACTIVAR AMBIENTE</button>
+<button class="ambient-toggle" id="ambient-toggle" type="button" aria-pressed="false" aria-label="Reproducir Nuclear Launch Detected">▶ NUCLEAR LAUNCH DETECTED</button>
 <div id="app">
 <div class="side-art left" aria-hidden="true">
   <svg viewBox="0 0 300 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
@@ -403,315 +403,44 @@
   </main>
 </div>
 <script>
-  // Ambiente sonoro sintetizado en el navegador: no usa archivos musicales de terceros.
+  // Único sonido del sitio: "Nuclear Launch Detected".
   (() => {
     const button = document.getElementById('ambient-toggle');
     if (!button) return;
-    let audioContext = null;
-    let masterGain = null;
-    let oscillators = [];
-    let rainSource = null;
-    let cricketGain = null;
-    let cricketTimer = null;
-    let thunderTimer = null;
-    let thunderGain = null;
-    let running = false;
-    let triedAutoplay = false;
-    let userDisabled = false;
-    let welcomeSpoken = false;
-    let welcomePending = false;
-
-    function setButton(active, message) {
-      button.setAttribute('aria-pressed', String(active));
-      button.textContent = message || (active ? '♫ AMBIENTE: ON' : '♫ ACTIVAR AMBIENTE');
-      button.setAttribute('aria-label', active ? 'Silenciar ambiente sonoro' : 'Activar ambiente sonoro');
-    }
-
-    async function startAmbient(fromClick = false) {
-      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-      if (!AudioContextClass) {
-        setButton(false, '♫ AUDIO NO DISPONIBLE');
-        button.title = 'Este navegador no permite generar audio ambiental.';
-        return false;
-      }
-      try {
-        if (!audioContext) {
-          audioContext = new AudioContextClass();
-          masterGain = audioContext.createGain();
-          masterGain.gain.value = 0;
-          masterGain.connect(audioContext.destination);
-          // Lluvia: ruido continuo en capas, filtrado y con volumen moderado.
-          const bufferLength = Math.floor(audioContext.sampleRate * 5);
-          const noiseBuffer = audioContext.createBuffer(2, bufferLength, audioContext.sampleRate);
-          for (let channel = 0; channel < 2; channel++) {
-            const noiseData = noiseBuffer.getChannelData(channel);
-            let smooth = 0;
-            for (let i = 0; i < bufferLength; i++) {
-              smooth = smooth * 0.72 + (Math.random() * 2 - 1) * 0.28;
-              noiseData[i] = smooth * 1.9;
-            }
-          }
-          rainSource = audioContext.createBufferSource();
-          rainSource.buffer = noiseBuffer;
-          rainSource.loop = true;
-          const rainFilter = audioContext.createBiquadFilter();
-          rainFilter.type = 'lowpass';
-          rainFilter.frequency.value = 2100;
-          rainFilter.Q.value = 0.45;
-          const rainGain = audioContext.createGain();
-          rainGain.gain.value = 0.28;
-          rainSource.connect(rainFilter);
-          rainFilter.connect(rainGain);
-          rainGain.connect(masterGain);
-          rainSource.start();
-          oscillators.push(rainSource);
-
-          // Grillos: pequeños pulsos suaves de ruido filtrado, espaciados y sin tonos agudos continuos.
-          cricketGain = audioContext.createGain();
-          cricketGain.gain.value = 0.12;
-          cricketGain.connect(masterGain);
-
-          // Truenos lejanos: graves, amortiguados y poco frecuentes; nunca son un pitido.
-          thunderGain = audioContext.createGain();
-          thunderGain.gain.value = 0.18;
-          thunderGain.connect(masterGain);
-
-        }
-        await audioContext.resume();
-        if (audioContext.state !== 'running') {
-          setButton(false, '♫ ACTIVAR AMBIENTE');
-          return false;
-        }
-        const now = audioContext.currentTime;
-        masterGain.gain.cancelScheduledValues(now);
-        masterGain.gain.setTargetAtTime(0.20, now, fromClick ? 0.8 : 1.8);
-        running = true;
-        if (cricketGain && !cricketTimer) scheduleCricketChirps();
-        if (thunderGain && !thunderTimer) scheduleThunder();
-        setButton(true, '⛈️ LLUVIA + TRUENOS + GRILLOS: ON');
-        return true;
-      } catch (error) {
-        running = false;
-        setButton(false, '♫ ACTIVAR AMBIENTE');
-        return false;
-      }
-    }
-
-    function scheduleCricketChirps() {
-      if (!running || !audioContext || !cricketGain) return;
-      const now = audioContext.currentTime;
-      // Grupos cortos de grillos con frecuencias moderadas, volumen bajo y pausas irregulares.
-      const groups = 2 + Math.floor(Math.random() * 2);
-      for (let i = 0; i < groups; i++) {
-        const duration = 0.11;
-        const length = Math.floor(audioContext.sampleRate * duration);
-        const buffer = audioContext.createBuffer(1, length, audioContext.sampleRate);
-        const data = buffer.getChannelData(0);
-        for (let j = 0; j < length; j++) data[j] = (Math.random() * 2 - 1) * 0.45;
-        const chirp = audioContext.createBufferSource();
-        chirp.buffer = buffer;
-        const filter = audioContext.createBiquadFilter();
-        filter.type = 'bandpass';
-        filter.frequency.value = 2600 + Math.random() * 500;
-        filter.Q.value = 1.1;
-        const envelope = audioContext.createGain();
-        const startAt = now + 0.2 + i * (0.3 + Math.random() * 0.12);
-        envelope.gain.setValueAtTime(0, startAt);
-        envelope.gain.linearRampToValueAtTime(0.012, startAt + 0.025);
-        envelope.gain.setValueAtTime(0.012, startAt + 0.065);
-        envelope.gain.linearRampToValueAtTime(0, startAt + duration);
-        chirp.connect(filter);
-        filter.connect(envelope);
-        envelope.connect(cricketGain);
-        chirp.start(startAt);
-        chirp.stop(startAt + duration + 0.01);
-      }
-      cricketTimer = setTimeout(() => {
-        cricketTimer = null;
-        scheduleCricketChirps();
-      }, 5200 + Math.random() * 2200);
-    }
-
-    function scheduleThunder() {
-      if (!running || !audioContext || !thunderGain) return;
-      // Espera aleatoria larga entre truenos para que suenen lejanos y relajantes.
-      thunderTimer = setTimeout(() => {
-        if (!running || !audioContext || !thunderGain) {
-          thunderTimer = null;
-          return;
-        }
-        const duration = 4.8;
-        const length = Math.floor(audioContext.sampleRate * duration);
-        const buffer = audioContext.createBuffer(1, length, audioContext.sampleRate);
-        const data = buffer.getChannelData(0);
-        let low = 0;
-        for (let i = 0; i < length; i++) {
-          low = low * 0.985 + (Math.random() * 2 - 1) * 0.015;
-          const swell = Math.sin(Math.PI * i / length);
-          data[i] = low * swell * 2.8;
-        }
-        const source = audioContext.createBufferSource();
-        source.buffer = buffer;
-        const filter = audioContext.createBiquadFilter();
-        filter.type = 'lowpass';
-        filter.frequency.value = 190;
-        filter.Q.value = 0.6;
-        const envelope = audioContext.createGain();
-        const startAt = audioContext.currentTime;
-        envelope.gain.setValueAtTime(0.0001, startAt);
-        envelope.gain.linearRampToValueAtTime(0.18, startAt + 1.1);
-        envelope.gain.setValueAtTime(0.18, startAt + 1.8);
-        envelope.gain.linearRampToValueAtTime(0.0001, startAt + duration);
-        source.connect(filter);
-        filter.connect(envelope);
-        envelope.connect(thunderGain);
-        source.start(startAt);
-        source.stop(startAt + duration + 0.05);
-        thunderTimer = null;
-        scheduleThunder();
-      }, 16000 + Math.random() * 17000);
-    }
-
-    function playComputerStartup() {
-      // Breve señal electrónica original, generada con Web Audio (sin archivos externos).
-      try {
-        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-        if (!AudioContextClass) return;
-        if (!audioContext || audioContext.state === 'closed') audioContext = new AudioContextClass();
-        const ctx = audioContext;
-        const playTone = (frequency, delay, duration, volume = 0.035) => {
-          const oscillator = ctx.createOscillator();
-          const gain = ctx.createGain();
-          oscillator.type = 'square';
-          oscillator.frequency.setValueAtTime(frequency, ctx.currentTime + delay);
-          gain.gain.setValueAtTime(0.0001, ctx.currentTime + delay);
-          gain.gain.linearRampToValueAtTime(volume, ctx.currentTime + delay + 0.018);
-          gain.gain.setValueAtTime(volume, ctx.currentTime + delay + Math.max(0.02, duration - 0.035));
-          gain.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + delay + duration);
-          oscillator.connect(gain);
-          gain.connect(ctx.destination);
-          oscillator.start(ctx.currentTime + delay);
-          oscillator.stop(ctx.currentTime + delay + duration + 0.02);
-        };
-        if (ctx.state === 'suspended') ctx.resume().catch(() => {});
-        playTone(660, 0, 0.09);
-        playTone(880, 0.13, 0.09);
-        playTone(520, 0.27, 0.15);
-      } catch (error) {}
-    }
-
-    // Audio de bienvenida: efecto clásico "Nuclear Launch Detected".
-    // El navegador puede bloquear la reproducción automática; se reintenta al primer gesto del visitante.
-    const nuclearWelcomeAudio = new Audio('https://www.myinstants.com/media/sounds/tadupd04.mp3');
-    nuclearWelcomeAudio.preload = 'auto';
-    nuclearWelcomeAudio.volume = 0.30;
-
-    function speakWelcome() {
-      if (welcomeSpoken || welcomePending || userDisabled) return false;
-      try {
-        nuclearWelcomeAudio.pause();
-        nuclearWelcomeAudio.currentTime = 0;
-        welcomePending = true;
-        const playback = nuclearWelcomeAudio.play();
-        if (playback && typeof playback.then === 'function') {
-          playback.then(() => {
-            welcomeSpoken = true;
-            welcomePending = false;
-          }).catch(() => {
-            welcomePending = false;
-          });
-        } else {
-          welcomeSpoken = true;
-          welcomePending = false;
-        }
-        return true;
-      } catch (error) {
-        welcomePending = false;
-        return false;
-      }
-    }
-
-    function stopAmbient() {
-      if (audioContext && masterGain) {
-        const now = audioContext.currentTime;
-        masterGain.gain.cancelScheduledValues(now);
-        masterGain.gain.setTargetAtTime(0, now, 0.25);
-      }
-      if (cricketTimer) {
-        clearTimeout(cricketTimer);
-        cricketTimer = null;
-      }
-      if (thunderTimer) {
-        clearTimeout(thunderTimer);
-        thunderTimer = null;
-      }
-      if (cricketGain && audioContext) {
-        cricketGain.gain.cancelScheduledValues(audioContext.currentTime);
-        cricketGain.gain.setValueAtTime(0, audioContext.currentTime);
-      }
-      if (thunderGain && audioContext) {
-        thunderGain.gain.cancelScheduledValues(audioContext.currentTime);
-        thunderGain.gain.setValueAtTime(0, audioContext.currentTime);
-      }
-      nuclearWelcomeAudio.pause();
-      nuclearWelcomeAudio.currentTime = 0;
-      welcomePending = false;
-      running = false;
-      setButton(false);
-    }
-
-    button.addEventListener('click', () => {
-      if (running) {
-        userDisabled = true;
-        stopAmbient();
+    button.textContent = '▶ NUCLEAR LAUNCH DETECTED';
+    button.setAttribute('aria-label', 'Reproducir Nuclear Launch Detected');
+    const welcomeAudio = new Audio('https://www.myinstants.com/media/sounds/tadupd04.mp3');
+    welcomeAudio.preload = 'auto';
+    welcomeAudio.volume = 0.30;
+    let played = false;
+    let pending = false;
+    function playWelcome() {
+      if (played || pending) return;
+      pending = true;
+      welcomeAudio.currentTime = 0;
+      const playback = welcomeAudio.play();
+      if (playback && typeof playback.then === 'function') {
+        playback.then(() => { played = true; pending = false; })
+          .catch(() => { pending = false; });
       } else {
-        userDisabled = false;
-        startAmbient(true);
-        if (!welcomeSpoken) speakWelcome();
+        played = true;
+        pending = false;
       }
+    }
+    button.addEventListener('click', () => {
+      if (played) {
+        welcomeAudio.pause();
+        welcomeAudio.currentTime = 0;
+        played = false;
+        button.textContent = '▶ NUCLEAR LAUNCH DETECTED';
+        return;
+      }
+      playWelcome();
     });
-
-    // Intentar iniciar el ambiente y el efecto de bienvenida al entrar. Si el navegador bloquea
-    // la reproducción automática, la primera interacción del visitante la habilita.
-    window.addEventListener('load', () => {
-      if (!triedAutoplay) {
-        triedAutoplay = true;
-        startAmbient(false);
-        speakWelcome();
-      }
-    }, { once: true });
-
-    const unlockAmbient = (event) => {
-      if (event && event.target && event.target.closest && event.target.closest('#ambient-toggle') && running) return;
-      if (!running && !userDisabled) startAmbient(true);
-      if (!welcomeSpoken && !welcomePending && !userDisabled) speakWelcome();
-    };
-    window.addEventListener('pointerdown', unlockAmbient, { passive: true });
-    window.addEventListener('keydown', unlockAmbient);
+    window.addEventListener('load', playWelcome, { once: true });
+    window.addEventListener('pointerdown', playWelcome, { once: true, passive: true });
+    window.addEventListener('keydown', playWelcome, { once: true });
   })();
-
-  // Efecto corto de confirmación estilo StarCraft para las fichas de juegos.
-  // El archivo se reproduce desde MyInstants; si el servidor externo no responde, la página sigue funcionando.
-  const gameConfirmSound = new Audio('https://www.myinstants.com/media/sounds/starcraft-confirm.mp3');
-  gameConfirmSound.preload = 'auto';
-  gameConfirmSound.volume = 0.32;
-  let lastGameSoundAt = 0;
-  function playGameConfirmSound() {
-    const now = Date.now();
-    // Evita que el hover y el clic disparen dos sonidos casi simultáneos.
-    if (now - lastGameSoundAt < 280) return;
-    lastGameSoundAt = now;
-    try {
-      gameConfirmSound.pause();
-      gameConfirmSound.currentTime = 0;
-      const playback = gameConfirmSound.play();
-      if (playback && typeof playback.catch === 'function') playback.catch(() => {});
-    } catch (_) {}
-  }
-  document.querySelectorAll('.game-cover').forEach((cover) => {
-    cover.addEventListener('pointerenter', playGameConfirmSound);
-    cover.addEventListener('click', playGameConfirmSound);
-  });
 
   document.querySelector('.site-nav a[href="#ports-library"]').addEventListener('click', (event) => {
     event.preventDefault();
