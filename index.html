@@ -157,8 +157,8 @@
   .game-detail { display:none; margin:18px 0; padding:16px; border:3px solid #56f6d2; background:#10152f; box-shadow:5px 5px 0 #050713; }
   .game-detail.show { display:block; }
   body.modal-open { overflow:hidden; }
-  .game-modal-backdrop { position:fixed; inset:0; background:rgba(3,5,18,.48); z-index:9998; cursor:pointer; }
-  .game-detail.modal-detail.show { display:block; position:fixed; z-index:9999; left:0; right:0; top:4vh; width:min(900px,calc(100vw - 24px)); max-height:92vh; overflow-y:auto; margin:0 auto; padding:clamp(14px,3vw,26px); border:3px solid #56f6d2; border-radius:10px; box-shadow:0 0 0 4px rgba(140,115,255,.25),0 20px 70px rgba(0,0,0,.7); transform:none; filter:none; backdrop-filter:none; -webkit-filter:none; image-rendering:auto; }
+  .game-modal-backdrop { position:fixed; inset:0; background:rgba(3,5,18,.30); z-index:9998; cursor:pointer; }
+  .game-detail.modal-detail.show { display:block; position:fixed; z-index:9999; left:0; right:0; top:4vh; width:min(900px,calc(100vw - 24px)); max-height:92vh; overflow-y:auto; margin:0 auto; padding:clamp(14px,3vw,26px); border:3px solid #56f6d2; border-radius:10px; background:#20264b; color:#f8f4ff; box-shadow:0 0 0 4px rgba(140,115,255,.25),0 20px 70px rgba(0,0,0,.7); transform:none; filter:none; backdrop-filter:none; -webkit-filter:none; image-rendering:auto; }
   .game-detail.modal-detail.show, .game-detail.modal-detail.show * { image-rendering:auto; }
   .game-detail.modal-detail .back-to-library, .game-detail.modal-detail .back-library { position:sticky; bottom:0; }
   @media (max-width:560px) { .game-detail.modal-detail.show { width:calc(100vw - 16px); max-height:92vh; top:3vh; padding:12px; } }
