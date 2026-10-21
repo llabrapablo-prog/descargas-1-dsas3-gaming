@@ -541,7 +541,7 @@
       card.style.display = index < 6 ? '' : 'none';
     });
   }
-  const modalDetailIds = ["nfs-underground-2-detail","new-super-mario-bros-2-detail","monster-hunter-3-detail","flint-son-of-crimson-detail","pokemon-anil-detail","gun-of-fury-detail","stardew-valley-detail"];
+  const modalDetailIds = Array.from(document.querySelectorAll('.game-detail[id]')).map((panel) => panel.id);
   let gameModalBackdrop = null;
   function closeRecentGameModals() {
     modalDetailIds.forEach((id) => document.getElementById(id)?.classList.remove('show'));
@@ -560,7 +560,7 @@
     gameModalBackdrop.setAttribute('aria-label', 'Cerrar ficha');
     gameModalBackdrop.addEventListener('click', closeRecentGameModals);
     document.body.appendChild(gameModalBackdrop);
-    panel.classList.add('show');
+    panel.classList.add('modal-detail', 'show');
     document.body.classList.add('modal-open');
     panel.querySelectorAll('.back-to-library, .back-library').forEach((button) => button.addEventListener('click', closeRecentGameModals));
   }
