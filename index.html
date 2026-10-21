@@ -157,9 +157,9 @@
   .game-detail { display:none; margin:18px 0; padding:16px; border:3px solid #56f6d2; background:#10152f; box-shadow:5px 5px 0 #050713; }
   .game-detail.show { display:block; }
   body.modal-open { overflow:hidden; }
-  body.modal-open::before { content:""; position:fixed; inset:0; background:rgba(3,5,18,.84); backdrop-filter:blur(4px); z-index:9998; }
+  .game-modal-backdrop { position:fixed; inset:0; background:rgba(3,5,18,.84); backdrop-filter:blur(4px); z-index:9998; cursor:pointer; }
   .game-detail.modal-detail.show { display:block; position:fixed; z-index:9999; left:50%; top:50%; transform:translate(-50%,-50%); width:min(900px,calc(100vw - 24px)); max-height:88vh; overflow-y:auto; margin:0; padding:clamp(14px,3vw,26px); border:3px solid #56f6d2; border-radius:10px; box-shadow:0 0 0 4px rgba(140,115,255,.25),0 20px 70px rgba(0,0,0,.7); }
-  .game-detail.modal-detail .back-to-library { position:sticky; bottom:0; }
+  .game-detail.modal-detail .back-to-library, .game-detail.modal-detail .back-library { position:sticky; bottom:0; }
   @media (max-width:560px) { .game-detail.modal-detail.show { width:calc(100vw - 16px); max-height:92vh; padding:12px; } }
   .game-detail img { display:block; width:100%; max-height:280px; object-fit:cover; margin:12px 0; border:2px solid #8c73ff; }
   .game-gallery { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin:16px 0 22px; }
@@ -541,34 +541,42 @@
     });
   }
   const modalDetailIds = ["nfs-underground-2-detail","new-super-mario-bros-2-detail","monster-hunter-3-detail","flint-son-of-crimson-detail","pokemon-anil-detail","gun-of-fury-detail","stardew-valley-detail"];
+  let gameModalBackdrop = null;
   function closeRecentGameModals() {
     modalDetailIds.forEach((id) => document.getElementById(id)?.classList.remove('show'));
     document.body.classList.remove('modal-open');
+    if (gameModalBackdrop) {
+      gameModalBackdrop.remove();
+      gameModalBackdrop = null;
+    }
+  }
+  function openRecentGameModal(id) {
+    const panel = document.getElementById(id);
+    if (!panel || !modalDetailIds.includes(id)) return;
+    closeRecentGameModals();
+    gameModalBackdrop = document.createElement('div');
+    gameModalBackdrop.className = 'game-modal-backdrop';
+    gameModalBackdrop.setAttribute('aria-label', 'Cerrar ficha');
+    gameModalBackdrop.addEventListener('click', closeRecentGameModals);
+    document.body.appendChild(gameModalBackdrop);
+    panel.classList.add('show');
+    document.body.classList.add('modal-open');
+    panel.querySelectorAll('.back-to-library, .back-library').forEach((button) => button.addEventListener('click', closeRecentGameModals));
   }
   modalDetailIds.forEach((id) => {
     const panel = document.getElementById(id);
-    if (!panel) return;
-    const openPanel = () => {
-      closeRecentGameModals();
-      panel.classList.add('show');
-      document.body.classList.add('modal-open');
-    };
-    document.querySelectorAll('[data-recent-detail="' + id + '"]').forEach((card) => card.addEventListener('click', openPanel));
-    const gameKey = id.replace(/-detail$/, '');
-    document.querySelectorAll('[data-game="' + gameKey + '"]').forEach((card) => card.addEventListener('click', openPanel));
-    panel.querySelectorAll('.back-to-library').forEach((button) => button.addEventListener('click', closeRecentGameModals));
+    if (panel) panel.addEventListener('click', (event) => event.stopPropagation());
   });
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && document.body.classList.contains('modal-open')) closeRecentGameModals();
-  });
-  document.querySelectorAll('[data-recent-detail]').forEach((button) => {
-    button.addEventListener('click', () => {
-      const article = document.getElementById(button.dataset.recentDetail);
-      if (!article) return;
-      article.classList.add('show');
-      article.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-  });
+  document.addEventListener('click', (event) => {
+    const card = event.target.closest('[data-recent-detail], [data-game]');
+    if (!card) return;
+    const requestedId = card.dataset.recentDetail || (card.dataset.game ? card.dataset.game + '-detail' : '');
+    if (modalDetailIds.includes(requestedId)) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      openRecentGameModal(requestedId);
+    }
+  }, true);
   const marvelDetail = document.getElementById('marvel-cosmic-invasion-detail');
   document.querySelector('[data-game="marvel-cosmic-invasion"]').addEventListener('click', () => {
     marvelDetail.classList.add('show');
