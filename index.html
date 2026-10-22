@@ -1374,6 +1374,36 @@ body #descargas.hero > h2 {
 #ports-library .community-star.is-active,#ports-library .community-star:hover,#ports-library .community-star:focus-visible{color:#A6FF00!important;text-shadow:0 0 8px #A6FF0066}
 #ports-library .community-rating-summary{font-size:10px;color:#A7B0A0}
 </style>
+
+<style id="official-test-ficha-match">
+/* La ficha oficial replica el tamaño y el estilo de la ficha de la página de prueba */
+.game-detail.modal-detail.show {
+  display:block !important; position:fixed !important; z-index:9999 !important;
+  left:50% !important; right:auto !important; top:50% !important;
+  transform:translate(-50%,-50%) !important;
+  width:min(920px,calc(100vw - 32px)) !important;
+  max-height:min(92vh,1000px) !important; overflow:auto !important;
+  margin:0 !important; padding:0 !important;
+  border:1px solid #35402A !important; border-radius:22px !important;
+  background:#111315 !important; color:#F2F5EE !important;
+  box-shadow:0 30px 100px #000a !important;
+}
+.game-detail.modal-detail.show h2 {font-size:25px !important;margin:0 0 16px !important;}
+.game-detail.modal-detail.show .game-detail-top {display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 24px;border-bottom:1px solid #293a57;}
+.game-detail.modal-detail.show .game-detail-content {padding:24px;}
+.game-detail.modal-detail.show .game-detail-description {color:#C7D2BC;line-height:1.7;font-size:14px;}
+.game-detail.modal-detail.show .game-spec {padding:14px;border:1px solid #343B34;border-radius:13px;background:#171B1E;}
+.game-detail.modal-detail.show .game-spec span {display:block;color:#93a4c1;font-size:11px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px;}
+.game-detail.modal-detail.show .game-spec strong {font-size:14px;}
+.game-detail.modal-detail.show .game-detail-note {color:#A6FF00;border:1px solid #35402A;background:#171B1E;border-radius:12px;padding:12px 14px;font-size:12px;line-height:1.6;margin-top:16px;}
+.game-detail.modal-detail.show img {display:block;width:100%;max-height:280px;object-fit:cover;margin:12px 0;border:1px solid #A6FF0066;border-radius:10px;background:#111315;box-shadow:0 5px 18px #0005;}
+@media(max-width:600px){
+ .game-detail.modal-detail.show {width:calc(100vw - 16px) !important;max-height:92vh !important;top:50% !important;padding:0 !important;}
+ .game-detail.modal-detail.show .game-detail-content {padding:16px;}
+ .game-detail.modal-detail.show .game-detail-top {padding:16px;}
+ .game-detail.modal-detail.show .game-detail-grid {grid-template-columns:1fr 1fr;}
+}
+</style>
 </head>
 <body>
 <button class="ambient-toggle" id="ambient-toggle" type="button" aria-pressed="false" aria-label="Reproducir Nuclear Launch Detected">▶ NUCLEAR LAUNCH DETECTED</button>
@@ -2410,7 +2440,7 @@ body #descargas.hero > h2 {
  if(!section)return;
  let backdrop=null;
  const close=()=>{
-   document.querySelectorAll('#ports-library .game-detail.show').forEach(detail=>detail.classList.remove('show'));
+   document.querySelectorAll('#ports-library .game-detail.show').forEach(detail=>detail.classList.remove('show','modal-detail'));
    document.body.classList.remove('modal-open');
    backdrop?.remove();backdrop=null;
  };
@@ -2420,7 +2450,7 @@ body #descargas.hero > h2 {
    const detail=document.getElementById(id+'-detail');
    if(!detail)return;
    close();
-   detail.classList.add('show');
+   detail.classList.add('modal-detail','show');
    document.body.classList.add('modal-open');
    backdrop=document.createElement('div');
    backdrop.className='game-modal-backdrop';
