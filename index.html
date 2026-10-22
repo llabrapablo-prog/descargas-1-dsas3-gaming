@@ -2004,5 +2004,165 @@ footer a{color:#A6FF00!important}
 }
 </style>
 
+
+<style id="sticky-shorts-player-while-scrolling">
+/* El reproductor de Shorts pasa a una ventana fija cuando salís de la portada. */
+#shorts-floating-window{
+  display:none;
+  position:fixed;
+  right:16px;
+  bottom:16px;
+  z-index:1500;
+  width:min(218px,calc(100vw - 20px));
+  padding:8px;
+  border:1px solid #a6ff00;
+  border-radius:16px;
+  background:linear-gradient(180deg,#1a1f1d,#101315);
+  box-shadow:0 16px 46px #000b,0 0 20px #a6ff0025;
+  color:#f2f5ee;
+}
+#shorts-floating-window.is-active{display:flex;flex-direction:column;gap:7px}
+#shorts-floating-window .shorts-floating-head{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  min-height:28px;padding:0 2px;
+}
+#shorts-floating-window .shorts-floating-label{
+  color:#a6ff00;font:900 10px/1.2 Inter,ui-sans-serif,system-ui,sans-serif;
+  letter-spacing:.09em;text-transform:uppercase;
+}
+#shorts-floating-window .shorts-floating-toggle{
+  flex:0 0 auto;min-width:28px;height:27px;padding:0 7px;
+  border:1px solid #465044;border-radius:8px;background:#202529;
+  color:#a6ff00;font:900 16px/1 Inter,ui-sans-serif,system-ui,sans-serif;
+  cursor:pointer;
+}
+#shorts-floating-window .shorts-floating-toggle:hover,
+#shorts-floating-window .shorts-floating-toggle:focus-visible{
+  border-color:#a6ff00;outline:2px solid #a6ff00;outline-offset:2px;
+}
+#shorts-floating-window .shorts-floating-stage{min-width:0;width:100%;overflow:hidden;border-radius:11px}
+#shorts-floating-window .console-stage.video-stage{
+  display:flex!important;position:relative!important;isolation:isolate!important;
+  width:100%!important;min-width:0!important;min-height:0!important;height:auto!important;
+  margin:0!important;padding:0!important;align-items:center!important;justify-content:center!important;
+}
+#shorts-floating-window .console-stage.video-stage::before,
+#shorts-floating-window .console-note,
+#shorts-floating-window .gameplay-actions,
+#shorts-floating-window .gameplay-hint{display:none!important}
+#shorts-floating-window .gameplay-wrap{
+  width:100%!important;max-width:none!important;min-width:0!important;
+  margin:0!important;padding:0!important;
+}
+#shorts-floating-window .gameplay-screen{
+  width:100%!important;height:auto!important;min-height:0!important;
+  aspect-ratio:9/16!important;padding:5px!important;border-radius:13px!important;
+  box-shadow:0 0 15px #a6ff0018!important;
+}
+#shorts-floating-window .gameplay-screen iframe{
+  width:100%!important;height:100%!important;border-radius:9px!important;
+}
+#shorts-floating-window .screen-caption{left:8px!important;bottom:8px!important;font-size:7px!important;padding:4px 6px!important}
+#shorts-floating-window .short-nav-button{width:32px!important;height:42px!important;font-size:26px!important}
+#shorts-floating-window.is-collapsed{width:auto;min-width:154px;padding:7px 9px;border-radius:12px}
+#shorts-floating-window.is-collapsed .shorts-floating-stage{display:none!important}
+#shorts-floating-window.is-collapsed .shorts-floating-head{gap:14px}
+#shorts-floating-window .shorts-floating-restore{display:none;align-items:center;gap:6px;color:#d9e4cf;font:700 10px Inter,ui-sans-serif,system-ui,sans-serif}
+#shorts-floating-window.is-collapsed .shorts-floating-restore{display:inline-flex}
+#shorts-floating-window .shorts-floating-head-text{display:inline}
+#shorts-floating-window.is-collapsed .shorts-floating-head-text{display:none}
+.shorts-floating-placeholder{visibility:hidden!important;pointer-events:none!important;overflow:hidden!important;background:transparent!important;box-shadow:none!important;border:0!important;padding:0!important}
+.shorts-floating-placeholder::before,.shorts-floating-placeholder::after{display:none!important;content:none!important}
+@media(max-width:600px){
+  #shorts-floating-window{right:8px;bottom:8px;width:min(162px,calc(100vw - 16px));padding:6px;border-radius:12px}
+  #shorts-floating-window .shorts-floating-label{font-size:9px}
+  #shorts-floating-window .shorts-floating-head{min-height:25px}
+  #shorts-floating-window .shorts-floating-toggle{min-width:25px;height:24px}
+  #shorts-floating-window .screen-caption{display:none!important}
+  #shorts-floating-window.is-collapsed{min-width:145px;width:auto}
+}
+@media(prefers-reduced-motion:no-preference){
+  #shorts-floating-window.is-active{animation:shorts-float-in .18s ease-out}
+  @keyframes shorts-float-in{from{opacity:.45;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+}
+</style>
+<script id="sticky-shorts-player-while-scrolling">
+(() => {
+  if (document.documentElement.dataset.stickyShortsReady === 'true') return;
+  const stage = document.querySelector('#inicio .console-stage.video-stage');
+  if (!stage || !stage.querySelector('#gameplay-rotator')) return;
+  document.documentElement.dataset.stickyShortsReady = 'true';
+
+  const homeParent = stage.parentNode;
+  const placeholder = document.createElement('div');
+  placeholder.className = 'console-stage video-stage shorts-floating-placeholder';
+  placeholder.setAttribute('aria-hidden', 'true');
+
+  const floating = document.createElement('aside');
+  floating.id = 'shorts-floating-window';
+  floating.setAttribute('aria-label', 'Reproductor de Shorts siempre visible');
+  floating.innerHTML = '<div class="shorts-floating-head"><span class="shorts-floating-label">▶ SHORTS <span class="shorts-floating-head-text">· 1DSAS3 GAMING</span></span><span class="shorts-floating-restore">▶ Shorts sigue acá</span><button class="shorts-floating-toggle" type="button" aria-label="Minimizar reproductor" title="Minimizar reproductor">−</button></div><div class="shorts-floating-stage"></div>';
+  const stageHost = floating.querySelector('.shorts-floating-stage');
+  const toggle = floating.querySelector('.shorts-floating-toggle');
+  document.body.appendChild(floating);
+
+  let floatingMode = false;
+  let scrollQueued = false;
+
+  function floatPlayer() {
+    if (floatingMode || !placeholder.isConnected) return;
+    floatingMode = true;
+    stageHost.appendChild(stage);
+    floating.classList.add('is-active');
+  }
+
+  function dockPlayer() {
+    if (!floatingMode) return;
+    homeParent.insertBefore(stage, placeholder);
+    placeholder.remove();
+    floatingMode = false;
+    floating.classList.remove('is-active');
+  }
+
+  function syncScrollState() {
+    scrollQueued = false;
+    if (!placeholder.isConnected) return;
+    const rect = placeholder.getBoundingClientRect();
+    if (!floatingMode && rect.bottom <= 0) floatPlayer();
+    else if (floatingMode && rect.top >= 0) dockPlayer();
+  }
+
+  function onScrollOrResize() {
+    if (scrollQueued) return;
+    scrollQueued = true;
+    window.requestAnimationFrame(syncScrollState);
+  }
+
+  // La casilla invisible conserva el espacio del reproductor original y evita saltos en la página.
+  function insertPlaceholderAndFloat() {
+    const rect = stage.getBoundingClientRect();
+    placeholder.style.height = Math.max(1, rect.height) + 'px';
+    placeholder.style.minHeight = '0';
+    homeParent.insertBefore(placeholder, stage);
+    floatPlayer();
+  }
+
+  toggle.addEventListener('click', () => {
+    const collapsed = floating.classList.toggle('is-collapsed');
+    toggle.textContent = collapsed ? '+' : '−';
+    toggle.setAttribute('aria-label', collapsed ? 'Mostrar reproductor' : 'Minimizar reproductor');
+    toggle.title = collapsed ? 'Mostrar reproductor' : 'Minimizar reproductor';
+  });
+
+  // A scroll check made once the placeholder is laid out avoids jumping on initial load.
+  window.addEventListener('scroll', onScrollOrResize, {passive:true});
+  window.addEventListener('resize', onScrollOrResize, {passive:true});
+  if (window.scrollY > 0) {
+    insertPlaceholderAndFloat();
+    onScrollOrResize();
+  }
+})();
+</script>
+
 </body>
 </html>
