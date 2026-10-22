@@ -2170,5 +2170,192 @@ footer a{color:#A6FF00!important}
 #ports-library .ports-filter-chip[data-genre="Deportes"]{border-color:#a6ff00}
 #ports-library .ports-filter-chip[data-genre="Deportes"][aria-pressed="true"]{background:#a6ff00;border-color:#a6ff00;color:#111315}
 </style>
+
+<style id="original-platform-genre-console-card-metadata-style">
+/* Las fichas muestran plataforma original, género y consola en chips legibles. */
+#ports-library .port-library-meta,
+.recent-ports .port-library-meta{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  align-items:flex-start!important;
+  justify-content:flex-start!important;
+  gap:6px!important;
+  width:100%!important;
+}
+#ports-library .port-library-meta .port-library-chip,
+.recent-ports .port-library-meta .port-library-chip{
+  display:inline-flex!important;
+  max-width:100%!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  word-break:normal!important;
+  text-align:left!important;
+  align-items:flex-start!important;
+  line-height:1.4!important;
+}
+.community-winner-chips{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  align-items:flex-start!important;
+  gap:7px!important;
+}
+.community-winner-chip{
+  max-width:100%!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  line-height:1.4!important;
+}
+</style>
+<script id="original-platform-genre-console-card-metadata">
+(() => {
+  if (document.documentElement.dataset.originalPlatformGenreConsoleReady === 'true') return;
+  document.documentElement.dataset.originalPlatformGenreConsoleReady = 'true';
+
+  const consoleName = 'R36S y clones';
+  const norm = value => String(value || '')
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim().replace(/\s+/g, ' ');
+
+  // Plataforma de lanzamiento del juego original; en ports basados en versiones específicas se aclara.
+  const platforms = {
+    'nfs-underground-2-detail': 'PlayStation 2, Xbox, GameCube, PC, GBA y Nintendo DS',
+    'new-super-mario-bros-2-detail': 'Nintendo 3DS',
+    'monster-hunter-3-detail': 'Wii (Tri); Wii U y 3DS (Ultimate)',
+    'flint-son-of-crimson-detail': 'PC, Nintendo Switch, PlayStation 4 y Xbox One',
+    'pokemon-anil-detail': 'PC (fan game)',
+    'gun-of-fury-detail': 'PC y Nintendo Switch',
+    'marvel-cosmic-invasion-detail': 'PC, Switch/Switch 2, PlayStation 4/5 y Xbox',
+    'katana-zero-detail': 'PC, Nintendo Switch y Xbox One',
+    'hollow-knight-detail': 'PC, Nintendo Switch, PlayStation 4 y Xbox One',
+    'resident-evil-4-detail': 'GameCube (original, 2005); remake en PC y consolas modernas',
+    'muramasa-rebirth-detail': 'Wii (original); PlayStation Vita (Rebirth)',
+    'angry-birds-detail': 'iOS (original); Android y otros móviles',
+    'gangstar-miami-vindication-detail': 'iOS y Android (móviles)',
+    'hyper-dragon-ball-z-detail': 'PC Windows (fan game basado en M.U.G.E.N.)',
+    'limbo-detail': 'Xbox 360 (original); luego PC, PlayStation y otras plataformas',
+    'terminator-2d-no-fate-detail': 'PC, PS5/PS4, Nintendo Switch y Xbox Series/One',
+    'five-nights-at-freddys-detail': 'PC Windows (original); luego móviles y consolas',
+    'devil-may-cry-4-android-detail': 'PS3, Xbox 360 y PC (original); esta ficha corresponde a Android',
+    'asphalt-5-detail': 'iOS, Android y otros teléfonos móviles',
+    'asphalt-xtreme-detail': 'iOS, Android y Windows',
+    'zelda-wind-waker-detail': 'Nintendo GameCube',
+    'mario-kart-wii-detail': 'Nintendo Wii',
+    'dusklight-detail': 'Nintendo GameCube y Wii (juego original)',
+    'gta-san-andreas-detail': 'PlayStation 2 (original); luego PC, Xbox y móviles',
+    'banjo-kazooie-lighthouse-detail': 'Nintendo 64 (original); Lighthouse es un port para PC',
+    'nameless-cat-detail': 'Android y iOS (juego móvil)',
+    'sally-face-detail': 'PC (Windows, macOS y Linux); luego consolas',
+    'the-amazing-spider-man-2-android-detail': 'Android (esta versión); también consolas y PC',
+    'stranger-things-3-the-game-detail': 'PC, Nintendo Switch, PlayStation 4, Xbox One y móviles',
+    'super-smash-bros-n64-detail': 'Nintendo 64',
+    'super-mario-strikers-gamecube-detail': 'Nintendo GameCube',
+    'halo-combat-evolved-detail': 'Xbox (original); luego PC',
+    'dont-starve-detail': 'PC (Windows, macOS y Linux); luego consolas y móviles',
+    'balatro-detail': 'PC (lanzamiento original); luego Switch, PlayStation, Xbox y móviles'
+  };
+
+  const detailNodes = [...document.querySelectorAll('[id$="-detail"]')];
+
+  function findDetail(card, title) {
+    const cover = card.querySelector('.game-cover[data-game], .game-cover[data-recent-detail]');
+    const key = cover?.dataset.recentDetail || cover?.dataset.game || '';
+    if (key) {
+      const exact = document.getElementById(key);
+      if (exact && /-detail$/.test(key)) return exact;
+      const byKey = document.getElementById(key + '-detail');
+      if (byKey) return byKey;
+    }
+    const wanted = norm(title);
+    return detailNodes.find(node => {
+      const heading = norm(node.querySelector('h2,h3')?.textContent || '');
+      return heading && (heading === wanted || heading.includes(wanted) || wanted.includes(heading));
+    }) || null;
+  }
+
+  function readGenre(detail, fallback) {
+    if (detail) {
+      const spec = [...detail.querySelectorAll('.spec')]
+        .find(node => norm(node.querySelector('strong')?.textContent || '') === 'genero');
+      if (spec) {
+        const label = spec.querySelector('strong')?.textContent || '';
+        const value = spec.textContent.replace(label, '').trim();
+        if (value) return value;
+      }
+    }
+    return fallback || 'Por confirmar';
+  }
+
+  function readPlatform(detail) {
+    if (!detail) return 'Por confirmar';
+    const mapped = platforms[detail.id];
+    if (mapped) return mapped;
+    const specs = [...detail.querySelectorAll('.spec')];
+    const original = specs.find(node => norm(node.querySelector('strong')?.textContent || '') === 'plataforma original');
+    if (original) {
+      const value = original.textContent.replace(original.querySelector('strong')?.textContent || '', '').trim();
+      if (value && !/^r36s y clones$/i.test(value)) return value;
+    }
+    return 'Por confirmar';
+  }
+
+  function addChip(container, label, value, className = 'port-library-chip') {
+    const chip = document.createElement('span');
+    chip.className = className;
+    chip.textContent = label + ': ' + value;
+    container.appendChild(chip);
+  }
+
+  function updatePortCard(card) {
+    if (card.dataset.originalPlatformGenreConsoleReady === 'true') return;
+    const title = card.querySelector('.port-library-body h3')?.textContent.trim();
+    const meta = card.querySelector('.port-library-meta');
+    if (!title || !meta) return;
+    const detail = findDetail(card, title);
+    const fallbackGenre = card.dataset.genre || '';
+    const genre = readGenre(detail, fallbackGenre);
+    const platform = readPlatform(detail);
+    meta.replaceChildren();
+    addChip(meta, 'Plataforma original', platform);
+    addChip(meta, 'Género', genre);
+    addChip(meta, 'Consola', consoleName);
+    card.dataset.originalPlatformGenreConsoleReady = 'true';
+    // No se modifica card.dataset.genre: los filtros existentes siguen funcionando.
+  }
+
+  function updateCommunityCard(card) {
+    if (card.dataset.originalPlatformGenreConsoleReady === 'true') return;
+    const title = card.querySelector('.community-winner-body h3')?.textContent.replace(/^🏆\s*/, '').trim();
+    const chips = card.querySelector('.community-winner-chips');
+    if (!title || !chips) return;
+    const detail = findDetail(card, title);
+    const genre = readGenre(detail, '');
+    if (!genre) return;
+    chips.replaceChildren();
+    addChip(chips, 'Plataforma original', readPlatform(detail), 'community-winner-chip');
+    addChip(chips, 'Género', genre, 'community-winner-chip');
+    addChip(chips, 'Consola', consoleName, 'community-winner-chip');
+    card.dataset.originalPlatformGenreConsoleReady = 'true';
+  }
+
+  function process(root) {
+    if (!(root instanceof Element || root instanceof Document)) return;
+    if (root instanceof Element) {
+      if (root.matches('.port-library-card')) updatePortCard(root);
+      if (root.matches('.community-winner-card')) updateCommunityCard(root);
+    }
+    root.querySelectorAll?.('.port-library-card').forEach(updatePortCard);
+    root.querySelectorAll?.('.community-winner-card').forEach(updateCommunityCard);
+  }
+
+  process(document);
+  const observer = new MutationObserver(records => {
+    records.forEach(record => record.addedNodes.forEach(node => {
+      if (node instanceof Element) process(node);
+    }));
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+})();
+</script>
+
 </body>
 </html>
