@@ -1162,6 +1162,28 @@ footer { border-top:1px solid #343B34; padding:26px 0 35px; color:#A7B0A0; font-
 }
 </style>
 
+
+<style id="ports-section-test-layout">
+/* Integra la sección Ports de la página de prueba sin reemplazar las fichas oficiales */
+#ports.official-library-wrap {width:100%;max-width:none;margin:0 auto;padding:0 0 32px}
+#ports .ports-main-heading {padding-top:clamp(28px,5vw,56px)}
+#ports .ports-main-heading .section-head {max-width:1180px;margin:0 auto 22px;padding:0 22px;display:flex;align-items:end;justify-content:space-between;gap:22px}
+#ports .ports-main-heading .section-head h2 {font-size:clamp(30px,4vw,46px);margin:5px 0;color:#A6FF00}
+#ports .ports-main-heading .section-head p {max-width:520px;color:#C7D2BC}
+#ports .recent-ports,#ports #ports-library {max-width:1180px;margin-left:auto;margin-right:auto;padding-left:22px;padding-right:22px}
+#ports .recent-ports {margin-top:8px;margin-bottom:28px}
+#ports #ports-library {padding-top:12px}
+#ports #ports-library > .library-heading {font-size:clamp(24px,3vw,34px);margin:16px 0 8px;color:#A6FF00}
+#ports #ports-library > p {color:#C7D2BC}
+#ports #ports-library > .official-catalog-controls {max-width:none;margin:18px 0 10px}
+#ports #ports-library > .library-grid {max-width:none}
+#ports .recent-ports-grid {max-width:none}
+@media(max-width:760px) {
+ #ports .ports-main-heading .section-head {display:block;padding:0 14px}
+ #ports .recent-ports,#ports #ports-library {padding-left:14px;padding-right:14px}
+}
+</style>
+
 </head>
 <body>
 <button class="ambient-toggle" id="ambient-toggle" type="button" aria-pressed="false" aria-label="Reproducir Nuclear Launch Detected">▶ NUCLEAR LAUNCH DETECTED</button>
@@ -1205,25 +1227,8 @@ footer { border-top:1px solid #343B34; padding:26px 0 35px; color:#A7B0A0; font-
         <nav class="pagination" id="latest-pagination" aria-label="Páginas de últimos juegos"></nav>
       </div>
     </section>
-    <section class="section" id="ports">
-      <div class="wrap">
-        <div class="section-head"><div><div class="kicker">🎮 Biblioteca de juegos</div><h2>Ports</h2></div><p>Todas las fichas del catálogo reunidas en esta sección. Buscá por nombre o filtrá por género para encontrar el juego que te interesa.</p></div>
-        <div class="catalog-tools" id="catalog-tools" aria-label="Filtros de ports">
-<label class="filter-label" for="catalog-search">Buscar por nombre</label><input class="catalog-search" id="catalog-search" type="search" placeholder="Ej.: Mario, Sonic, Zelda..." autocomplete="off">
-<span class="filter-label">Filtrar por género</span><div class="filter-row" id="genre-filters"><button class="filter-chip" type="button" data-genre="Todos" aria-pressed="true">Todos</button><button class="filter-chip" type="button" data-genre="Acción" aria-pressed="false">⚔️ Acción</button><button class="filter-chip" type="button" data-genre="Carreras" aria-pressed="false">🏎️ Carreras</button><button class="filter-chip" type="button" data-genre="RPG" aria-pressed="false">🧙 RPG</button><button class="filter-chip" type="button" data-genre="Lucha" aria-pressed="false">🥊 Lucha</button><button class="filter-chip" type="button" data-genre="Plataformas" aria-pressed="false">🪜 Plataformas</button><button class="filter-chip" type="button" data-genre="Aventura" aria-pressed="false">🗺️ Aventura</button></div>
-<p class="catalog-status" id="catalog-status" aria-live="polite">Todavía no hay juegos cargados en este catálogo.</p><div class="catalog-empty" id="catalog-empty">Todavía no hay fichas publicadas en este catálogo. Las fichas reales aparecerán aquí cuando se agreguen.</div></div>
-        <div class="game-list" aria-live="polite"></div>
-        <nav class="pagination" id="catalog-pagination" aria-label="Páginas del catálogo"></nav>
-        <div class="game-detail-overlay" id="game-detail-overlay" role="dialog" aria-modal="true" aria-labelledby="game-detail-title">
-          <div class="game-detail-panel">
-            <div class="game-detail-top"><h2 id="game-detail-title">Ficha del juego</h2><button class="game-detail-close" type="button" id="game-detail-close" aria-label="Cerrar ficha">×</button></div>
-            <div class="game-detail-content" id="game-detail-content"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <div class="official-library-wrap" id="biblioteca-oficial-integrada">
-      <section class="section" aria-label="Biblioteca oficial migrada"><div class="section-head"><div><div class="kicker">Biblioteca recuperada</div><h2>Ports, fichas y recursos de la página oficial</h2></div><p>Se conservaron las fichas originales, sus imágenes, los enlaces a Discord y YouTube, los datos de los juegos y los sistemas testeados.</p></div></section>
+    <div class="official-library-wrap" id="ports">
+      <section class="section ports-main-heading" aria-label="Biblioteca de Ports"><div class="section-head"><div><div class="kicker">🎮 Biblioteca de juegos</div><h2>Ports</h2></div><p>Todas las fichas del catálogo reunidas en esta sección. Buscá por nombre o filtrá por género para encontrar el juego que te interesa.</p></div></section>
 <section class="recent-ports" aria-labelledby="recent-ports-title">
       <span class="tag">Novedades de la biblioteca</span>
       <h2 class="library-heading" id="recent-ports-title">🆕 ÚLTIMOS PORTS AGREGADOS</h2>
