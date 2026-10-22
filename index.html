@@ -1184,6 +1184,86 @@ footer { border-top:1px solid #343B34; padding:26px 0 35px; color:#A7B0A0; font-
 }
 </style>
 
+
+<style id="center-section-headings-twelve-ports">
+/* Centrar títulos de secciones y destacar el llamado principal en verde neón */
+body .section-head,
+body .section-head > div,
+body .hero > h2,
+body .hero > .tag,
+body .hero > p,
+body .library-heading,
+body .recent-ports > .tag,
+body .recent-ports > p,
+body #ports .ports-main-heading .section-head,
+body #ports .ports-main-heading .section-head > div {
+  text-align:center !important;
+}
+body .section-head {justify-content:center !important;align-items:center !important;flex-direction:column !important;gap:8px !important}
+body .section-head p {margin-left:auto !important;margin-right:auto !important}
+body #descargas > h2,
+body #descargas.hero > h2 {
+  color:#A6FF00 !important;
+  text-align:center !important;
+  text-shadow:0 0 18px rgba(166,255,0,.16) !important;
+}
+#ports #ports-library > .library-grid {
+  display:grid !important;
+  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  gap:14px !important;
+  max-width:none !important;
+}
+#ports #ports-library > .library-grid > .official-port-card {
+  width:100% !important;
+  min-width:0 !important;
+  aspect-ratio:1 / 1 !important;
+  height:auto !important;
+  overflow:hidden !important;
+}
+#ports #ports-library > .library-grid > .official-port-card > .game-body {
+  min-width:0 !important;
+  min-height:0 !important;
+  padding:0 12px 12px !important;
+  display:flex !important;
+  flex-direction:column !important;
+  gap:6px !important;
+  overflow:hidden !important;
+}
+#ports #ports-library > .library-grid > .official-port-card > .game-body > .game-cover {
+  flex:0 0 62% !important;
+  width:calc(100% + 24px) !important;
+  max-width:none !important;
+  height:62% !important;
+  aspect-ratio:auto !important;
+  align-self:center !important;
+  margin:0 -12px 4px !important;
+  padding:0 !important;
+  overflow:hidden !important;
+}
+#ports #ports-library > .library-grid > .official-port-card > .game-body > .game-cover img {
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  object-position:center !important;
+}
+#ports #ports-library > .library-grid > .official-port-card > .game-body > h3 {
+  margin:0 !important;
+  padding:0 !important;
+  font-size:14px !important;
+  line-height:1.2 !important;
+  text-align:left !important;
+}
+@media(max-width:1000px) {
+  #ports #ports-library > .library-grid {grid-template-columns:repeat(3,minmax(0,1fr)) !important;gap:12px !important}
+}
+@media(max-width:700px) {
+  #ports #ports-library > .library-grid {grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:10px !important}
+  #ports #ports-library > .library-grid > .official-port-card > .game-body {padding:0 9px 9px !important}
+  #ports #ports-library > .library-grid > .official-port-card > .game-body > .game-cover {width:calc(100% + 18px) !important;margin:0 -9px 3px !important}
+  #ports #ports-library > .library-grid > .official-port-card > .game-body > h3 {font-size:12px !important}
+}
+</style>
+
 </head>
 <body>
 <button class="ambient-toggle" id="ambient-toggle" type="button" aria-pressed="false" aria-label="Reproducir Nuclear Launch Detected">▶ NUCLEAR LAUNCH DETECTED</button>
@@ -2101,7 +2181,7 @@ footer { border-top:1px solid #343B34; padding:26px 0 35px; color:#A7B0A0; font-
     genreSelect.appendChild(option);
   });
 
-  const pageSize = 9;
+  const pageSize = 12;
   let page = 1;
   function render() {
     const query = normalize(search.value);
