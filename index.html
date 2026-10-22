@@ -1436,6 +1436,72 @@ body #descargas.hero > h2 {
  .game-detail.modal-detail.show .game-detail-grid {grid-template-columns:1fr 1fr;}
 }
 </style>
+
+<style id="ports-missing-cards-neon-fix">
+/* Unifica las ocho fichas señaladas con el diseño negro carbón y verde neón de Ports */
+.recent-ports-grid > .game-cover,
+.official-library-wrap .library-grid > .official-port-card,
+#ports .game-list > .game-card {
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+  border:1px solid #343B34 !important;
+  border-radius:16px !important;
+  background:linear-gradient(180deg,#171B1E 0%,#111315 100%) !important;
+  color:#F2F5EE !important;
+  box-shadow:0 8px 22px #0005 !important;
+}
+.recent-ports-grid > .game-cover {
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:flex-start !important;
+  align-items:stretch !important;
+  aspect-ratio:1 / 1 !important;
+  width:100% !important;
+  height:auto !important;
+  min-height:0 !important;
+  padding:0 !important;
+  text-align:left !important;
+}
+.recent-ports-grid > .game-cover img {
+  display:block !important;
+  flex:0 0 58% !important;
+  width:100% !important;
+  height:58% !important;
+  min-height:0 !important;
+  aspect-ratio:auto !important;
+  object-fit:cover !important;
+  background:#111315 !important;
+}
+.recent-ports-grid > .game-cover::after {
+  content:attr(aria-label);
+  display:block !important;
+  flex:1 1 auto !important;
+  padding:11px 12px !important;
+  color:#A6FF00 !important;
+  font:850 12px/1.35 Inter,system-ui,sans-serif !important;
+  text-align:left !important;
+  overflow:hidden !important;
+}
+.recent-ports-grid > .game-cover[data-recent-detail="nfs-underground-2-detail"]::after {content:"NEED FOR SPEED UNDERGROUND 2";}
+.recent-ports-grid > .game-cover[data-recent-detail="new-super-mario-bros-2-detail"]::after {content:"NEW SUPER MARIO BROS. 2";}
+.recent-ports-grid > .game-cover[data-recent-detail="monster-hunter-3-detail"]::after {content:"MONSTER HUNTER 3 TRI";}
+.recent-ports-grid > .game-cover[data-recent-detail="flint-son-of-crimson-detail"]::after {content:"FLYNN, SON OF CRIMSON";}
+.recent-ports-grid > .game-cover[data-recent-detail="pokemon-anil-detail"]::after {content:"POKÉMON AÑIL";}
+.recent-ports-grid > .game-cover[data-recent-detail="stardew-valley-detail"]::after {content:"STARDEW VALLEY";}
+.recent-ports-grid > .game-cover[data-recent-detail="osuri-detail"]::after {content:"OSURI";}
+.recent-ports-grid > .game-cover:hover,
+.official-library-wrap .library-grid > .official-port-card:hover,
+#ports .game-list > .game-card:hover {
+  border-color:#A6FF00 !important;
+  box-shadow:0 0 0 1px #A6FF0040,0 12px 28px #0007 !important;
+}
+.recent-ports-grid > .game-cover:focus-visible,
+.official-library-wrap .library-grid > .official-port-card:focus-visible {
+  outline:2px solid #A6FF00 !important;
+  outline-offset:3px !important;
+}
+</style>
+
 </head>
 <body>
 <button class="ambient-toggle" id="ambient-toggle" type="button" aria-pressed="false" aria-label="Reproducir Nuclear Launch Detected">▶ NUCLEAR LAUNCH DETECTED</button>
