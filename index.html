@@ -1362,6 +1362,18 @@ body #descargas.hero > h2 {
 #ports .official-catalog-controls .official-catalog-empty {margin-top:16px !important;padding:22px !important;border:1px dashed #354562 !important;border-radius:16px !important;color:#C7D2BC !important;text-align:center !important}
 </style>
 
+
+<style id="official-neon-game-card-details">
+#ports-library .official-card-meta{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 0}
+#ports-library .official-card-meta .official-meta-chip{display:block;width:100%;padding:7px 9px;border:1px solid #527a12;border-radius:8px;background:#17200e;color:#A6FF00;font-size:11px;line-height:1.4;font-weight:750}
+#ports-library .official-card-meta .official-meta-chip strong{color:#D7FF87}
+#ports-library .community-rating{display:flex;flex-wrap:wrap;align-items:center;gap:5px 8px;margin:5px 0 0;padding:8px 9px;border:1px solid #343B34;border-radius:10px;background:#111613}
+#ports-library .community-rating-label{flex-basis:100%;font-size:11px;font-weight:750;color:#DDE8D4}
+#ports-library .community-stars{display:inline-flex;align-items:center;gap:2px}
+#ports-library .community-star{appearance:none!important;display:inline-flex!important;align-items:center;justify-content:center;width:25px!important;min-width:25px!important;height:27px;padding:0!important;border:1px solid transparent!important;border-radius:5px!important;background:transparent!important;color:#687366!important;font-size:22px!important;line-height:1!important;cursor:pointer}
+#ports-library .community-star.is-active,#ports-library .community-star:hover,#ports-library .community-star:focus-visible{color:#A6FF00!important;text-shadow:0 0 8px #A6FF0066}
+#ports-library .community-rating-summary{font-size:10px;color:#A7B0A0}
+</style>
 </head>
 <body>
 <button class="ambient-toggle" id="ambient-toggle" type="button" aria-pressed="false" aria-label="Reproducir Nuclear Launch Detected">▶ NUCLEAR LAUNCH DETECTED</button>
@@ -2343,6 +2355,52 @@ body #descargas.hero > h2 {
     render();
   });
   render();
+})();
+</script>
+
+<script id="official-card-ratings-and-neon-details">
+(() => {
+ const section=document.getElementById('ports-library');
+ const grid=section?.querySelector(':scope > .library-grid');
+ if(!grid) return;
+ const storageKey='1dsas3-community-ratings-v1';
+ const norm=v=>String(v||'').normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').toLowerCase().trim();
+ const read=()=>{try{return JSON.parse(localStorage.getItem(storageKey)||'{}')||{};}catch(_){return {};}};
+ let ratings=read();
+ const getDetail=card=>document.getElementById((card.dataset.officialGame||'')+'-detail');
+ const specValue=(detail, label)=>{
+   if(!detail)return '';
+   const specs=[...detail.querySelectorAll('.spec')];
+   const spec=specs.find(el=>norm(el.querySelector('strong')?.textContent).includes(norm(label)));
+   return spec?spec.textContent.replace(spec.querySelector('strong')?.textContent||'','').trim():'';
+ };
+ const makeRating=card=>{
+   const name=card.querySelector('h3')?.textContent.trim()||'Juego';
+   const key=norm(name), value=Number(ratings[key]||0);
+   const wrap=document.createElement('div');wrap.className='community-rating';
+   const label=document.createElement('span');label.className='community-rating-label';label.textContent='Puntuá este juego';
+   const stars=document.createElement('div');stars.className='community-stars';stars.setAttribute('role','group');stars.setAttribute('aria-label','Puntuar '+name);
+   for(let n=1;n<=5;n++){const btn=document.createElement('button');btn.type='button';btn.className='community-star'+(n<=value?' is-active':'');btn.textContent='★';btn.setAttribute('aria-label',n+' estrellas');btn.setAttribute('aria-pressed',String(value===n));btn.addEventListener('click',()=>{ratings[key]=n;try{localStorage.setItem(storageKey,JSON.stringify(ratings));}catch(_){};refresh();});stars.appendChild(btn);}
+   const summary=document.createElement('span');summary.className='community-rating-summary';summary.textContent=value?'Tu voto: '+value+'/5 · guardado en este navegador':'Elegí de 1 a 5 estrellas';
+   wrap.append(label,stars,summary);return wrap;
+ };
+ const refresh=()=>{
+   [...grid.querySelectorAll('.official-port-card[data-official-game]')].forEach(card=>{
+     const body=card.querySelector('.game-body');if(!body)return;
+     const detail=getDetail(card);
+     let meta=body.querySelector('.official-card-meta');
+     if(!meta){meta=document.createElement('div');meta.className='official-card-meta';const cover=body.querySelector('.game-cover');if(cover)cover.insertAdjacentElement('afterend',meta);else body.appendChild(meta);}
+     const platform=specValue(detail,'PLATAFORMA ORIGINAL')||'Consultar ficha del juego';
+     const genre=specValue(detail,'GÉNERO')||'Consultar ficha del juego';
+     meta.replaceChildren();
+     [['PLATAFORMA ORIGINAL',platform],['GÉNERO',genre],['COMPATIBILIDAD','Funciona en consola R36S']].forEach(([label,value])=>{
+       const chip=document.createElement('span');chip.className='official-meta-chip';const strong=document.createElement('strong');strong.textContent=label+': ';chip.append(strong,document.createTextNode(value));meta.appendChild(chip);
+     });
+     const old=body.querySelector('.community-rating');const block=makeRating(card);
+     if(old)old.replaceWith(block);else meta.insertAdjacentElement('afterend',block);
+   });
+ };
+ refresh();
 })();
 </script>
 </body>
