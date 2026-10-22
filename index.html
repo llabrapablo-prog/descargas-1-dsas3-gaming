@@ -667,6 +667,85 @@ footer a{color:#A6FF00!important}
   }
 }
 </style>
+<style id="center-systems-tested-section">
+/* Centrar la sección completa de sistemas testeados en el ancho de la página */
+#systems-library.systems-section{
+  display:block!important;
+  width:min(1180px,100%)!important;
+  max-width:1180px!important;
+  margin:32px auto 0!important;
+  padding:24px 0 0!important;
+  text-align:center!important;
+  box-sizing:border-box!important;
+}
+#systems-library > #systems-title,
+#systems-library > .intro-line{
+  max-width:900px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  text-align:center!important;
+}
+#systems-library > .system-card{
+  display:block!important;
+  width:100%!important;
+  max-width:1120px!important;
+  margin:18px auto!important;
+  box-sizing:border-box!important;
+  text-align:center!important;
+}
+#systems-library .system-gallery{
+  width:100%!important;
+  max-width:1040px!important;
+  margin:18px auto!important;
+  justify-content:center!important;
+}
+#systems-library .spec-grid{
+  width:100%!important;
+  max-width:1000px!important;
+  margin:18px auto!important;
+  justify-content:center!important;
+}
+#systems-library .systems-note,
+#systems-library .systems-disclaimer{
+  width:100%!important;
+  max-width:1120px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  text-align:center!important;
+  box-sizing:border-box!important;
+}
+#systems-library .system-card > p{
+  max-width:1000px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+#systems-library .system-card .game-action{
+  margin-left:6px!important;
+  margin-right:6px!important;
+}
+@media(max-width:760px){
+  #systems-library.systems-section{
+    width:100%!important;
+    padding:20px 0 0!important;
+  }
+  #systems-library > .system-card,
+  #systems-library .systems-disclaimer{
+    width:100%!important;
+    padding:16px!important;
+  }
+  #systems-library .system-gallery{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+@media(max-width:520px){
+  #systems-library .system-gallery{
+    grid-template-columns:minmax(0,1fr)!important;
+  }
+  #systems-library .spec-grid{
+    grid-template-columns:minmax(0,1fr)!important;
+  }
+}
+</style>
 </head>
 <body>
 <a class="visitor-counter" href="https://hits.sh/llabrapablo-prog.github.io/descargas-1-dsas3-gaming/" target="_blank" rel="noopener noreferrer" aria-label="Ver estadísticas de visitas de 1dsas3 Gaming" title="Contador de visitas: ver estadísticas">
