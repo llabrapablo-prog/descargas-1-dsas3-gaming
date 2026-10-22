@@ -1335,6 +1335,39 @@ body #descargas.hero > h2 {
 }
 </style>
 
+
+<style id="official-filter-match-test-page">
+#ports .official-catalog-controls {
+ display:block !important;margin:0 0 22px !important;padding:22px !important;
+ border:1px solid #293a57 !important;border-radius:20px !important;
+ background:linear-gradient(180deg,#1B2023,#111315) !important;
+}
+#ports .official-catalog-controls .official-search-label,
+#ports .official-catalog-controls .official-filter-label {
+ display:block !important;color:#9ce8ff !important;font-size:11px !important;
+ font-weight:900 !important;letter-spacing:.15em !important;text-transform:uppercase !important;
+ margin:0 0 9px !important;
+}
+#ports .official-catalog-controls input[type="search"] {
+ display:block !important;width:100% !important;box-sizing:border-box !important;
+ padding:13px 15px !important;border:1px solid #354562 !important;border-radius:12px !important;
+ background:#25292D !important;color:#F2F5EE !important;font:inherit !important;outline-offset:3px !important;
+}
+#ports .official-catalog-controls input[type="search"]::placeholder {color:#A7B0A0 !important}
+#ports .official-catalog-controls .official-filter-label {margin:18px 0 9px !important}
+#ports .official-catalog-controls .official-filter-row {display:flex !important;flex-wrap:wrap !important;gap:8px !important}
+#ports .official-catalog-controls .official-filter-chip {
+ border:1px solid #35402A !important;color:#A6FF00 !important;background:#171B1E !important;
+ border-radius:999px !important;padding:8px 12px !important;font:inherit !important;
+ font-size:12px !important;font-weight:800 !important;cursor:pointer !important;
+}
+#ports .official-catalog-controls .official-filter-chip[aria-pressed="true"] {
+ background:#A6FF00 !important;border-color:#A6FF00 !important;color:#25292D !important;
+}
+#ports .official-catalog-controls .official-catalog-status {color:#C7D2BC !important;font-size:13px !important;margin:16px 0 0 !important}
+#ports .official-catalog-controls .official-catalog-empty {margin-top:16px !important;padding:22px !important;border:1px dashed #354562 !important;border-radius:16px !important;color:#C7D2BC !important;text-align:center !important}
+</style>
+
 </head>
 <body>
 <button class="ambient-toggle" id="ambient-toggle" type="button" aria-pressed="false" aria-label="Reproducir Nuclear Launch Detected">▶ NUCLEAR LAUNCH DETECTED</button>
@@ -2225,9 +2258,12 @@ body #descargas.hero > h2 {
 
   const toolbar = document.createElement('div');
   toolbar.className = 'official-catalog-controls';
-  toolbar.innerHTML = '<label>Buscar juego<input type="search" id="official-catalog-search" placeholder="Escribí el nombre..." autocomplete="off"></label><label>Género<select id="official-catalog-genre"><option value="">Todos los géneros</option></select></label>';
+  toolbar.innerHTML = '<label class="official-search-label" for="official-catalog-search">Buscar por nombre</label><input type="search" id="official-catalog-search" placeholder="Ej.: Mario, Sonic, Zelda..." autocomplete="off"><span class="official-filter-label">Filtrar por género</span><div class="official-filter-row" id="official-genre-filters"><button class="official-filter-chip" type="button" data-genre="" aria-pressed="true">Todos</button></div><p class="official-catalog-status" id="official-catalog-status" aria-live="polite"></p><p class="official-catalog-empty" id="official-catalog-empty" hidden>No encontramos juegos con esos filtros. Probá con otra búsqueda.</p>';
   const search = toolbar.querySelector('#official-catalog-search');
-  const genreSelect = toolbar.querySelector('#official-catalog-genre');
+  const genreFilters = toolbar.querySelector('#official-genre-filters');
+  const status = toolbar.querySelector('#official-catalog-status');
+  const empty = toolbar.querySelector('#official-catalog-empty');
+  let selectedGenre = '';
   const pagination = document.createElement('nav');
   pagination.className = 'official-library-pagination';
   pagination.setAttribute('aria-label', 'Páginas de la biblioteca oficial');
@@ -2244,24 +2280,29 @@ body #descargas.hero > h2 {
   const getGenreTokens = card => getGenreText(card).split(/[·/,;|]+/).map(x => x.trim()).filter(Boolean);
   const allGenres = [...new Set(cards.flatMap(getGenreTokens).filter(Boolean))].sort((a,b) => a.localeCompare(b,'es'));
   allGenres.forEach(genre => {
-    const option = document.createElement('option');
-    option.value = genre;
-    option.textContent = genre;
-    genreSelect.appendChild(option);
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'official-filter-chip';
+    button.dataset.genre = genre;
+    button.textContent = genre;
+    button.setAttribute('aria-pressed', 'false');
+    genreFilters.appendChild(button);
   });
 
   const pageSize = 12;
   let page = 1;
   function render() {
     const query = normalize(search.value);
-    const selectedGenre = normalize(genreSelect.value);
+    const selectedGenreNormalized = normalize(selectedGenre);
     const filtered = cards.filter(card => {
       const detail = getDetail(card);
       const searchable = normalize(card.textContent + ' ' + (detail?.textContent || ''));
-      const genreMatches = !selectedGenre || getGenreTokens(card).some(item => normalize(item).includes(selectedGenre));
+      const genreMatches = !selectedGenreNormalized || getGenreTokens(card).some(item => normalize(item).includes(selectedGenreNormalized));
       return (!query || searchable.includes(query)) && genreMatches;
     });
     const pages = Math.max(1, Math.ceil(filtered.length / pageSize));
+    if(status) status.textContent = `Mostrando ${filtered.length} juegos`;
+    if(empty) empty.hidden = filtered.length !== 0;
     page = Math.min(page, pages);
     cards.forEach(card => { card.hidden = true; });
     filtered.forEach((card, index) => {
@@ -2292,7 +2333,14 @@ body #descargas.hero > h2 {
     pagination.appendChild(summary);
   }
   search.addEventListener('input', () => { page = 1; render(); });
-  genreSelect.addEventListener('change', () => { page = 1; render(); });
+  genreFilters.addEventListener('click', event => {
+    const button = event.target.closest('button[data-genre]');
+    if(!button) return;
+    selectedGenre = button.dataset.genre || '';
+    genreFilters.querySelectorAll('button[data-genre]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+    page = 1;
+    render();
+  });
   render();
 })();
 </script>
