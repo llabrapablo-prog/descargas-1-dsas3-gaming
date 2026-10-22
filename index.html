@@ -225,6 +225,111 @@
   .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
   .game-video p { margin-top: 10px; }
 </style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style id="official-theme-migrated-from-test-page">
+:root{color-scheme:dark;--site-primary:#A6FF00;--site-secondary:#8ED900;--site-background:#111315;--site-on-background:#F2F5EE;--surface:#1B2023;--surface-soft:#202529;--text:#F2F5EE;--muted:#A7B0A0;--border:#343B34}
+html{scroll-behavior:smooth;background:#25292D}
+body{margin:0!important;background:linear-gradient(180deg,#111315 0%,#111315 24%,#141719 45%,#191D20 70%,#202529 100%)!important;background-attachment:fixed!important;color:#F2F5EE!important;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif!important}
+body::before{background:linear-gradient(180deg,#111315 0%,#111315 24%,#141719 45%,#191D20 70%,#202529 100%)!important}
+#app{min-height:100vh!important;width:100%!important;max-width:none!important;margin:0!important;padding:24px 18px 48px!important;background:transparent!important;color:#F2F5EE!important}
+.wrap{width:min(1500px,calc(100% - 32px))!important;max-width:1500px!important;margin-left:auto!important;margin-right:auto!important;position:relative;z-index:1}
+.side-art{display:none!important}
+.top{display:flex!important;align-items:center!important;gap:14px!important;margin:0 auto 18px!important;padding:8px 0 20px!important;border:0!important;background:transparent!important;box-shadow:none!important}
+.logo{width:48px!important;height:48px!important;display:grid!important;place-items:center!important;border:1px solid #35402A!important;border-radius:14px!important;background:linear-gradient(135deg,#A6FF00,#1B2023)!important;color:#111315!important;font-size:25px!important;box-shadow:0 8px 24px #A6FF0020!important}
+.top h1{margin:0!important;color:#F2F5EE!important;font-family:Inter,ui-sans-serif,system-ui,sans-serif!important;font-size:clamp(22px,3vw,30px)!important;letter-spacing:-.045em!important;line-height:1.05!important}
+.top .eyebrow{display:inline-flex!important;margin:0 0 5px!important;color:#A6FF00!important;font:900 10px Inter,ui-sans-serif,sans-serif!important;letter-spacing:.18em!important}
+.site-nav{display:flex!important;flex-wrap:wrap!important;gap:10px!important;margin:0 auto 24px!important;padding:0!important}
+.site-nav a{flex:1 1 auto!important;text-align:center!important;padding:12px 15px!important;border:1px solid #343B34!important;border-radius:12px!important;background:#171B1E!important;color:#D7E0D0!important;box-shadow:none!important;font:700 13px Inter,ui-sans-serif,sans-serif!important;text-transform:none!important;transition:background .18s,border-color .18s,color .18s!important}
+.site-nav a:hover{border-color:#A6FF00!important;background:#202529!important;color:#A6FF00!important}
+.site-nav a.subscribe-nav{border-color:#A6FF00!important;background:#A6FF00!important;color:#111315!important}
+.site-nav a.subscribe-nav:hover{background:#D7FF87!important;color:#111315!important}
+.hero{position:relative!important;padding:42px 0 48px!important;margin:0 calc((min(1500px,100vw - 32px) - 100vw + 36px)/2) 24px!important;background:linear-gradient(180deg,#111315 0%,#191D20 45%,#111315 100%)!important;border-top:1px solid #343B34!important;border-bottom:1px solid #343B34!important;border-radius:0!important;box-shadow:none!important}
+.hero-grid{display:grid!important;grid-template-columns:1.2fr .8fr!important;align-items:center!important;gap:28px!important}
+.hero-copy{min-width:0!important}
+.hero .eyebrow{display:inline-flex!important;align-items:center!important;gap:8px!important;border:1px solid #35402A!important;background:#171B1E!important;color:#A6FF00!important;border-radius:999px!important;padding:8px 12px!important;font-size:11px!important;font-weight:900!important;letter-spacing:.15em!important;text-transform:uppercase!important}
+.pulse{width:7px!important;height:7px!important;background:#A6FF00!important;border-radius:50%!important;box-shadow:0 0 0 4px #A6FF0020!important}
+.hero h1{font-family:Inter,ui-sans-serif,system-ui,sans-serif!important;font-size:clamp(42px,6.4vw,76px)!important;line-height:.99!important;letter-spacing:-.065em!important;margin:23px 0 20px!important;max-width:670px!important;color:#F2F5EE!important}
+.hero .gradient{background:linear-gradient(90deg,#A6FF00,#D7FF87 70%,#F2F5EE)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important}
+.hero p{color:#C7D2BC!important;font-size:17px!important;line-height:1.7!important;max-width:540px!important;margin:0 0 20px!important}
+.actions{display:flex!important;flex-wrap:wrap!important;gap:12px!important}
+.btn{display:inline-flex!important;justify-content:center!important;align-items:center!important;gap:10px!important;padding:14px 19px!important;border-radius:13px!important;font:850 14px Inter,ui-sans-serif,sans-serif!important;text-decoration:none!important;transition:transform .18s,filter .18s!important}
+.btn-primary{background:#A6FF00!important;color:#111315!important;box-shadow:0 10px 28px #A6FF0020!important;border:1px solid #A6FF00!important}
+.btn-outline{border:1px solid #35402A!important;color:#E8F0E1!important;background:#25292D08!important}
+.btn:hover{transform:translateY(-2px)!important;filter:brightness(1.08)!important}
+.gamer-poem{position:relative!important;margin-top:30px!important;max-width:650px!important;padding:25px 28px 23px!important;overflow:hidden!important;border:1px solid #A6FF0060!important;border-radius:22px!important;background:radial-gradient(ellipse at 0 0,#A6FF0018,transparent 60%),linear-gradient(135deg,#1b2020f5,#111315f7)!important;box-shadow:0 18px 42px #0006,inset 0 0 28px #A6FF0008!important}
+.gamer-poem::before{content:""!important;position:absolute!important;top:0!important;left:28px!important;right:28px!important;height:2px!important;background:linear-gradient(90deg,transparent,#A6FF00,#eaffb8,#A6FF00,transparent)!important}
+.gamer-poem-label{margin-bottom:10px!important;color:#A6FF00!important;font-size:10px!important;font-weight:900!important;letter-spacing:.2em!important;text-transform:uppercase!important}
+.gamer-poem h2{margin:0 0 16px!important;color:#F2FFD9!important;font:700 clamp(23px,2.5vw,32px)/1.12 Inter,ui-sans-serif,sans-serif!important;letter-spacing:-.035em!important;text-shadow:0 0 22px #A6FF0025!important}
+.hero .gamer-poem p{margin:0!important;color:#E3EAD9!important;font:clamp(14px,1.25vw,17px)/1.75 Georgia,"Times New Roman",serif!important;letter-spacing:.01em!important}
+.gamer-poem em{color:#D7FF87!important;font-style:italic!important;font-weight:700!important}
+.poem-divider{display:flex!important;align-items:center!important;gap:12px!important;margin:14px 0!important;color:#A6FF00!important;font-size:13px!important}
+.poem-divider::before,.poem-divider::after{content:""!important;height:1px!important;flex:1!important;background:linear-gradient(90deg,transparent,#A6FF0066)!important}
+.poem-divider::after{transform:scaleX(-1)!important}
+.console-stage{position:relative!important;min-height:370px!important;display:grid!important;place-items:center!important;isolation:isolate!important}
+.video-stage{min-height:0!important;display:flex!important;justify-content:center!important;align-items:center!important;padding:10px 0!important}
+.gameplay-wrap{width:min(320px,100%)!important;position:relative!important;z-index:1!important}
+.gameplay-screen{position:relative!important;width:100%!important;aspect-ratio:9/16!important;padding:10px!important;border-radius:28px!important;background:linear-gradient(145deg,#25292D,#35402A)!important;border:1px solid #343B34!important;box-shadow:0 28px 60px #A6FF0030!important;overflow:hidden!important}
+.gameplay-screen iframe{display:block!important;width:100%!important;height:100%!important;border:0!important;border-radius:19px!important;background:#171426!important}
+.short-nav-button{position:absolute!important;top:50%!important;transform:translateY(-50%)!important;z-index:3!important;width:42px!important;height:54px!important;border:1px solid #A6FF00!important;border-radius:12px!important;background:#111315d9!important;color:#A6FF00!important;font-size:32px!important;line-height:1!important;cursor:pointer!important;opacity:0!important;transition:opacity .18s,background .18s!important}
+.gameplay-screen:hover .short-nav-button,.short-nav-button:focus-visible{opacity:1!important}
+.short-nav-button.previous{left:8px!important}.short-nav-button.next{right:8px!important}
+.gameplay-actions{display:flex!important;gap:10px!important;justify-content:center!important;margin-top:14px!important}
+.gameplay-action{display:inline-flex!important;justify-content:center!important;align-items:center!important;gap:7px!important;flex:1!important;padding:12px 14px!important;border-radius:13px!important;color:#111315!important;font-size:13px!important;font-weight:900!important;text-decoration:none!important;box-shadow:0 7px 18px #A6FF0020!important;transition:transform .18s,filter .18s!important}
+.gameplay-action:hover{transform:translateY(-2px)!important;filter:brightness(1.06)!important}
+.like-action{background:#A6FF00!important}.subscribe-action{background:#cf263c!important;color:#fff!important}
+.gameplay-hint{margin:9px 4px 0!important;text-align:center!important;color:#B7C4AB!important;font-size:11px!important;line-height:1.45!important}
+.screen-caption{position:absolute!important;left:18px!important;bottom:17px!important;padding:6px 9px!important;border-radius:7px!important;background:#111315cc!important;color:#A6FF00!important;font-size:9px!important;font-weight:900!important;letter-spacing:.12em!important;pointer-events:none!important}
+.console-stage::before{content:""!important;position:absolute!important;inset:8% 0!important;background:radial-gradient(ellipse at center,#A6FF0033,transparent 65%)!important;filter:blur(14px)!important;z-index:-1!important}
+.console-note{position:absolute!important;right:-2px!important;bottom:18px!important;transform:rotate(5deg)!important;background:#A6FF00!important;color:#111315!important;padding:10px 14px!important;border-radius:10px!important;font-weight:950!important;font-size:13px!important;box-shadow:0 8px 25px #0005!important}
+.discord-notice,.recent-ports,.game-detail,.system-card,.responsibility-notice{border:1px solid #343B34!important;border-radius:18px!important;background:linear-gradient(180deg,#171B1E,#202529)!important;color:#F2F5EE!important;box-shadow:0 8px 24px #0003!important}
+.discord-notice{padding:24px!important;margin:22px auto!important}
+.discord-notice h2,.library-heading,.section-heading{color:#A6FF00!important;font-family:Inter,ui-sans-serif,system-ui,sans-serif!important;letter-spacing:-.03em!important}
+.discord-notice p,.intro-line,.recent-ports>p{color:#C7D2BC!important;line-height:1.7!important}
+.button.discord-button,.button,.game-action{border:1px solid #A6FF00!important;border-radius:12px!important;background:#A6FF00!important;color:#111315!important;box-shadow:none!important;font:850 13px Inter,ui-sans-serif,sans-serif!important;text-decoration:none!important}
+.recent-ports{margin:24px auto 30px!important;padding:clamp(18px,4vw,28px)!important}
+.tag,.pixel-badge{display:inline-flex!important;align-items:center!important;gap:8px!important;border:1px solid #35402A!important;border-radius:999px!important;background:#171B1E!important;color:#A6FF00!important;padding:7px 11px!important;font:900 10px Inter,ui-sans-serif,sans-serif!important;letter-spacing:.13em!important;text-transform:uppercase!important}
+.library-heading,.section-heading{font-size:clamp(22px,3vw,32px)!important;margin:14px 0!important}
+.library-grid{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:20px!important;margin:20px 0 28px!important;align-items:stretch!important}
+.game-cover{display:flex!important;flex-direction:column!important;min-width:0!important;width:100%!important;aspect-ratio:1/1!important;overflow:hidden!important;padding:0!important;text-align:left!important;border:1px solid #343B34!important;border-radius:18px!important;background:linear-gradient(180deg,#171B1E,#25292D)!important;color:#F2F5EE!important;box-shadow:0 8px 24px #0003!important;font:inherit!important;transition:transform .18s,border-color .18s,box-shadow .18s!important}
+.game-cover:hover,.game-cover:focus-visible{transform:translateY(-4px)!important;border-color:#A6FF00!important;outline:2px solid #A6FF00!important;outline-offset:2px!important;box-shadow:0 14px 32px #0005!important}
+.game-cover img{display:block!important;flex:0 0 46%!important;width:100%!important;height:46%!important;min-height:0!important;aspect-ratio:auto!important;object-fit:cover!important;margin:0!important;border:0!important;border-radius:0!important;background:#202529!important}
+.game-cover span{display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:3!important;overflow:hidden!important;padding:16px!important;color:#F2F5EE!important;font:800 13px/1.5 Inter,ui-sans-serif,sans-serif!important;letter-spacing:.01em!important;text-align:left!important}
+.game-cover.image-unavailable{background:linear-gradient(145deg,#171B1E,#25292D)!important}
+.game-detail{display:none!important;margin:18px 0!important;padding:22px!important;border-radius:18px!important;background:#111315!important}
+.game-detail.show{display:block!important}
+.game-detail h2,.game-detail h3{color:#A6FF00!important;font-family:Inter,ui-sans-serif,sans-serif!important}
+.game-detail p{color:#C7D2BC!important;line-height:1.7!important}
+.game-detail img{border:1px solid #343B34!important;border-radius:12px!important}
+.game-gallery{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;margin:16px 0 22px!important}
+.game-gallery figure{min-width:0!important;margin:0!important;overflow:hidden!important;border:1px solid #343B34!important;border-radius:12px!important;background:#171B1E!important}
+.game-gallery img{display:block!important;width:100%!important;height:auto!important;aspect-ratio:16/10!important;object-fit:cover!important;margin:0!important;border:0!important;border-radius:0!important}
+.game-gallery figcaption{padding:8px 10px!important;color:#A7B0A0!important;text-align:center!important;font:600 11px/1.5 Inter,ui-sans-serif,sans-serif!important}
+.game-gallery figcaption a{color:#A6FF00!important}
+.systems-section{margin-top:32px!important;padding-top:24px!important;border-top:1px solid #343B34!important}
+.system-card{padding:20px!important;margin:18px 0!important}
+.system-card h3{color:#A6FF00!important;font:800 20px Inter,ui-sans-serif,sans-serif!important}
+.system-card p{color:#C7D2BC!important;font-size:14px!important;line-height:1.7!important}
+.system-gallery{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important}
+.system-shot-image{min-width:0!important;overflow:hidden!important;border:1px solid #343B34!important;border-radius:12px!important;background:#111315!important}
+.system-shot-image img{display:block!important;width:100%!important;aspect-ratio:16/10!important;object-fit:cover!important}
+.system-shot-image figcaption{padding:8px!important;color:#A7B0A0!important;font-size:12px!important}
+.spec-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}
+.spec{padding:14px!important;border:1px solid #343B34!important;border-radius:12px!important;background:#111315!important;color:#F2F5EE!important}
+.spec strong{display:block!important;color:#A6FF00!important;font-size:11px!important;letter-spacing:.1em!important}
+.responsibility-notice{padding:24px!important}
+.responsibility-notice h2{color:#A6FF00!important}
+.responsibility-notice p{color:#C7D2BC!important;line-height:1.7!important}
+footer{margin-top:34px!important;border-top:1px solid #343B34!important;background:transparent!important;color:#A7B0A0!important}
+footer a{color:#A6FF00!important}
+.ambient-toggle{border:1px solid #A6FF00!important;border-radius:12px!important;background:#171B1E!important;color:#A6FF00!important;box-shadow:0 8px 24px #0005!important;font:800 11px Inter,ui-sans-serif,sans-serif!important}
+@media(max-width:1000px){.library-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}.hero-grid{grid-template-columns:1fr .85fr!important;gap:20px!important}}
+@media(max-width:760px){#app{padding:16px 10px 32px!important}.wrap{width:calc(100% - 12px)!important}.hero{margin-left:-10px!important;margin-right:-10px!important;padding:32px 0 38px!important}.hero-grid{grid-template-columns:1fr!important;gap:22px!important}.gameplay-wrap{width:min(300px,100%)!important}.library-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:14px!important}.site-nav a{flex:1 1 calc(50% - 10px)!important}.system-gallery{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:520px){.library-grid{grid-template-columns:1fr!important}.game-cover{aspect-ratio:auto!important;min-height:260px!important}.game-cover img{flex:0 0 180px!important;height:180px!important}.game-cover span{padding:14px!important}.game-gallery,.spec-grid,.system-gallery{grid-template-columns:1fr!important}.gamer-poem{padding:22px 18px!important}.short-nav-button{opacity:1!important;width:38px!important;height:48px!important}.top{align-items:flex-start!important}}
+</style>
+
 </head>
 <body>
 <a class="visitor-counter" href="https://hits.sh/llabrapablo-prog.github.io/descargas-1-dsas3-gaming/" target="_blank" rel="noopener noreferrer" aria-label="Ver estadísticas de visitas de 1dsas3 Gaming" title="Contador de visitas: ver estadísticas">
@@ -281,12 +386,29 @@
 </div>
 
   <main class="wrap">
-    <header class="top" id="inicio">
+    <header class="top">
       <div class="logo" aria-hidden="true">🎮</div>
       <div><div class="eyebrow">1DSAS3 GAMING</div><h1>1DSAS3 GAMING</h1></div>
     </header>
     <nav class="site-nav" aria-label="Navegación principal"><a href="#ports-library">🎮 Biblioteca de ports</a><a href="#systems-library">🧪 Sistemas testeados</a><a href="#ports-library">▶ Videos del canal</a><a class="subscribe-nav" href="https://www.youtube.com/channel/UC3df3xTqYwnomS9FwvD1lwA?sub_confirmation=1" target="_blank" rel="noopener noreferrer">❤️ ¿Te gustó? ¡Suscribite al canal!</a></nav>
-    <section class="pixel-banner" aria-label="Banner de videojuegos pixel art"><div class="pixel-banner-content"><span class="pixel-badge">UN DESASTRE GAMING</span><h2>Ports para consolas retro</h2><p>Juegos, fichas e instrucciones para disfrutar nuevas aventuras en tu consola.</p></div></section>
+<section class="hero" id="inicio">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow"><span class="pulse"></span> Tu rincón gamer está acá</span>
+          <h1>Juegos, ports<br>y <span class="gradient">mucho caos.</span></h1>
+          <p>Bienvenidos a 1DSAS3 Gaming: novedades, consolas retro, pruebas en R36S y clones, gameplays y una comunidad para compartir la pasión por los videojuegos.</p>
+          <div class="actions"><a class="btn btn-primary" href="https://discord.gg/JUhuwp9xa" target="_blank" rel="noopener noreferrer">💬 Sumate al Discord</a><a class="btn btn-outline" href="#ports-library">🎮 Explorar ports</a></div>
+          <aside class="gamer-poem" aria-label="Poema homenaje a los gamers">
+            <div class="gamer-poem-label">✦ UN HOMENAJE A NUESTRA HISTORIA ✦</div>
+            <h2>Cuando jugar era soñar</h2>
+            <p>Con monedas en los bolsillos,<br>en las recreativas comenzó el viaje,<br>cada partida era un desafío,<br>cada victoria, un homenaje.</p>
+            <div class="poem-divider" aria-hidden="true">✦ 🎮 ✦</div>
+            <p>Después llegaron las consolas,<br>los juegos de computadora,<br>las noches que se hicieron cortas<br>y el famoso: <em>«¡Una partida más y me voy ahora!»</em></p>
+          </aside>
+        </div>
+        <div class="console-stage video-stage" aria-label="Video de gameplay del canal 1DSAS3 Gaming"><div class="gameplay-wrap"><div class="gameplay-screen"><iframe id="gameplay-rotator" src="https://www.youtube-nocookie.com/embed/jZEHH0i2VqQ?autoplay=1&amp;mute=1&amp;controls=1&amp;start=0&amp;end=30&amp;playsinline=1&amp;rel=0" title="Shorts de gameplay de 1DSAS3 Gaming en rotación" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="eager"></iframe><button class="short-nav-button previous" id="short-previous" type="button" aria-label="Video anterior" title="Video anterior">‹</button><button class="short-nav-button next" id="short-next" type="button" aria-label="Video siguiente" title="Video siguiente">›</button><span class="screen-caption">GAMEPLAY · UN DESASTRE GAMING</span></div><div class="gameplay-actions"><a id="short-like-link" href="https://www.youtube.com/shorts/jZEHH0i2VqQ" target="_blank" rel="noopener noreferrer" class="gameplay-action like-action">👍 Me gusta</a><a href="https://www.youtube.com/channel/UC3df3xTqYwnomS9FwvD1lwA?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="gameplay-action subscribe-action">🔔 Suscribirse</a></div><p class="gameplay-hint">Para dar Me gusta, abrí el Short en YouTube. El volumen se controla desde el reproductor.</p></div><div class="console-note">¡A jugar! 🎮</div></div>
+      </div>
+    </section>
     <section class="discord-notice" aria-label="Información sobre descargas por Discord"><h2>🎮 ¿Querés descargar los juegos?</h2><p>En esta página mostramos las portadas de los juegos que tenemos almacenados en nuestro servidor de Discord. Para consultar las descargas disponibles, unite a nuestra comunidad.</p><a class="button discord-button" href="https://discord.gg/JUhuwp9xa" target="_blank" rel="noopener noreferrer">💬 UNIRME AL DISCORD DEL CANAL</a></section>
     <p class="intro-line">Bienvenido a la biblioteca de <strong>1DSAS3 GAMING</strong>. Acá vas a encontrar fichas de juegos, información de los ports y videos publicados en el canal.</p>
     <section class="recent-ports" aria-labelledby="recent-ports-title">
@@ -534,5 +656,43 @@
     document.getElementById('ports-library').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 </script>
+
+<script id="official-gameplay-rotator">
+(() => {
+  const screen = document.getElementById('gameplay-rotator');
+  if (!screen) return;
+  const shorts = ['jZEHH0i2VqQ','3pSBb6J_s7k','CAuxNqfQoBU','_v69ih1duJA','q-Oi---gMH0','VMLnNBFwzus','1F_pCbtsuVE','AwrKZ1Wgo2w','ijvdR4dkQUY','EvRUf0coR-k','bjOG8T4Kuwk'];
+  let current = 0, player = null, pendingMuteState = null, pendingVolume = 100, apiReady = false;
+  const updateLinks = () => {
+    const id = shorts[current];
+    screen.title = 'Short de gameplay ' + (current + 1) + ' de ' + shorts.length + ' · 1DSAS3 Gaming';
+    const likeLink = document.getElementById('short-like-link');
+    if (likeLink) likeLink.href = 'https://www.youtube.com/shorts/' + id;
+  };
+  const showShort = index => {
+    if (player && typeof player.isMuted === 'function') { pendingMuteState = player.isMuted(); pendingVolume = player.getVolume(); }
+    current = (index + shorts.length) % shorts.length;
+    updateLinks();
+    if (player) player.loadVideoById({videoId:shorts[current],startSeconds:0});
+  };
+  const previous = document.getElementById('short-previous'), next = document.getElementById('short-next');
+  if (previous) previous.addEventListener('click',()=>showShort(current-1));
+  if (next) next.addEventListener('click',()=>showShort(current+1));
+  const initPlayer = () => {
+    if (apiReady || !window.YT || !window.YT.Player) return;
+    apiReady = true;
+    player = new YT.Player('gameplay-rotator',{videoId:shorts[current],playerVars:{autoplay:1,controls:1,mute:1,playsinline:1,rel:0,enablejsapi:1,origin:window.location.origin},events:{
+      onReady:event=>{player=event.target;player.mute();player.playVideo();updateLinks();},
+      onStateChange:event=>{if(event.data===YT.PlayerState.PLAYING&&pendingMuteState!==null){const mute=pendingMuteState,volume=pendingVolume;pendingMuteState=null;player.setVolume(typeof volume==='number'?volume:100);if(mute)player.mute();else player.unMute();}if(event.data===YT.PlayerState.ENDED)showShort(current+1);},
+      onError:()=>window.setTimeout(()=>showShort(current+1),2500)
+    }});
+  };
+  window.onYouTubeIframeAPIReady = initPlayer;
+  if(window.YT&&window.YT.Player)initPlayer();
+  else{const apiScript=document.createElement('script');apiScript.src='https://www.youtube.com/iframe_api';apiScript.async=true;document.head.appendChild(apiScript);}
+  updateLinks();
+})();
+</script>
+
 </body>
 </html>
