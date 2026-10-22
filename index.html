@@ -828,6 +828,15 @@ footer a{color:#A6FF00!important}
   }
 }
 </style>
+<style id="fix-ports-filter-hidden-cards">
+/* El catálogo declara display:flex para las fichas; respetar hidden explícitamente */
+#ports-library .ports-library-list > .port-library-card[hidden]{
+  display:none!important;
+}
+#ports-library .ports-library-list > .port-library-card:not([hidden]){
+  display:flex;
+}
+</style>
 </head>
 <body>
 <a class="visitor-counter" href="https://hits.sh/llabrapablo-prog.github.io/descargas-1-dsas3-gaming/" target="_blank" rel="noopener noreferrer" aria-label="Ver estadísticas de visitas de 1dsas3 Gaming" title="Contador de visitas: ver estadísticas">
@@ -1261,8 +1270,12 @@ footer a{color:#A6FF00!important}
    const q=normalize(search.value);
    const filtered=cards.filter(c=>(!q||c.dataset.portName.includes(q)||normalize(c.innerText).includes(q))&&(activeGenre==='Todos'||c.dataset.genre===activeGenre));
    const pages=Math.max(1,Math.ceil(filtered.length/pageSize));page=Math.min(page,pages);
-   cards.forEach(c=>c.hidden=true);
-   filtered.forEach((c,i)=>{c.hidden=!(i>=(page-1)*pageSize&&i<page*pageSize)});
+   cards.forEach(c=>{c.hidden=true;c.style.display='none'});
+   filtered.forEach((c,i)=>{
+     const visible=i>=(page-1)*pageSize&&i<page*pageSize;
+     c.hidden=!visible;
+     c.style.display=visible?'':'none';
+   });
    empty.style.display=filtered.length?'none':'block';
    status.textContent='Mostrando '+filtered.length+' de '+cards.length+' ports · página '+page+' de '+pages;
    pagination.replaceChildren();
