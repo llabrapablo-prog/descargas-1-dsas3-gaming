@@ -330,6 +330,42 @@ footer a{color:#A6FF00!important}
 @media(max-width:520px){.library-grid{grid-template-columns:1fr!important}.game-cover{aspect-ratio:auto!important;min-height:260px!important}.game-cover img{flex:0 0 180px!important;height:180px!important}.game-cover span{padding:14px!important}.game-gallery,.spec-grid,.system-gallery{grid-template-columns:1fr!important}.gamer-poem{padding:22px 18px!important}.short-nav-button{opacity:1!important;width:38px!important;height:48px!important}.top{align-items:flex-start!important}}
 </style>
 
+
+<style id="ports-library-catalog-theme">
+#ports-library .ports-catalog-tools{display:grid;gap:12px;margin:18px 0 22px;padding:18px;border:1px solid #343b34;border-radius:16px;background:#171b1e}
+#ports-library .ports-search{width:100%;box-sizing:border-box;padding:13px 15px;border:1px solid #465044;border-radius:11px;background:#101315;color:#f2f5ee;font:inherit}
+#ports-library .ports-filter-label{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#a6ff00}
+#ports-library .ports-filter-row{display:flex;flex-wrap:wrap;gap:8px}
+#ports-library .ports-filter-chip{padding:8px 13px;border:1px solid #3b4437;border-radius:999px;background:#202529;color:#dce4d5;font:inherit;font-size:13px;cursor:pointer}
+#ports-library .ports-filter-chip[aria-pressed="true"],#ports-library .ports-filter-chip:hover{border-color:#a6ff00;background:#a6ff00;color:#111315}
+#ports-library .ports-catalog-status{margin:0;color:#a7b0a0;font-size:13px}
+#ports-library .ports-catalog-empty{display:none;padding:24px;border:1px dashed #465044;border-radius:14px;color:#c4cdbd;text-align:center}
+#ports-library .ports-library-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;align-items:stretch}
+#ports-library .port-library-card{display:flex;min-width:0;flex-direction:column;overflow:hidden;border:1px solid #343b34;border-radius:16px;background:#1b2023;box-shadow:0 10px 26px #0003;transition:transform .18s,border-color .18s}
+#ports-library .port-library-card:hover{transform:translateY(-3px);border-color:#7ebd12}
+#ports-library .port-library-thumb{height:190px;min-height:190px;overflow:hidden;background:#101315;display:flex;align-items:stretch}
+#ports-library .port-library-thumb .game-cover{position:relative;display:block;width:100%;height:100%;min-height:0;padding:0;border:0;border-radius:0;background:#101315;overflow:hidden;cursor:pointer}
+#ports-library .port-library-thumb .game-cover img{display:block;width:100%;height:100%;object-fit:contain;background:#101315}
+#ports-library .port-library-thumb .game-cover span{position:absolute;left:0;right:0;bottom:0;padding:10px 8px;background:linear-gradient(transparent,#080a0bf2);color:#f2f5ee;font-size:10px;font-weight:900;letter-spacing:.035em;text-align:center}
+#ports-library .port-library-body{display:flex;flex:1;flex-direction:column;gap:10px;padding:14px}
+#ports-library .port-library-body h3{margin:0;color:#f2f5ee;font-size:16px;line-height:1.3}
+#ports-library .port-library-body p{margin:0;color:#a7b0a0;font-size:12px;line-height:1.55}
+#ports-library .port-library-meta{display:flex;flex-wrap:wrap;gap:6px}
+#ports-library .port-library-chip{padding:4px 7px;border:1px solid #394337;border-radius:7px;color:#cdd8c4;font-size:10px}
+#ports-library .port-rating{display:grid;gap:5px;margin-top:auto;padding-top:10px;border-top:1px solid #343b34}
+#ports-library .port-rating-label{font-size:11px;color:#c3ccb9}
+#ports-library .port-stars{display:flex;gap:4px}
+#ports-library .port-star{padding:0 2px;border:0;background:transparent;color:#626a5c;font-size:22px;line-height:1;cursor:pointer}
+#ports-library .port-star.is-active{color:#a6ff00}
+#ports-library .port-rating-summary{font-size:10px;color:#929d89}
+#ports-library .ports-pagination{display:flex;justify-content:center;flex-wrap:wrap;gap:7px;margin:22px 0}
+#ports-library .ports-page-button{min-width:36px;padding:8px 11px;border:1px solid #3b4437;border-radius:9px;background:#202529;color:#f2f5ee;cursor:pointer}
+#ports-library .ports-page-button[aria-current="page"]{background:#a6ff00;border-color:#a6ff00;color:#111315;font-weight:900}
+@media(max-width:1050px){#ports-library .ports-library-list{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:720px){#ports-library .ports-library-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}#ports-library .port-library-thumb{height:160px;min-height:160px}#ports-library .port-library-body{padding:11px}}
+@media(max-width:440px){#ports-library .ports-library-list{grid-template-columns:1fr}#ports-library .port-library-thumb{height:190px;min-height:190px}}
+</style>
+
 </head>
 <body>
 <a class="visitor-counter" href="https://hits.sh/llabrapablo-prog.github.io/descargas-1-dsas3-gaming/" target="_blank" rel="noopener noreferrer" aria-label="Ver estadísticas de visitas de 1dsas3 Gaming" title="Contador de visitas: ver estadísticas">
@@ -691,6 +727,90 @@ footer a{color:#A6FF00!important}
   if(window.YT&&window.YT.Player)initPlayer();
   else{const apiScript=document.createElement('script');apiScript.src='https://www.youtube.com/iframe_api';apiScript.async=true;document.head.appendChild(apiScript);}
   updateLinks();
+})();
+</script>
+
+
+<script id="ports-library-catalog-functionality">
+(() => {
+ const section=document.getElementById('ports-library');
+ const oldGrid=section?.querySelector('.library-grid');
+ if(!section||!oldGrid||section.dataset.catalogReady==='true') return;
+ section.dataset.catalogReady='true';
+ const buttons=[...oldGrid.querySelectorAll('.game-cover[data-game]')];
+ if(!buttons.length) return;
+ const normalize=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
+ const ratingKey='udg-port-ratings-v1';
+ let ratings={};
+ try{ratings=JSON.parse(localStorage.getItem(ratingKey)||'{}')||{}}catch(_){}
+ const tools=document.createElement('div');
+ tools.className='ports-catalog-tools';
+ tools.innerHTML='<label class="ports-filter-label" for="ports-library-search">Buscar por nombre</label><input id="ports-library-search" class="ports-search" type="search" placeholder="Ej.: Mario, Sonic, Zelda..." autocomplete="off"><span class="ports-filter-label">Filtrar por género</span><div class="ports-filter-row" id="ports-library-genres"><button class="ports-filter-chip" type="button" data-genre="Todos" aria-pressed="true">Todos</button><button class="ports-filter-chip" type="button" data-genre="Acción" aria-pressed="false">⚔️ Acción</button><button class="ports-filter-chip" type="button" data-genre="Carreras" aria-pressed="false">🏎️ Carreras</button><button class="ports-filter-chip" type="button" data-genre="RPG" aria-pressed="false">🧙 RPG</button><button class="ports-filter-chip" type="button" data-genre="Lucha" aria-pressed="false">🥊 Lucha</button><button class="ports-filter-chip" type="button" data-genre="Plataformas" aria-pressed="false">🪜 Plataformas</button><button class="ports-filter-chip" type="button" data-genre="Aventura" aria-pressed="false">🗺️ Aventura</button></div><p class="ports-catalog-status" id="ports-library-status" aria-live="polite"></p><div class="ports-catalog-empty" id="ports-library-empty">No encontramos ports con esos filtros. Probá con otra búsqueda.</div>';
+ const newGrid=document.createElement('div');newGrid.className='ports-library-list';
+ const pagination=document.createElement('nav');pagination.className='ports-pagination';pagination.setAttribute('aria-label','Páginas de ports');
+ oldGrid.before(tools);oldGrid.replaceWith(newGrid);newGrid.after(pagination);
+ const cards=[];
+ function detailText(key,title){
+   const exact=document.getElementById(key+'-detail');
+   if(exact)return exact.innerText||exact.textContent||'';
+   const all=[...document.querySelectorAll('[id$="-detail"]')];
+   const wanted=normalize(title);
+   const match=all.find(el=>normalize(el.querySelector('h2,h3')?.textContent||'').includes(wanted)||wanted.includes(normalize(el.querySelector('h2,h3')?.textContent||'!')));
+   return match?(match.innerText||match.textContent||''):'';
+ }
+ function genreFor(text,title){
+   const t=normalize(title+' '+text);
+   if(/asphalt|mario kart|racing|carrera|gangstar/.test(t))return 'Carreras';
+   if(/fighting|lucha|smash bros|strikers|dragon ball/.test(t))return 'Lucha';
+   if(/rpg|role.playing|balatro|muramasa/.test(t))return 'RPG';
+   if(/platform|plataforma|hollow knight|katana zero|limbo|angry birds|sonic|mario/.test(t))return 'Plataformas';
+   if(/adventure|aventura|zelda|resident evil|spider.man|gta|halo|terminator|stranger things|five nights|sally face|dont starve/.test(t))return 'Aventura';
+   return 'Acción';
+ }
+ function makeRating(key){
+   const wrap=document.createElement('div');wrap.className='port-rating';
+   const label=document.createElement('span');label.className='port-rating-label';label.textContent='Calificá este port';
+   const stars=document.createElement('div');stars.className='port-stars';stars.setAttribute('role','group');stars.setAttribute('aria-label','Calificar port');
+   const current=Number(ratings[key]||0);
+   for(let n=1;n<=5;n++){const b=document.createElement('button');b.type='button';b.className='port-star'+(n<=current?' is-active':'');b.textContent='★';b.setAttribute('aria-label',n+' de 5 estrellas');b.setAttribute('aria-pressed',String(current===n));b.addEventListener('click',ev=>{ev.stopPropagation();ratings[key]=n;try{localStorage.setItem(ratingKey,JSON.stringify(ratings))}catch(_){};const replacement=makeRating(key);wrap.replaceWith(replacement)});stars.appendChild(b)}
+   const summary=document.createElement('span');summary.className='port-rating-summary';summary.textContent=current?'Tu voto: '+current+'/5 · guardado en este navegador':'Sin voto en este navegador';
+   wrap.append(label,stars,summary);return wrap;
+ }
+ buttons.forEach(button=>{
+   const key=button.dataset.game||'';
+   const title=(button.querySelector('span')?.textContent||button.getAttribute('aria-label')||key).replace(/\s*[·•]\s*VER FICHA.*$/i,'').replace(/\s*·\s*$/,'').trim();
+   const image=button.querySelector('img');
+   const detail=detailText(key,title);
+   const card=document.createElement('article');card.className='port-library-card';card.dataset.portName=normalize(title);card.dataset.genre=genreFor(detail,title);
+   const thumb=document.createElement('div');thumb.className='port-library-thumb';
+   button.classList.add('port-library-original-button');thumb.appendChild(button);
+   const body=document.createElement('div');body.className='port-library-body';
+   const heading=document.createElement('h3');heading.textContent=title;
+   const p=document.createElement('p');
+   const paragraphs=detail.split(/\n+/).map(x=>x.trim()).filter(Boolean);
+   p.textContent=paragraphs.find(x=>x.length>45&&!/buscar información|volver a la biblioteca|descarga en discord/i.test(x))||'Abrí la ficha para consultar los detalles del juego, las capturas y el gameplay disponible.';
+   const chips=document.createElement('div');chips.className='port-library-meta';
+   const genre=document.createElement('span');genre.className='port-library-chip';genre.textContent='Género: '+card.dataset.genre;chips.appendChild(genre);
+   const action=document.createElement('span');action.className='port-library-chip';action.textContent='Tocá la carátula para ver la ficha';chips.appendChild(action);
+   body.append(heading,p,chips,makeRating(key));
+   card.append(thumb,body);newGrid.appendChild(card);cards.push(card);
+ });
+ const search=tools.querySelector('#ports-library-search'),genreRow=tools.querySelector('#ports-library-genres'),status=tools.querySelector('#ports-library-status'),empty=tools.querySelector('#ports-library-empty');
+ let activeGenre='Todos',page=1;const pageSize=12;
+ function render(){
+   const q=normalize(search.value);
+   const filtered=cards.filter(c=>(!q||c.dataset.portName.includes(q)||normalize(c.innerText).includes(q))&&(activeGenre==='Todos'||c.dataset.genre===activeGenre));
+   const pages=Math.max(1,Math.ceil(filtered.length/pageSize));page=Math.min(page,pages);
+   cards.forEach(c=>c.hidden=true);
+   filtered.forEach((c,i)=>{c.hidden=!(i>=(page-1)*pageSize&&i<page*pageSize)});
+   empty.style.display=filtered.length?'none':'block';
+   status.textContent='Mostrando '+filtered.length+' de '+cards.length+' ports · página '+page+' de '+pages;
+   pagination.replaceChildren();
+   if(pages>1){for(let n=1;n<=pages;n++){const b=document.createElement('button');b.type='button';b.className='ports-page-button';b.textContent=String(n);if(n===page)b.setAttribute('aria-current','page');b.addEventListener('click',()=>{page=n;render();section.scrollIntoView({behavior:'smooth',block:'start'})});pagination.appendChild(b)}}
+ }
+ search.addEventListener('input',()=>{page=1;render()});
+ genreRow.addEventListener('click',e=>{const b=e.target.closest('[data-genre]');if(!b)return;activeGenre=b.dataset.genre;page=1;genreRow.querySelectorAll('[data-genre]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));render()});
+ render();
 })();
 </script>
 
