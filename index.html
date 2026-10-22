@@ -1348,12 +1348,6 @@ body #descargas.hero > h2 {
  font-weight:900 !important;letter-spacing:.15em !important;text-transform:uppercase !important;
  margin:0 0 9px !important;
 }
-#ports .official-catalog-controls input[type="search"] {
- display:block !important;width:100% !important;box-sizing:border-box !important;
- padding:13px 15px !important;border:1px solid #354562 !important;border-radius:12px !important;
- background:#25292D !important;color:#F2F5EE !important;font:inherit !important;outline-offset:3px !important;
-}
-#ports .official-catalog-controls input[type="search"]::placeholder {color:#A7B0A0 !important}
 #ports .official-catalog-controls .official-filter-label {margin:18px 0 9px !important}
 #ports .official-catalog-controls .official-filter-row {display:flex !important;flex-wrap:wrap !important;gap:8px !important}
 #ports .official-catalog-controls .official-filter-chip {
@@ -2258,8 +2252,7 @@ body #descargas.hero > h2 {
 
   const toolbar = document.createElement('div');
   toolbar.className = 'official-catalog-controls';
-  toolbar.innerHTML = '<label class="official-search-label" for="official-catalog-search">Buscar por nombre</label><input type="search" id="official-catalog-search" placeholder="Ej.: Mario, Sonic, Zelda..." autocomplete="off"><span class="official-filter-label">Filtrar por género</span><div class="official-filter-row" id="official-genre-filters"><button class="official-filter-chip" type="button" data-genre="" aria-pressed="true">Todos</button></div><p class="official-catalog-status" id="official-catalog-status" aria-live="polite"></p><p class="official-catalog-empty" id="official-catalog-empty" hidden>No encontramos juegos con esos filtros. Probá con otra búsqueda.</p>';
-  const search = toolbar.querySelector('#official-catalog-search');
+  toolbar.innerHTML = '<span class="official-filter-label">Filtrar por género</span><div class="official-filter-row" id="official-genre-filters"><button class="official-filter-chip" type="button" data-genre="" aria-pressed="true">Todos</button></div><p class="official-catalog-status" id="official-catalog-status" aria-live="polite"></p><p class="official-catalog-empty" id="official-catalog-empty" hidden>No encontramos juegos de ese género.</p>';
   const genreFilters = toolbar.querySelector('#official-genre-filters');
   const status = toolbar.querySelector('#official-catalog-status');
   const empty = toolbar.querySelector('#official-catalog-empty');
@@ -2278,7 +2271,7 @@ body #descargas.hero > h2 {
     return spec ? spec.textContent.replace(/GÉNERO/i, '').trim() : '';
   };
   const getGenreTokens = card => getGenreText(card).split(/[·/,;|]+/).map(x => x.trim()).filter(Boolean);
-  const allGenres = [...new Set(cards.flatMap(getGenreTokens).filter(Boolean))].sort((a,b) => a.localeCompare(b,'es'));
+  const allGenres = ['Acción', 'Carreras', 'RPG', 'Lucha', 'Plataformas', 'Aventura'];
   allGenres.forEach(genre => {
     const button = document.createElement('button');
     button.type = 'button';
@@ -2292,13 +2285,22 @@ body #descargas.hero > h2 {
   const pageSize = 12;
   let page = 1;
   function render() {
-    const query = normalize(search.value);
     const selectedGenreNormalized = normalize(selectedGenre);
+    const genreAliases = {
+      'accion': ['accion', 'action', 'beat em up', 'hack and slash', 'shooter'],
+      'carreras': ['carreras', 'racing', 'race'],
+      'rpg': ['rpg', 'role-playing', 'role playing', 'jrpg', 'action rpg'],
+      'lucha': ['lucha', 'fighting', 'fighter'],
+      'plataformas': ['plataformas', 'platform', 'platformer'],
+      'aventura': ['aventura', 'adventure']
+    };
     const filtered = cards.filter(card => {
-      const detail = getDetail(card);
-      const searchable = normalize(card.textContent + ' ' + (detail?.textContent || ''));
-      const genreMatches = !selectedGenreNormalized || getGenreTokens(card).some(item => normalize(item).includes(selectedGenreNormalized));
-      return (!query || searchable.includes(query)) && genreMatches;
+      if (!selectedGenreNormalized) return true;
+      const aliases = genreAliases[selectedGenreNormalized] || [selectedGenreNormalized];
+      return getGenreTokens(card).some(item => {
+        const token = normalize(item);
+        return aliases.some(alias => token.includes(normalize(alias)));
+      });
     });
     const pages = Math.max(1, Math.ceil(filtered.length / pageSize));
     if(status) status.textContent = `Mostrando ${filtered.length} juegos`;
@@ -2332,7 +2334,6 @@ body #descargas.hero > h2 {
       : 'No se encontraron juegos con esos filtros';
     pagination.appendChild(summary);
   }
-  search.addEventListener('input', () => { page = 1; render(); });
   genreFilters.addEventListener('click', event => {
     const button = event.target.closest('button[data-genre]');
     if(!button) return;
