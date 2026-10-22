@@ -1459,7 +1459,7 @@ footer a{color:#A6FF00!important}
  try{ratings=JSON.parse(localStorage.getItem(ratingKey)||'{}')||{}}catch(_){}
  const tools=document.createElement('div');
  tools.className='ports-catalog-tools';
- tools.innerHTML='<label class="ports-filter-label" for="ports-library-search">Buscar por nombre</label><input id="ports-library-search" class="ports-search" type="search" placeholder="Ej.: Mario, Sonic, Zelda..." autocomplete="off"><span class="ports-filter-label">Filtrar por género</span><div class="ports-filter-row" id="ports-library-genres"><button class="ports-filter-chip" type="button" data-genre="Todos" aria-pressed="true">Todos</button><button class="ports-filter-chip" type="button" data-genre="Acción" aria-pressed="false">⚔️ Acción</button><button class="ports-filter-chip" type="button" data-genre="Carreras" aria-pressed="false">🏎️ Carreras</button><button class="ports-filter-chip" type="button" data-genre="RPG" aria-pressed="false">🧙 RPG</button><button class="ports-filter-chip" type="button" data-genre="Lucha" aria-pressed="false">🥊 Lucha</button><button class="ports-filter-chip" type="button" data-genre="Plataformas" aria-pressed="false">🪜 Plataformas</button><button class="ports-filter-chip" type="button" data-genre="Aventura" aria-pressed="false">🗺️ Aventura</button></div><p class="ports-catalog-status" id="ports-library-status" aria-live="polite"></p><div class="ports-catalog-empty" id="ports-library-empty">No encontramos ports con esos filtros. Probá con otra búsqueda.</div>';
+ tools.innerHTML='<label class="ports-filter-label" for="ports-library-search">Buscar por nombre</label><input id="ports-library-search" class="ports-search" type="search" placeholder="Ej.: Mario, Sonic, Zelda..." autocomplete="off"><span class="ports-filter-label">Filtrar por género</span><div class="ports-filter-row" id="ports-library-genres"><button class="ports-filter-chip" type="button" data-genre="Todos" aria-pressed="true">Todos</button><button class="ports-filter-chip" type="button" data-genre="Acción" aria-pressed="false">⚔️ Acción</button><button class="ports-filter-chip" type="button" data-genre="Carreras" aria-pressed="false">🏎️ Carreras</button><button class="ports-filter-chip" type="button" data-genre="Deportes" aria-pressed="false">🏅 Deportes</button><button class="ports-filter-chip" type="button" data-genre="RPG" aria-pressed="false">🧙 RPG</button><button class="ports-filter-chip" type="button" data-genre="Lucha" aria-pressed="false">🥊 Lucha</button><button class="ports-filter-chip" type="button" data-genre="Plataformas" aria-pressed="false">🪜 Plataformas</button><button class="ports-filter-chip" type="button" data-genre="Aventura" aria-pressed="false">🗺️ Aventura</button></div><p class="ports-catalog-status" id="ports-library-status" aria-live="polite"></p><div class="ports-catalog-empty" id="ports-library-empty">No encontramos ports con esos filtros. Probá con otra búsqueda.</div>';
  const newGrid=document.createElement('div');newGrid.className='ports-library-list';
  const pagination=document.createElement('nav');pagination.className='ports-pagination';pagination.setAttribute('aria-label','Páginas de ports');
  oldGrid.before(tools);oldGrid.replaceWith(newGrid);newGrid.after(pagination);
@@ -1473,7 +1473,10 @@ footer a{color:#A6FF00!important}
    return match?(match.innerText||match.textContent||''):'';
  }
  function genreFor(text,title){
+   const titleText=normalize(title);
    const t=normalize(title+' '+text);
+   // Detectar deportes por el título para evitar clasificar por accidente un juego solo porque los menciona en su descripción.
+   if(/\b(fifa|efootball|pes|football|soccer|nba|basketball|tennis|golf|baseball|rugby|cricket|wrestling|skate|snowboard|olympic|nhl|hockey|madden|nfl|ssx|sport|deportes|tony hawk|virtua tennis|top spin|tiger woods)\b|pro evolution soccer/.test(titleText))return 'Deportes';
    if(/asphalt|mario kart|racing|carrera|gangstar/.test(t))return 'Carreras';
    if(/fighting|lucha|smash bros|strikers|dragon ball/.test(t))return 'Lucha';
    if(/rpg|role.playing|balatro|muramasa/.test(t))return 'RPG';
@@ -2162,5 +2165,10 @@ footer a{color:#A6FF00!important}
 })();
 </script>
 
+
+<style id="sports-genre-filter-and-detection">
+#ports-library .ports-filter-chip[data-genre="Deportes"]{border-color:#a6ff00}
+#ports-library .ports-filter-chip[data-genre="Deportes"][aria-pressed="true"]{background:#a6ff00;border-color:#a6ff00;color:#111315}
+</style>
 </body>
 </html>
