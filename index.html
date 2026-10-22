@@ -899,6 +899,20 @@ footer { border-top:1px solid #343B34; padding:26px 0 35px; color:#A7B0A0; font-
 @media(max-width:500px){#ports-library > .library-grid,.official-library-wrap .recent-ports-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}}
 </style>
 
+
+<style id="exact-test-page-card-size">
+/* Igualar el tamaño de las fichas al catálogo de la página de prueba */
+#ports-library > .library-grid {grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:20px!important}
+#ports-library > .library-grid > .official-port-card {aspect-ratio:1/1!important;width:100%!important;max-width:none!important;min-width:0!important;height:auto!important}
+#ports-library > .library-grid > .official-port-card > .game-body > .game-cover {flex:0 0 46%!important;height:46%!important;padding:16px!important;box-sizing:border-box!important}
+#ports-library > .library-grid > .official-port-card > .game-body > .game-cover img {width:100%!important;height:100%!important;object-fit:contain!important;object-position:center!important}
+#ports-library > .library-grid > .official-port-card > .game-body > h3 {font-size:17px!important;padding:12px 16px 6px!important;letter-spacing:-.02em!important}
+#ports-library > .library-grid > .official-port-card > .game-body::after {margin: auto 16px 16px!important;padding:8px 10px!important;font-size:12px!important}
+@media(max-width:1100px){#ports-library > .library-grid {grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:760px){#ports-library > .library-grid {grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:16px!important}#ports-library > .library-grid > .official-port-card > .game-body > .game-cover{padding:10px!important}#ports-library > .library-grid > .official-port-card > .game-body > h3{font-size:14px!important;padding:10px 10px 5px!important}#ports-library > .library-grid > .official-port-card > .game-body::after{margin: auto 10px 10px!important}}
+@media(max-width:500px){#ports-library > .library-grid {grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}}
+</style>
+
 </head>
 <body>
 <button class="ambient-toggle" id="ambient-toggle" type="button" aria-pressed="false" aria-label="Reproducir Nuclear Launch Detected">▶ NUCLEAR LAUNCH DETECTED</button>
