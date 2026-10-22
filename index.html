@@ -1817,7 +1817,7 @@ footer { border-top:1px solid #343B34; padding:26px 0 35px; color:#A7B0A0; font-
   section.insertBefore(toolbar, grid);
   grid.insertAdjacentElement('afterend', pagination);
 
-  const normalize = value => String(value || '').normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').toLocaleLowerCase('es').trim();
+  const normalize = value => String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('es').trim();
   const getDetail = card => document.getElementById(card.dataset.officialGame + '-detail');
   const getGenreText = card => {
     const detail = getDetail(card);
