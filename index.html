@@ -415,6 +415,99 @@ footer a{color:#A6FF00!important}
 @media(max-width:500px){#ports-library .ports-library-list{grid-template-columns:1fr}#ports-library .port-library-thumb{flex-basis:190px;height:190px;min-height:190px}}
 @media(max-width:560px){#ports-library .game-detail-content .game-gallery{grid-template-columns:1fr}#ports-library .game-detail-content .game-gallery img{aspect-ratio:16/9}#ports-library .game-detail-content{padding:16px}#ports-library .game-detail-content .spec-grid{grid-template-columns:1fr 1fr}#ports-library .game-detail-top{padding:16px}}
 </style>
+
+<style id="center-ports-sections">
+/* Centrado general de las dos zonas principales de ports */
+#app > main.wrap > .intro-line{
+  max-width:1000px;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  text-align:center!important;
+}
+#app > main.wrap > .recent-ports{
+  width:100%;
+  max-width:1180px;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  text-align:center!important;
+}
+#app > main.wrap > .recent-ports > .tag,
+#app > main.wrap > #descargas > .tag{
+  display:table;
+  margin-left:auto;
+  margin-right:auto;
+}
+#app > main.wrap > .recent-ports .recent-ports-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),280px))!important;
+  justify-content:center!important;
+  align-items:stretch;
+}
+#app > main.wrap > section#descargas{
+  width:100%;
+  max-width:1180px;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  text-align:center!important;
+}
+#app > main.wrap > section#descargas > h2,
+#app > main.wrap > section#descargas > p,
+#ports-library > .library-heading,
+#ports-library > p{
+  text-align:center!important;
+}
+#ports-library{
+  width:100%;
+  max-width:1180px;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  text-align:center!important;
+}
+#ports-library .library-grid{
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),300px));
+  justify-content:center;
+}
+#ports-library .game-cover,
+#ports-library .game-cover span{
+  text-align:center;
+}
+#ports-library .ports-catalog-tools{
+  width:100%;
+  max-width:1180px;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+}
+#ports-library .ports-search{
+  text-align:center;
+}
+#ports-library .ports-filter-row{
+  justify-content:center;
+}
+#ports-library .ports-library-list{
+  width:100%;
+  max-width:1180px;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  justify-content:center;
+}
+#ports-library .ports-catalog-empty{
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+}
+#ports-library .ports-pagination{
+  justify-content:center;
+}
+@media(max-width:520px){
+  #app > main.wrap > .recent-ports .recent-ports-grid,
+  #ports-library .library-grid{
+    grid-template-columns:minmax(0,300px)!important;
+    justify-content:center!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <a class="visitor-counter" href="https://hits.sh/llabrapablo-prog.github.io/descargas-1-dsas3-gaming/" target="_blank" rel="noopener noreferrer" aria-label="Ver estadísticas de visitas de 1dsas3 Gaming" title="Contador de visitas: ver estadísticas">
