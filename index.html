@@ -1502,7 +1502,7 @@ footer a{color:#A6FF00!important}
    const heading=document.createElement('h3');heading.textContent=title;
    const chips=document.createElement('div');chips.className='port-library-meta';
    const genre=document.createElement('span');genre.className='port-library-chip';genre.textContent='Género: '+card.dataset.genre;chips.appendChild(genre);
-   const action=document.createElement('span');action.className='port-library-chip';action.textContent='Tocá la carátula para ver la ficha';chips.appendChild(action);
+   const action=document.createElement('span');action.className='port-library-chip';action.textContent='Tocá la ficha para ver la información';chips.appendChild(action);
    body.append(heading,chips,makeRating(key));
    card.append(thumb,body);newGrid.appendChild(card);cards.push(card);
  });
@@ -1706,7 +1706,7 @@ footer a{color:#A6FF00!important}
     genreChip.textContent = 'Género: ' + genre;
     const openChip = document.createElement('span');
     openChip.className = 'port-library-chip';
-    openChip.textContent = 'Tocá la carátula para ver la ficha';
+    openChip.textContent = 'Tocá la ficha para ver la información';
     chips.append(genreChip, openChip);
     body.append(heading, chips, makeRating(detailId));
     card.append(thumb, body);
@@ -1881,5 +1881,128 @@ footer a{color:#A6FF00!important}
   });
 })();
 </script>
+
+<script id="all-game-cards-clickable-and-cover-fit">
+(() => {
+  const cardSelector = '.port-library-card, .community-winner-card';
+  const coverSelector = '.game-cover[data-game], .game-cover[data-recent-detail]';
+
+  function prepareCards(root = document) {
+    root.querySelectorAll?.(cardSelector).forEach(card => {
+      card.tabIndex = 0;
+      card.setAttribute('aria-label', 'Abrir ficha de ' +
+        (card.querySelector('.port-library-body h3, .community-winner-body h3')?.textContent || 'este juego').trim());
+      card.title = 'Tocá la ficha para ver la información';
+    });
+  }
+  prepareCards();
+  const observer = new MutationObserver(records => {
+    for (const record of records) {
+      record.addedNodes.forEach(node => {
+        if (!(node instanceof Element)) return;
+        if (node.matches(cardSelector)) prepareCards(node.parentElement || document);
+        else prepareCards(node);
+      });
+    }
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+
+  document.addEventListener('click', event => {
+    const target = event.target instanceof Element ? event.target : null;
+    if (!target) return;
+
+    // Dejar funcionar los botones de estrellas, enlaces y demás controles internos.
+    if (target.closest('button:not(.game-cover), a, input, select, textarea, [role="button"], [data-no-open]')) return;
+
+    const card = target.closest(cardSelector);
+    if (!card) return;
+    const cover = card.querySelector(coverSelector);
+    if (!cover) return;
+
+    // La ficha conserva el modal existente; cualquier zona libre de la tarjeta lo abre.
+    event.preventDefault();
+    event.stopPropagation();
+    cover.click();
+  }, true);
+
+  document.addEventListener('keydown', event => {
+    if (event.key !== 'Enter' && event.key !== ' ') return;
+    const card = event.target instanceof Element && event.target.matches(cardSelector)
+      ? event.target : null;
+    if (!card) return;
+    const cover = card.querySelector(coverSelector);
+    if (!cover) return;
+    event.preventDefault();
+    cover.click();
+  }, true);
+})();
+</script>
+<style id="all-game-cards-clickable-and-cover-fit">
+/* Toda la ficha funciona como acceso al detalle, no solamente la imagen. */
+#ports-library .port-library-card,
+.recent-ports .port-library-card,
+.community-winner-card {
+  cursor: pointer !important;
+  transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease;
+}
+#ports-library .port-library-card:focus-visible,
+.recent-ports .port-library-card:focus-visible,
+.community-winner-card:focus-visible {
+  outline: 3px solid #a6ff00 !important;
+  outline-offset: 3px !important;
+}
+#ports-library .port-library-thumb,
+.recent-ports .port-library-thumb {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  position: relative !important;
+  background: #101315 !important;
+}
+#ports-library .port-library-thumb .game-cover,
+.recent-ports .port-library-thumb .game-cover {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+#ports-library .port-library-thumb .game-cover img,
+.recent-ports .port-library-thumb .game-cover img {
+  display: block !important;
+  flex: 0 0 auto !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+  object-position: 50% 50% !important;
+  margin: 0 auto !important;
+  border: 0 !important;
+}
+.community-winner-art .community-favorite-art {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+}
+.community-winner-art .community-favorite-art img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  aspect-ratio: 16 / 10 !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  margin: 0 auto !important;
+}
+</style>
+
 </body>
 </html>
