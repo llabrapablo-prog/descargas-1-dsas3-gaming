@@ -466,23 +466,6 @@ footer { border-top:1px solid #343B34; padding:26px 0 35px; color:#A7B0A0; font-
 .pagination .page-summary { width:100%; text-align:center; color:#B7C4AB; font-size:12px; margin-top:3px; }
 .game-list > .game-card[hidden] { display:none !important; }
 
-/* Editor visual de elementos individuales */
-#visual-editor-launch{position:fixed;right:18px;bottom:18px;z-index:2000;border:1px solid #A6FF00;border-radius:14px;padding:13px 17px;background:#A6FF00;color:#111315;font:800 14px/1.2 Inter,system-ui,sans-serif;box-shadow:0 8px 28px #0008;cursor:pointer}
-#visual-editor-panel{position:fixed;right:18px;bottom:76px;z-index:2001;width:min(350px,calc(100vw - 36px));max-height:75vh;overflow:auto;padding:17px;border:1px solid #A6FF00;border-radius:16px;background:#171B1E;color:#F2F5EE;box-shadow:0 16px 45px #000b;display:none;font:14px/1.5 Inter,system-ui,sans-serif}
-#visual-editor-panel.open{display:block}
-#visual-editor-panel strong{display:block;color:#A6FF00;font-size:16px;margin-bottom:6px}
-#visual-editor-panel p{margin:6px 0 12px;color:#c4ccbf}
-#visual-editor-panel .editor-actions{display:flex;flex-wrap:wrap;gap:8px}
-#visual-editor-panel button{border:1px solid #45513b;border-radius:9px;padding:9px 11px;background:#25292D;color:#F2F5EE;font:700 12px Inter,system-ui,sans-serif;cursor:pointer}
-#visual-editor-panel button.primary{background:#A6FF00;color:#111315;border-color:#A6FF00}
-#visual-editor-panel input[type=range]{width:100%;accent-color:#A6FF00}
-#visual-editor-panel label{display:block;margin:10px 0 4px;font-size:12px;color:#d8e0d1}
-body.visual-editor-active [data-visual-editable="true"]{outline:2px dashed #A6FF00;outline-offset:3px;cursor:grab!important;touch-action:none}
-body.visual-editor-active [data-visual-editable="true"]:hover{outline:3px solid #A6FF00}
-body.visual-editor-active [data-visual-editable="true"].editor-dragging{cursor:grabbing!important;z-index:1500;outline:3px solid #A6FF00;box-shadow:0 12px 30px #0008}
-body.visual-editor-active [data-visual-editable="true"].editor-selected{outline:3px solid #ff4d8d;outline-offset:4px}
-@media(max-width:600px){#visual-editor-launch{right:12px;bottom:12px}#visual-editor-panel{right:12px;bottom:68px}}
-
 /* Reproductor flotante al recorrer la página: no modifica el ancho del catálogo */
 @media (min-width: 1100px) {
   body.catalog-player-floating .game-list {
@@ -571,6 +554,57 @@ body.visual-editor-active [data-visual-editable="true"].editor-selected{outline:
 @media(max-width:700px){.official-library-wrap .library-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.official-library-wrap .official-port-card .game-cover img{height:110px}}
 @media(max-width:430px){.official-library-wrap .library-grid{grid-template-columns:1fr}}
 
+</style>
+
+<style id="black-neon-game-fichas">
+/* Fichas existentes: negro carbón + verde neón, unificadas con el diseño nuevo */
+.game-detail,
+.game-detail.modal-detail.show {
+  color:#F2F5EE !important;
+  background:linear-gradient(155deg,#171B1E 0%,#111315 70%) !important;
+  border:1px solid #A6FF00 !important;
+  border-radius:18px !important;
+  box-shadow:0 0 0 1px #A6FF0018,0 18px 48px #0009 !important;
+  padding:clamp(16px,3vw,28px) !important;
+}
+.game-detail h2,.game-detail h3 {color:#A6FF00 !important;text-shadow:0 0 18px #A6FF0020;}
+.game-detail h2 {font-size:clamp(23px,3vw,32px) !important;margin:10px 0 14px !important;}
+.game-detail h3 {font-size:18px !important;margin:22px 0 10px !important;}
+.game-detail p,.game-detail li {color:#D5DCCF !important;line-height:1.75 !important;}
+.game-detail .pixel-badge {
+  display:inline-flex !important;align-items:center;gap:6px;
+  color:#A6FF00 !important;background:#A6FF0010 !important;
+  border:1px solid #A6FF0060 !important;border-radius:999px !important;
+  padding:7px 11px !important;font:800 11px/1.4 Inter,system-ui,sans-serif !important;
+  letter-spacing:.07em;
+}
+.game-detail .game-gallery {display:grid !important;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px !important;margin:18px 0 !important;}
+.game-detail .game-gallery figure {min-width:0;margin:0 !important;padding:8px !important;background:#171B1E !important;border:1px solid #343B34 !important;border-radius:12px !important;}
+.game-detail .game-gallery img,.game-detail img {
+  border:1px solid #A6FF0066 !important;border-radius:10px !important;
+  background:#111315 !important;box-shadow:0 5px 18px #0005 !important;
+}
+.game-detail .game-gallery img {width:100% !important;aspect-ratio:16/9;object-fit:cover;margin:0 !important;}
+.game-detail .game-gallery figcaption {padding:8px 2px 2px;color:#B7C4AB;font-size:12px;text-align:center;}
+.game-detail .spec-grid {display:grid !important;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px !important;margin:18px 0 !important;}
+.game-detail .spec {padding:13px !important;border:1px solid #343B34 !important;border-radius:12px !important;background:#171B1E !important;color:#E4EBDD !important;font-size:13px;line-height:1.55;}
+.game-detail .spec strong {display:block;margin-bottom:6px;color:#A6FF00 !important;font-size:10px;letter-spacing:.09em;}
+.game-detail a.button,.game-detail button.button,.game-detail .back-to-library,.game-detail .back-library {
+  display:inline-flex !important;align-items:center;justify-content:center;gap:8px;
+  margin:10px 8px 0 0 !important;padding:11px 15px !important;
+  border:1px solid #A6FF00 !important;border-radius:10px !important;
+  background:#A6FF00 !important;color:#111315 !important;
+  box-shadow:0 0 18px #A6FF0018 !important;font-weight:800 !important;
+  text-decoration:none !important;cursor:pointer;
+}
+.game-detail a.button.reveal {background:#171B1E !important;color:#A6FF00 !important;}
+.game-detail a:hover,.game-detail button:hover {filter:brightness(1.1);transform:translateY(-1px);}
+.game-detail .game-detail-note,.game-detail .compatibility-note {color:#D5DCCF !important;background:#171B1E !important;border:1px solid #A6FF0060 !important;border-radius:12px !important;padding:13px !important;}
+@media(max-width:560px) {
+ .game-detail .game-gallery {grid-template-columns:1fr !important;}
+ .game-detail .spec-grid {grid-template-columns:1fr 1fr !important;}
+ .game-detail a.button,.game-detail button.button,.game-detail .back-to-library,.game-detail .back-library {width:100%;margin-right:0 !important;}
+}
 </style>
 </head>
 <body>
@@ -1055,131 +1089,7 @@ body.visual-editor-active [data-visual-editable="true"].editor-selected{outline:
 })();
 </script>
 
-<div id="visual-editor-panel" role="region" aria-label="Herramientas de edición visual">
-  <strong>✏️ Editor visual de elementos</strong>
-  <p>Seleccioná y arrastrá la pantalla de video, la portada, una imagen o una tarjeta. Elegí el tamaño con el control de abajo.</p>
-  <p id="visual-editor-selected" style="color:#A6FF00;font-weight:800">Elemento seleccionado: ninguno</p>
-  <label for="visual-editor-size">Tamaño del elemento: <span id="visual-editor-size-label">100%</span></label>
-  <input id="visual-editor-size" type="range" min="50" max="150" value="100" step="5">
-  <div class="editor-actions" style="margin-top:12px">
-    <button type="button" class="primary" id="visual-editor-save">Guardar posiciones</button>
-    <button type="button" id="visual-editor-reset">Restablecer</button>
-    <button type="button" id="visual-editor-exit">Terminar edición</button>
-  </div>
-  <p id="visual-editor-status" aria-live="polite" style="font-size:12px;margin-bottom:0">Activá el modo para empezar.</p>
-</div>
-<button type="button" id="visual-editor-launch" aria-expanded="false">✏️ Editar página</button>
-<script>
-(() => {
-  const launch = document.getElementById('visual-editor-launch');
-  const panel = document.getElementById('visual-editor-panel');
-  const status = document.getElementById('visual-editor-status');
-  const selectedLabel = document.getElementById('visual-editor-selected');
-  const sizeInput = document.getElementById('visual-editor-size');
-  const sizeLabel = document.getElementById('visual-editor-size-label');
-  const storageKey = '1dsas3-test-visual-layout-v2';
-  const selector = '.gameplay-wrap, .gameplay-screen, #gameplay-rotator, .game-art, .cover, .r36s-photo, .game-card, .game-thumb, .brand, .gameplay-actions, .gameplay-hint, .section-head, .discord, footer .footer-row';
-  const editable = [...document.querySelectorAll(selector)];
-  editable.forEach((el, i) => { el.dataset.visualEditId = 'element-' + i; });
-  let selected = null, drag = null;
 
-  const parseTranslate = el => {
-    const value = el.style.translate || '';
-    const m = value.match(/^(-?[\\d.]+)px\\s+(-?[\\d.]+)px$/);
-    return m ? {x:Number(m[1]), y:Number(m[2])} : {x:0, y:0};
-  };
-  const parseScale = el => {
-    const m = (el.style.transform || '').match(/scale\\(([\\d.]+)\\)/);
-    return m ? Number(m[1]) : 1;
-  };
-  function readLayout() {
-    try { return JSON.parse(localStorage.getItem(storageKey) || '{}'); }
-    catch (_) { return {}; }
-  }
-  function applyLayout() {
-    const data = readLayout();
-    editable.forEach(el => {
-      const p = data[el.dataset.visualEditId];
-      el.style.translate = p ? p.x + 'px ' + p.y + 'px' : '';
-      el.style.transform = p && p.scale ? 'scale(' + p.scale + ')' : '';
-    });
-  }
-  function choose(el) {
-    if (selected) selected.classList.remove('editor-selected');
-    selected = el;
-    if (!selected) {
-      selectedLabel.textContent = 'Elemento seleccionado: ninguno';
-      sizeInput.value = 100;
-      sizeLabel.textContent = '100%';
-      return;
-    }
-    selected.classList.add('editor-selected');
-    selectedLabel.textContent = 'Elemento seleccionado: ' +
-      (selected.getAttribute('aria-label') || selected.querySelector('h3')?.textContent?.trim() || selected.classList[0] || selected.id || 'elemento');
-    sizeInput.value = Math.round(parseScale(selected) * 100);
-    sizeLabel.textContent = sizeInput.value + '%';
-  }
-  function saveLayout() {
-    const data = {};
-    editable.forEach(el => {
-      const p = parseTranslate(el), scale = parseScale(el);
-      if (p.x || p.y || scale !== 1) data[el.dataset.visualEditId] = {x:p.x, y:p.y, scale};
-    });
-    try {
-      localStorage.setItem(storageKey, JSON.stringify(data));
-      status.textContent = 'Cambios guardados en este navegador.';
-    } catch (_) { status.textContent = 'No se pudo guardar. Revisá la configuración del navegador.'; }
-  }
-  function setMode(on) {
-    document.body.classList.toggle('visual-editor-active', on);
-    panel.classList.toggle('open', on);
-    launch.setAttribute('aria-expanded', String(on));
-    launch.textContent = on ? '✏️ Editor activo' : '✏️ Editar página';
-    editable.forEach(el => { el.dataset.visualEditable = String(on); });
-    if (!on) choose(null);
-    status.textContent = on ? 'Hacé clic en un elemento y arrastralo para moverlo. Usá el control para cambiar su tamaño.' : 'Modo de edición cerrado.';
-  }
-  document.addEventListener('pointerdown', event => {
-    if (!document.body.classList.contains('visual-editor-active')) return;
-    const target = event.target;
-    if (!(target instanceof Element)) return;
-    const el = target.closest('[data-visual-editable="true"]');
-    if (!el || target.closest('#visual-editor-panel, #visual-editor-launch, button, a, input, textarea, select')) return;
-    event.preventDefault();
-    event.stopPropagation();
-    choose(el);
-    const p = parseTranslate(el);
-    drag = {el, startX:event.clientX, startY:event.clientY, x:p.x, y:p.y};
-    el.classList.add('editor-dragging');
-  }, true);
-  document.addEventListener('pointermove', event => {
-    if (!drag) return;
-    drag.el.style.translate = (drag.x + event.clientX - drag.startX) + 'px ' + (drag.y + event.clientY - drag.startY) + 'px';
-  });
-  function finish() {
-    if (drag) drag.el.classList.remove('editor-dragging');
-    drag = null;
-  }
-  document.addEventListener('pointerup', finish);
-  document.addEventListener('pointercancel', finish);
-  sizeInput.addEventListener('input', () => {
-    if (!selected) return;
-    const scale = Number(sizeInput.value) / 100;
-    selected.style.transform = scale === 1 ? '' : 'scale(' + scale + ')';
-    sizeLabel.textContent = sizeInput.value + '%';
-  });
-  launch.addEventListener('click', () => setMode(!document.body.classList.contains('visual-editor-active')));
-  document.getElementById('visual-editor-save').addEventListener('click', saveLayout);
-  document.getElementById('visual-editor-reset').addEventListener('click', () => {
-    try { localStorage.removeItem(storageKey); } catch (_) {}
-    editable.forEach(el => { el.style.translate = ''; el.style.transform = ''; });
-    choose(null);
-    status.textContent = 'Posiciones y tamaños restablecidos.';
-  });
-  document.getElementById('visual-editor-exit').addEventListener('click', () => setMode(false));
-  applyLayout();
-})();
-</script>
 
 
 <script>
