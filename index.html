@@ -1264,6 +1264,34 @@ body #descargas.hero > h2 {
 }
 </style>
 
+
+<style id="recent-ports-heading-test-style">
+#ports .recent-ports > .recent-kicker {
+  display:block !important;
+  margin:0 auto 5px !important;
+  padding:0 !important;
+  border:0 !important;
+  background:transparent !important;
+  color:#A6FF00 !important;
+  font-size:12px !important;
+  font-weight:800 !important;
+  letter-spacing:.16em !important;
+  line-height:1.2 !important;
+  text-transform:uppercase !important;
+  text-align:center !important;
+  text-shadow:0 0 12px rgba(166,255,0,.3) !important;
+}
+#ports .recent-ports > #recent-ports-title {
+  margin:0 auto 10px !important;
+  color:#F5F7F2 !important;
+  font-size:clamp(27px,3.2vw,38px) !important;
+  font-weight:850 !important;
+  line-height:1.12 !important;
+  letter-spacing:-.025em !important;
+  text-align:center !important;
+}
+</style>
+
 </head>
 <body>
 <button class="ambient-toggle" id="ambient-toggle" type="button" aria-pressed="false" aria-label="Reproducir Nuclear Launch Detected">▶ NUCLEAR LAUNCH DETECTED</button>
@@ -1310,8 +1338,8 @@ body #descargas.hero > h2 {
     <div class="official-library-wrap" id="ports">
       <section class="section ports-main-heading" aria-label="Biblioteca de Ports"><div class="section-head"><div><div class="kicker">🎮 Biblioteca de juegos</div><h2>Ports</h2></div><p>Todas las fichas del catálogo reunidas en esta sección. Buscá por nombre o filtrá por género para encontrar el juego que te interesa.</p></div></section>
 <section class="recent-ports" aria-labelledby="recent-ports-title">
-      <span class="tag">Novedades de la biblioteca</span>
-      <h2 class="library-heading" id="recent-ports-title">🆕 ÚLTIMOS PORTS AGREGADOS</h2>
+      <span class="tag recent-kicker">Novedades</span>
+      <h2 class="library-heading" id="recent-ports-title">Últimos agregados</h2>
       <p>Los ports que sumamos más recientemente aparecen acá para que los encuentres rápido.</p>
       <div class="library-grid recent-ports-grid">
         <button class="game-cover recent-port" type="button" data-recent-detail="gun-of-fury-detail"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3099000/header.jpg" alt="Imagen de portada de Guns of Fury en Steam" loading="lazy" onerror="this.style.display='none';this.closest('button').classList.add('image-unavailable')"><span>🔫 GUN OF FURY · VER FICHA ↗</span></button>
