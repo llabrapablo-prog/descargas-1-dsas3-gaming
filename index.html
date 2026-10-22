@@ -1292,6 +1292,49 @@ body #descargas.hero > h2 {
 }
 </style>
 
+
+<style id="copy-test-latest-section-format">
+#ports .recent-ports .recent-section-head {
+  display:flex !important;
+  align-items:end !important;
+  justify-content:space-between !important;
+  flex-direction:row !important;
+  gap:20px !important;
+  margin:0 0 27px !important;
+  text-align:left !important;
+}
+#ports .recent-ports .recent-section-head > div {text-align:left !important}
+#ports .recent-ports .recent-section-head .kicker {
+  color:#A6FF00 !important;
+  font-size:11px !important;
+  letter-spacing:.2em !important;
+  font-weight:900 !important;
+  text-transform:uppercase !important;
+  text-shadow:none !important;
+}
+#ports .recent-ports .recent-section-head h2 {
+  color:#F5F7F2 !important;
+  font-size:clamp(28px,4vw,40px) !important;
+  line-height:1.08 !important;
+  letter-spacing:-.05em !important;
+  margin:9px 0 0 !important;
+  font-weight:800 !important;
+  text-align:left !important;
+}
+#ports .recent-ports .recent-section-head p {
+  color:#C7D2BC !important;
+  max-width:420px !important;
+  line-height:1.65 !important;
+  margin:0 !important;
+  font-size:14px !important;
+  text-align:left !important;
+}
+@media(max-width:760px) {
+  #ports .recent-ports .recent-section-head {display:block !important}
+  #ports .recent-ports .recent-section-head p {margin-top:14px !important}
+}
+</style>
+
 </head>
 <body>
 <button class="ambient-toggle" id="ambient-toggle" type="button" aria-pressed="false" aria-label="Reproducir Nuclear Launch Detected">▶ NUCLEAR LAUNCH DETECTED</button>
@@ -1338,9 +1381,7 @@ body #descargas.hero > h2 {
     <div class="official-library-wrap" id="ports">
       <section class="section ports-main-heading" aria-label="Biblioteca de Ports"><div class="section-head"><div><div class="kicker">🎮 Biblioteca de juegos</div><h2>Ports</h2></div><p>Todas las fichas del catálogo reunidas en esta sección. Buscá por nombre o filtrá por género para encontrar el juego que te interesa.</p></div></section>
 <section class="recent-ports" aria-labelledby="recent-ports-title">
-      <span class="tag recent-kicker">Novedades</span>
-      <h2 class="library-heading" id="recent-ports-title">Últimos agregados</h2>
-      <p>Los ports que sumamos más recientemente aparecen acá para que los encuentres rápido.</p>
+      <div class="section-head recent-section-head" style="margin-top:34px"><div><div class="kicker">Novedades</div><h2 id="recent-ports-title">Últimos agregados</h2></div><p>Los juegos nuevos aparecerán aquí automáticamente según su fecha de incorporación al catálogo.</p></div>
       <div class="library-grid recent-ports-grid">
         <button class="game-cover recent-port" type="button" data-recent-detail="gun-of-fury-detail"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3099000/header.jpg" alt="Imagen de portada de Guns of Fury en Steam" loading="lazy" onerror="this.style.display='none';this.closest('button').classList.add('image-unavailable')"><span>🔫 GUN OF FURY · VER FICHA ↗</span></button>
         <button class="game-cover recent-port" type="button" data-recent-detail="pokemon-anil-detail"><img src="https://whackahack.com/uploads/images/games/pokemon-anil-cover.png" alt="Pantalla de título de Pokémon Añil" loading="lazy" onerror="this.style.display='none';this.closest('button').classList.add('image-unavailable')"><span>⚡ POKÉMON AÑIL · VER FICHA ↗</span></button>
