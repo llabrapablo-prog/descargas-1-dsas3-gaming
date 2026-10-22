@@ -1023,6 +1023,45 @@ footer a{color:#A6FF00!important}
   .community-winner-chips{justify-content:center!important}
 }
 </style>
+<style id="recent-ports-four-cards-one-row">
+/* En escritorio, las cuatro fichas recientes quedan alineadas en una sola fila */
+#app > main.wrap > .recent-ports .recent-ports-grid{
+  display:grid!important;
+  width:100%!important;
+  max-width:1180px!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  justify-content:stretch!important;
+  align-items:stretch!important;
+  gap:18px!important;
+  margin:20px auto 24px!important;
+  box-sizing:border-box!important;
+}
+#app > main.wrap > .recent-ports .recent-ports-grid > .port-library-card{
+  min-width:0!important;
+  width:auto!important;
+  max-width:none!important;
+}
+#app > main.wrap > .recent-ports .port-library-body{
+  min-width:0!important;
+}
+#app > main.wrap > .recent-ports .port-library-body h3,
+#app > main.wrap > .recent-ports .port-library-body p{
+  overflow-wrap:anywhere!important;
+}
+@media(max-width:1000px){
+  #app > main.wrap > .recent-ports .recent-ports-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:16px!important;
+  }
+}
+@media(max-width:520px){
+  #app > main.wrap > .recent-ports .recent-ports-grid{
+    grid-template-columns:minmax(0,300px)!important;
+    justify-content:center!important;
+    gap:14px!important;
+  }
+}
+</style>
 </head>
 <body>
 <a class="visitor-counter" href="https://hits.sh/llabrapablo-prog.github.io/descargas-1-dsas3-gaming/" target="_blank" rel="noopener noreferrer" aria-label="Ver estadísticas de visitas de 1dsas3 Gaming" title="Contador de visitas: ver estadísticas">
