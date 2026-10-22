@@ -2646,5 +2646,73 @@ body #descargas.hero > h2 {
  });
 })();
 </script>
+
+<script id="fix-recent-fichas-modal-and-pagination">
+(() => {
+  const section = document.querySelector('.recent-ports');
+  const grid = section?.querySelector('.recent-ports-grid');
+  if (!section || !grid) return;
+
+  // Las novedades son un bloque separado del catálogo paginado: se paginan por sí mismas.
+  const cards = Array.from(grid.querySelectorAll(':scope > .recent-port'));
+  const pageSize = 6;
+  let page = 1;
+  let nav = section.querySelector('.recent-ports-pagination');
+  if (!nav) {
+    nav = document.createElement('nav');
+    nav.className = 'official-library-pagination recent-ports-pagination';
+    nav.setAttribute('aria-label', 'Páginas de últimos agregados');
+    grid.insertAdjacentElement('afterend', nav);
+  }
+  const render = () => {
+    const pages = Math.max(1, Math.ceil(cards.length / pageSize));
+    page = Math.min(page, pages);
+    cards.forEach((card, index) => {
+      card.hidden = index < (page - 1) * pageSize || index >= page * pageSize;
+    });
+    nav.replaceChildren();
+    if (pages <= 1) { nav.hidden = true; return; }
+    nav.hidden = false;
+    const add = (label, target, disabled, current) => {
+      const button = document.createElement('button');
+      button.type = 'button'; button.textContent = label; button.disabled = disabled;
+      if (current) button.setAttribute('aria-current', 'page');
+      button.addEventListener('click', () => { page = target; render(); section.scrollIntoView({behavior:'smooth',block:'start'}); });
+      nav.appendChild(button);
+    };
+    add('‹ Anterior', Math.max(1,page-1), page===1, false);
+    for(let n=1;n<=pages;n++) add(String(n),n,false,n===page);
+    add('Siguiente ›',Math.min(pages,page+1),page===pages,false);
+  };
+  render();
+
+  const allDetails = Array.from(document.querySelectorAll('.game-detail[id]'));
+  const close = () => {
+    allDetails.forEach(panel => panel.classList.remove('show','modal-detail'));
+    document.body.classList.remove('modal-open');
+    document.querySelectorAll('.game-modal-backdrop').forEach(el => el.remove());
+  };
+  document.addEventListener('click', event => {
+    const card = event.target.closest('.recent-ports-grid [data-recent-detail]');
+    if (card) {
+      const panel = document.getElementById(card.dataset.recentDetail);
+      if (!panel) return;
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      close();
+      panel.classList.add('show','modal-detail');
+      document.body.classList.add('modal-open');
+      const backdrop = document.createElement('div');
+      backdrop.className = 'game-modal-backdrop';
+      backdrop.setAttribute('aria-label','Cerrar ficha del juego');
+      backdrop.addEventListener('click', close);
+      document.body.appendChild(backdrop);
+      return;
+    }
+    if (event.target.closest('.game-modal-backdrop') || event.target.closest('.game-detail .back-library, .game-detail .back-to-library')) close();
+  }, true);
+})();
+</script>
+
 </body>
 </html>
