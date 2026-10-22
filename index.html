@@ -621,21 +621,9 @@ body.visual-editor-active [data-visual-editable="true"].editor-selected{outline:
         <div class="catalog-tools" id="catalog-tools" aria-label="Filtros de ports">
 <label class="filter-label" for="catalog-search">Buscar por nombre</label><input class="catalog-search" id="catalog-search" type="search" placeholder="Ej.: Mario, Sonic, Zelda..." autocomplete="off">
 <span class="filter-label">Filtrar por género</span><div class="filter-row" id="genre-filters"><button class="filter-chip" type="button" data-genre="Todos" aria-pressed="true">Todos</button><button class="filter-chip" type="button" data-genre="Acción" aria-pressed="false">⚔️ Acción</button><button class="filter-chip" type="button" data-genre="Carreras" aria-pressed="false">🏎️ Carreras</button><button class="filter-chip" type="button" data-genre="RPG" aria-pressed="false">🧙 RPG</button><button class="filter-chip" type="button" data-genre="Lucha" aria-pressed="false">🥊 Lucha</button><button class="filter-chip" type="button" data-genre="Plataformas" aria-pressed="false">🪜 Plataformas</button><button class="filter-chip" type="button" data-genre="Aventura" aria-pressed="false">🗺️ Aventura</button></div>
-<p class="catalog-status" id="catalog-status" aria-live="polite">Mostrando juegos de ejemplo.</p><div class="catalog-empty" id="catalog-empty">No encontramos juegos con esos filtros. Probá con otra búsqueda.</div></div>
-        <div class="game-list">
-          <article class="game-card" data-added="2026-10-20"><div class="game-thumb sonicmania"><div class="thumb-label"><small>SEGA · 2017</small>SONIC MANIA</div></div><div class="game-body"><h3>Sonic Mania</h3><p>Una aventura de plataformas en 2D que recupera la velocidad, los escenarios y el estilo clásico de Sonic.</p><div class="chips"><span class="chip">Plataforma original: PC, Switch, PS4 y Xbox One</span><span class="chip">Género: Plataformas / Acción</span><span class="chip">Consola: R36S</span><span class="chip warn">Compatibilidad R36S depende del port</span></div></div></article>
-          
-          
-          
-          <article class="game-card"><div class="game-thumb mario-world"><div class="thumb-label"><small>NINTENDO</small>SUPER MARIO WORLD</div></div><div class="game-body"><h3>Super Mario World</h3><p>Plataformas clásico de Nintendo, ideal para una ficha con consola original y género.</p><div class="chips"><span class="chip">Plataforma original: Super Nintendo (SNES)</span><span class="chip">Género: Plataformas</span><span class="chip">Consola: R36S</span><span class="chip warn">Compatibilidad R36S depende del emulador</span></div></div></article>
-          <article class="game-card"><div class="game-thumb sonic"><div class="thumb-label"><small>SEGA</small>SONIC 2</div></div><div class="game-body"><h3>Sonic the Hedgehog 2</h3><p>Juego de plataformas veloz de SEGA, presentado como ejemplo visual de catálogo.</p><div class="chips"><span class="chip">Plataforma original: Mega Drive / Genesis</span><span class="chip">Género: Plataformas</span><span class="chip">Consola: R36S</span><span class="chip warn">Compatibilidad R36S depende del emulador</span></div></div></article>
-          <article class="game-card"><div class="game-thumb street-fighter"><div class="thumb-label"><small>CAPCOM</small>STREET FIGHTER II</div></div><div class="game-body"><h3>Street Fighter II</h3><p>Juego de lucha para ilustrar cómo se mostrarían género y plataforma en cada ficha.</p><div class="chips"><span class="chip">Plataforma original: Arcade y versiones domésticas</span><span class="chip">Género: Lucha</span><span class="chip">Consola: R36S</span><span class="chip warn">Compatibilidad R36S depende de la versión</span></div></div></article>
-          <article class="game-card"><div class="game-thumb mario-kart"><div class="thumb-label"><small>NINTENDO</small>MARIO KART 64</div></div><div class="game-body"><h3>Mario Kart 64</h3><p>Carreras de Nintendo para mostrar cómo se vería una ficha de juego por consola.</p><div class="chips"><span class="chip">Plataforma original: Nintendo 64</span><span class="chip">Género: Carreras</span><span class="chip">Consola: R36S</span><span class="chip warn">Compatibilidad R36S depende del emulador</span></div></div></article>
-          <article class="game-card"><div class="game-thumb final-fantasy"><div class="thumb-label"><small>SQUARE</small>FINAL FANTASY VI</div></div><div class="game-body"><h3>Final Fantasy VI</h3><p>RPG de fantasía con una historia extensa, añadido como ejemplo de categoría.</p><div class="chips"><span class="chip">Plataforma original: Super Nintendo (SNES)</span><span class="chip">Género: RPG</span><span class="chip">Consola: R36S</span><span class="chip warn">Compatibilidad R36S depende de la versión</span></div></div></article>
-          <article class="game-card"><div class="game-thumb celeste"><div class="thumb-label"><small>INDIE</small>CELESTE</div></div><div class="game-body"><h3>Celeste</h3><p>Plataformas y precisión, incluido como ejemplo de cómo podría organizarse un catálogo moderno.</p><div class="chips"><span class="chip">Plataforma original: PC y consolas</span><span class="chip">Género: Plataformas</span><span class="chip">Consola: R36S</span><span class="chip warn">Compatibilidad R36S no garantizada</span></div></div></article>
-        </div>
+<p class="catalog-status" id="catalog-status" aria-live="polite">Todavía no hay juegos cargados en este catálogo.</p><div class="catalog-empty" id="catalog-empty">Todavía no hay fichas publicadas en este catálogo. Las fichas reales aparecerán aquí cuando se agreguen.</div></div>
+        <div class="game-list" aria-live="polite"></div>
         <nav class="pagination" id="catalog-pagination" aria-label="Páginas del catálogo"></nav>
-                <p class="demo-note">Estas tarjetas son ejemplos visuales para mostrar el diseño de la biblioteca. No representan enlaces de descarga ni una garantía de compatibilidad con cada consola.</p>
         <div class="game-detail-overlay" id="game-detail-overlay" role="dialog" aria-modal="true" aria-labelledby="game-detail-title">
           <div class="game-detail-panel">
             <div class="game-detail-top"><h2 id="game-detail-title">Ficha del juego</h2><button class="game-detail-close" type="button" id="game-detail-close" aria-label="Cerrar ficha">×</button></div>
@@ -1400,45 +1388,7 @@ body.visual-editor-active [data-visual-editable="true"].editor-selected{outline:
     }).filter(game => game.name && game.score > 0);
     games.sort((a,b) => b.score - a.score || a.name.localeCompare(b.name, 'es'));
     if (!games.length) {
-      // Juego de muestra para que la sección Favoritos no quede vacía antes de recibir votos.
-      const sample = cards.find(card => getName(card) === 'Sonic Mania') || cards[0];
-      if (!sample) {
-        featured.innerHTML = '<div class="community-favorite-empty">Todavía no hay juegos en el catálogo.</div>';
-        return;
-      }
-      const sampleName = getName(sample);
-      const sampleBody = sample.querySelector('.game-body');
-      const sampleArt = sample.querySelector('.game-thumb')?.cloneNode(true);
-      const sampleChips = sampleBody?.querySelector('.chips')?.cloneNode(true);
-      featured.replaceChildren();
-      const demoCard = document.createElement('article');
-      demoCard.className = 'game-card community-winner-card';
-      if (sampleArt) demoCard.appendChild(sampleArt);
-      const body = document.createElement('div');
-      body.className = 'game-body';
-      const heading = document.createElement('h3');
-      heading.textContent = '⭐ ' + sampleName;
-      const stars = document.createElement('div');
-      stars.className = 'community-stars';
-      stars.setAttribute('aria-label', 'Estrellas ilustrativas de ejemplo; no es una puntuación real');
-      stars.setAttribute('aria-hidden', 'true');
-      stars.style.fontSize = '24px';
-      stars.style.color = '#A6FF00';
-      stars.textContent = '★★★★★';
-      const description = document.createElement('p');
-      description.textContent = sampleBody?.querySelector('p')?.textContent || 'Juego destacado de ejemplo.';
-      const note = document.createElement('p');
-      note.className = 'community-vote-notice';
-      note.textContent = 'Ejemplo visual: todavía no hay votos reales. Cuando alguien puntúe los juegos del catálogo, aquí aparecerá el favorito según las puntuaciones guardadas en este navegador.';
-      const jump = document.createElement('a');
-      jump.className = 'btn btn-primary';
-      jump.href = '#ports';
-      jump.textContent = 'Ir al catálogo para votar ↗';
-      body.append(heading, stars, description);
-      if (sampleChips) body.appendChild(sampleChips);
-      body.append(note, jump);
-      demoCard.appendChild(body);
-      featured.appendChild(demoCard);
+      featured.innerHTML = '<div class="community-favorite-empty">Todavía no hay votos suficientes para destacar un juego. Cuando se publiquen fichas reales y reciban puntuaciones, el favorito aparecerá aquí.</div>';
       return;
     }
     const winner = games[0];
