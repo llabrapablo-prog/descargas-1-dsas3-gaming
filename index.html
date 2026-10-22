@@ -1020,6 +1020,37 @@ footer { border-top:1px solid #343B34; padding:26px 0 35px; color:#A7B0A0; font-
 }
 </style>
 
+
+<style id="nine-games-per-page-layout">
+/* Nueve fichas por página: tres columnas por tres filas en escritorio */
+#ports-library > .library-grid {
+  max-width: 900px !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+}
+#ports-library > .library-grid > .official-port-card {
+  aspect-ratio: 1 / 1 !important;
+}
+#ports-library > .library-grid > .official-port-card > .game-body > .game-cover {
+  width: 66% !important;
+  max-width: 100px !important;
+  aspect-ratio: 1 / 1 !important;
+}
+@media(max-width:760px) {
+  #ports-library > .library-grid {
+    max-width: 560px !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+}
+@media(max-width:500px) {
+  #ports-library > .library-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+  }
+}
+</style>
+
 </head>
 <body>
 <button class="ambient-toggle" id="ambient-toggle" type="button" aria-pressed="false" aria-label="Reproducir Nuclear Launch Detected">▶ NUCLEAR LAUNCH DETECTED</button>
@@ -1954,7 +1985,7 @@ footer { border-top:1px solid #343B34; padding:26px 0 35px; color:#A7B0A0; font-
     genreSelect.appendChild(option);
   });
 
-  const pageSize = 16;
+  const pageSize = 9;
   let page = 1;
   function render() {
     const query = normalize(search.value);
