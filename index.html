@@ -837,6 +837,192 @@ footer a{color:#A6FF00!important}
   display:flex;
 }
 </style>
+<style id="community-choice-section-style">
+.community-choice-section{
+  width:100%!important;
+  margin:0 auto!important;
+  padding:clamp(30px,4vw,56px) 0!important;
+  border-top:1px solid #343b34!important;
+  background:transparent!important;
+}
+.community-choice-wrap{
+  width:min(1180px,calc(100% - 32px))!important;
+  max-width:1180px!important;
+  margin:0 auto!important;
+}
+.community-choice-heading{
+  max-width:900px!important;
+  margin:0 auto 24px!important;
+  text-align:center!important;
+}
+.community-choice-kicker{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  color:#a6ff00!important;
+  font-size:11px!important;
+  font-weight:900!important;
+  letter-spacing:.18em!important;
+  text-transform:uppercase!important;
+}
+.community-choice-heading h2{
+  margin:10px 0 12px!important;
+  color:#f2f5ee!important;
+  font:900 clamp(26px,3.8vw,40px)/1.12 Inter,ui-sans-serif,system-ui,sans-serif!important;
+  letter-spacing:-.045em!important;
+  text-wrap:balance;
+}
+.community-choice-heading p{
+  max-width:700px!important;
+  margin:0 auto!important;
+  color:#c7d2bc!important;
+  font-size:14px!important;
+  line-height:1.7!important;
+}
+#community-favorite-content{width:100%!important;max-width:980px!important;margin:0 auto!important}
+.community-favorite-empty{
+  padding:22px!important;
+  border:1px dashed #465044!important;
+  border-radius:16px!important;
+  background:#171b1e!important;
+  color:#c7d2bc!important;
+  text-align:center!important;
+  line-height:1.65!important;
+}
+.community-winner-card{
+  display:grid!important;
+  grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)!important;
+  align-items:stretch!important;
+  min-width:0!important;
+  overflow:hidden!important;
+  border:1px solid #343b34!important;
+  border-radius:20px!important;
+  background:linear-gradient(180deg,#171b1e,#202529)!important;
+  box-shadow:0 12px 32px #0004!important;
+}
+.community-winner-art{
+  display:flex!important;
+  min-width:0!important;
+  min-height:100%!important;
+  overflow:hidden!important;
+  background:#101315!important;
+}
+.community-winner-art .community-favorite-art{
+  display:flex!important;
+  position:relative!important;
+  flex-direction:column!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:220px!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  background:#101315!important;
+  text-align:center!important;
+}
+.community-winner-art .community-favorite-art img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:220px!important;
+  aspect-ratio:16/10!important;
+  object-fit:cover!important;
+  border:0!important;
+  margin:0!important;
+  background:#101315!important;
+}
+.community-winner-art .community-favorite-art span{
+  display:block!important;
+  width:100%!important;
+  padding:12px!important;
+  background:#111315!important;
+  color:#a6ff00!important;
+  font:900 12px Inter,ui-sans-serif,system-ui,sans-serif!important;
+}
+.community-winner-body{
+  display:flex!important;
+  min-width:0!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  justify-content:center!important;
+  gap:12px!important;
+  padding:clamp(18px,3vw,30px)!important;
+  text-align:left!important;
+}
+.community-winner-body h3{
+  margin:0!important;
+  color:#f2f5ee!important;
+  font:900 clamp(22px,3vw,31px)/1.2 Inter,ui-sans-serif,system-ui,sans-serif!important;
+  letter-spacing:-.04em!important;
+}
+.community-winner-score{
+  margin:0!important;
+  color:#a6ff00!important;
+  font-size:14px!important;
+  font-weight:850!important;
+  line-height:1.55!important;
+}
+.community-winner-stars{
+  color:#a6ff00!important;
+  font-size:22px!important;
+  letter-spacing:.12em!important;
+  line-height:1!important;
+}
+.community-winner-description{
+  margin:0!important;
+  color:#c7d2bc!important;
+  font-size:14px!important;
+  line-height:1.7!important;
+}
+.community-winner-chips{display:flex!important;flex-wrap:wrap!important;gap:7px!important}
+.community-winner-chip{
+  display:inline-flex!important;
+  padding:6px 9px!important;
+  border:1px solid #35402a!important;
+  border-radius:999px!important;
+  background:#111315!important;
+  color:#a6ff00!important;
+  font-size:11px!important;
+  font-weight:800!important;
+}
+.community-winner-note{
+  margin:0!important;
+  color:#a7b0a0!important;
+  font-size:12px!important;
+  line-height:1.6!important;
+}
+.community-vote-notice{
+  max-width:980px!important;
+  margin:14px auto 0!important;
+  color:#929d89!important;
+  font-size:12px!important;
+  line-height:1.6!important;
+  text-align:center!important;
+}
+.community-winner-link{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  margin-top:2px!important;
+  padding:11px 15px!important;
+  border:1px solid #a6ff00!important;
+  border-radius:11px!important;
+  background:#a6ff00!important;
+  color:#111315!important;
+  font-size:13px!important;
+  font-weight:900!important;
+  text-decoration:none!important;
+}
+.community-winner-link:hover{filter:brightness(1.08)}
+@media(max-width:650px){
+  .community-winner-card{grid-template-columns:minmax(0,1fr)!important}
+  .community-winner-art .community-favorite-art{min-height:0!important}
+  .community-winner-art .community-favorite-art img{height:auto!important;min-height:0!important;aspect-ratio:16/9!important}
+  .community-winner-body{align-items:center!important;text-align:center!important}
+  .community-winner-chips{justify-content:center!important}
+}
+</style>
 </head>
 <body>
 <a class="visitor-counter" href="https://hits.sh/llabrapablo-prog.github.io/descargas-1-dsas3-gaming/" target="_blank" rel="noopener noreferrer" aria-label="Ver estadísticas de visitas de 1dsas3 Gaming" title="Contador de visitas: ver estadísticas">
@@ -914,6 +1100,20 @@ footer a{color:#A6FF00!important}
           </aside>
         </div>
         <div class="console-stage video-stage" aria-label="Video de gameplay del canal 1DSAS3 Gaming"><div class="gameplay-wrap"><div class="gameplay-screen"><iframe id="gameplay-rotator" src="https://www.youtube-nocookie.com/embed/jZEHH0i2VqQ?autoplay=1&amp;mute=1&amp;controls=1&amp;start=0&amp;end=30&amp;playsinline=1&amp;rel=0" title="Shorts de gameplay de 1DSAS3 Gaming en rotación" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="eager"></iframe><button class="short-nav-button previous" id="short-previous" type="button" aria-label="Video anterior" title="Video anterior">‹</button><button class="short-nav-button next" id="short-next" type="button" aria-label="Video siguiente" title="Video siguiente">›</button><span class="screen-caption">GAMEPLAY · UN DESASTRE GAMING</span></div><div class="gameplay-actions"><a id="short-like-link" href="https://www.youtube.com/shorts/jZEHH0i2VqQ" target="_blank" rel="noopener noreferrer" class="gameplay-action like-action">👍 Me gusta</a><a href="https://www.youtube.com/channel/UC3df3xTqYwnomS9FwvD1lwA?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="gameplay-action subscribe-action">🔔 Suscribirse</a></div><p class="gameplay-hint">Para dar Me gusta, abrí el Short en YouTube. El volumen se controla desde el reproductor.</p></div><div class="console-note">¡A jugar! 🎮</div></div>
+      </div>
+    </section>
+
+    <section class="community-choice-section" id="community-choice" aria-labelledby="community-choice-title">
+      <div class="wrap community-choice-wrap">
+        <div class="community-choice-heading">
+          <span class="community-choice-kicker">🏆 Elección de la comunidad</span>
+          <h2 id="community-choice-title">Juego favorito votado por la comunidad de esta semana</h2>
+          <p>Calificá los ports con estrellas en la biblioteca y acá destacaremos el juego mejor puntuado.</p>
+        </div>
+        <div class="community-favorite-content" id="community-favorite-content" aria-live="polite">
+          <div class="community-favorite-empty">Todavía no hay puntuaciones. ¡Sé el primero en calificar un juego!</div>
+        </div>
+        <p class="community-vote-notice">Las puntuaciones se guardan en este navegador. Para reunir los votos de todos los visitantes en un ranking común hace falta conectar una base de datos compartida.</p>
       </div>
     </section>
     
@@ -1241,7 +1441,7 @@ footer a{color:#A6FF00!important}
    const label=document.createElement('span');label.className='port-rating-label';label.textContent='Calificá este port';
    const stars=document.createElement('div');stars.className='port-stars';stars.setAttribute('role','group');stars.setAttribute('aria-label','Calificar port');
    const current=Number(ratings[key]||0);
-   for(let n=1;n<=5;n++){const b=document.createElement('button');b.type='button';b.className='port-star'+(n<=current?' is-active':'');b.textContent='★';b.setAttribute('aria-label',n+' de 5 estrellas');b.setAttribute('aria-pressed',String(current===n));b.addEventListener('click',ev=>{ev.stopPropagation();ratings[key]=n;try{localStorage.setItem(ratingKey,JSON.stringify(ratings))}catch(_){};const replacement=makeRating(key);wrap.replaceWith(replacement)});stars.appendChild(b)}
+   for(let n=1;n<=5;n++){const b=document.createElement('button');b.type='button';b.className='port-star'+(n<=current?' is-active':'');b.textContent='★';b.setAttribute('aria-label',n+' de 5 estrellas');b.setAttribute('aria-pressed',String(current===n));b.addEventListener('click',ev=>{ev.preventDefault();ev.stopPropagation();try{ratings=JSON.parse(localStorage.getItem(ratingKey)||'{}')||{}}catch(_){ratings={}};ratings[key]=n;try{localStorage.setItem(ratingKey,JSON.stringify(ratings))}catch(_){};window.dispatchEvent(new Event('udg:port-rating-updated'));const replacement=makeRating(key);wrap.replaceWith(replacement)});stars.appendChild(b)}
    const summary=document.createElement('span');summary.className='port-rating-summary';summary.textContent=current?'Tu voto: '+current+'/5 · guardado en este navegador':'Sin voto en este navegador';
    wrap.append(label,stars,summary);return wrap;
  }
@@ -1412,8 +1612,10 @@ footer a{color:#A6FF00!important}
       button.addEventListener('click', event => {
         event.preventDefault();
         event.stopPropagation();
+        try { ratings = JSON.parse(localStorage.getItem(ratingKey) || '{}') || {}; } catch (_) { ratings = {}; }
         ratings[key] = n;
         try { localStorage.setItem(ratingKey, JSON.stringify(ratings)); } catch (_) {}
+        window.dispatchEvent(new Event('udg:port-rating-updated'));
         const replacement = makeRating(key);
         wrap.replaceWith(replacement);
       });
@@ -1475,6 +1677,179 @@ footer a{color:#A6FF00!important}
 
   grid.classList.remove('library-grid');
   grid.classList.add('ports-library-list');
+})();
+</script>
+<script id="community-choice-section-functionality">
+(() => {
+  const container = document.getElementById('community-favorite-content');
+  if (!container || container.dataset.ready === 'true') return;
+  container.dataset.ready = 'true';
+
+  const storeKey = 'udg-port-ratings-v1';
+  const legacyStoreKey = '1dsas3-community-ratings-v1';
+  const normalize = value => String(value || '').normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+
+  function readStore(key) {
+    try {
+      const result = JSON.parse(localStorage.getItem(key) || '{}');
+      return result && typeof result === 'object' ? result : {};
+    } catch (_) { return {}; }
+  }
+
+  function collectGames() {
+    const ratings = readStore(storeKey);
+    const legacyRatings = readStore(legacyStoreKey);
+    const allCards = [...document.querySelectorAll('.port-library-card')];
+    const grouped = new Map();
+
+    allCards.forEach(card => {
+      const cover = card.querySelector('.game-cover[data-game], .game-cover[data-recent-detail]');
+      const key = cover?.dataset.game || cover?.dataset.recentDetail || '';
+      const title = card.querySelector('.port-library-body h3')?.textContent.trim()
+        || (cover?.querySelector('span')?.textContent || '').replace(/\s*[·•]\s*VER FICHA.*$/i, '').trim();
+      if (!key || !title) return;
+
+      const id = normalize(title);
+      const description = card.querySelector('.port-library-body p')?.textContent.trim()
+        || 'Abrí la ficha para consultar información, capturas y requisitos del juego.';
+      const genreChip = [...card.querySelectorAll('.port-library-chip')]
+        .find(chip => normalize(chip.textContent).startsWith('genero:'));
+      const genre = genreChip ? genreChip.textContent.replace(/^\s*Género:\s*/i,'').trim() : '';
+      const storedScore = Number(ratings[key] || legacyRatings[id] || 0);
+
+      if (!grouped.has(id)) {
+        grouped.set(id, {id,title,description,genre,cover,key,scoreValues:[],keys:new Set()});
+      }
+      const item = grouped.get(id);
+      if (!item.description && description) item.description = description;
+      if (!item.genre && genre) item.genre = genre;
+      if (!item.cover && cover) { item.cover = cover; item.key = key; }
+      if (!item.keys.has(key)) {
+        item.keys.add(key);
+        if (storedScore > 0 && storedScore <= 5) item.scoreValues.push(storedScore);
+      }
+    });
+
+    return [...grouped.values()].map(item => {
+      const count = item.scoreValues.length;
+      const score = count ? item.scoreValues.reduce((sum,value)=>sum+value,0)/count : 0;
+      return {...item, count, score};
+    });
+  }
+
+  function makeOpenButton(game) {
+    if (!game.cover) return null;
+    const button = game.cover.cloneNode(true);
+    button.classList.add('community-favorite-art');
+    button.classList.remove('port-library-original-button');
+    button.setAttribute('aria-label', 'Abrir ficha de ' + game.title);
+    const label = button.querySelector('span');
+    if (label) label.textContent = 'VER FICHA DEL JUEGO ↗';
+    return button;
+  }
+
+  function renderFavorite() {
+    const games = collectGames();
+    const voted = games.filter(game => game.count > 0)
+      .sort((a,b) => b.score - a.score || b.count - a.count || a.title.localeCompare(b.title,'es'));
+
+    container.replaceChildren();
+    const selected = voted[0];
+    if (!selected) {
+      const sample = games.find(game => normalize(game.title) === normalize('Mario Kart Wii')) || games[0];
+      if (!sample) {
+        const empty = document.createElement('div');
+        empty.className = 'community-favorite-empty';
+        empty.textContent = 'Todavía no hay juegos en el catálogo para elegir.';
+        container.appendChild(empty);
+        return;
+      }
+      const card = document.createElement('article');
+      card.className = 'community-winner-card';
+      const art = document.createElement('div');
+      art.className = 'community-winner-art';
+      const openButton = makeOpenButton(sample);
+      if (openButton) art.appendChild(openButton);
+      const body = document.createElement('div');
+      body.className = 'community-winner-body';
+      const title = document.createElement('h3');
+      title.textContent = '⭐ ' + sample.title;
+      const stars = document.createElement('div');
+      stars.className = 'community-winner-stars';
+      stars.setAttribute('aria-hidden','true');
+      stars.textContent = '★★★★★';
+      const description = document.createElement('p');
+      description.className = 'community-winner-description';
+      description.textContent = sample.description;
+      const note = document.createElement('p');
+      note.className = 'community-winner-note';
+      note.textContent = 'Ejemplo visual: todavía no hay votos. Cuando se puntúen los ports, acá aparecerá el mejor valorado.';
+      const jump = document.createElement('a');
+      jump.className = 'community-winner-link';
+      jump.href = '#ports-library';
+      jump.textContent = 'Ir a la biblioteca para votar ↗';
+      body.append(title,stars,description);
+      if (sample.genre) {
+        const chips = document.createElement('div');
+        chips.className = 'community-winner-chips';
+        const chip = document.createElement('span');
+        chip.className = 'community-winner-chip';
+        chip.textContent = 'Género: ' + sample.genre;
+        chips.appendChild(chip);
+        body.appendChild(chips);
+      }
+      body.append(note,jump);
+      card.append(art,body);
+      container.appendChild(card);
+      return;
+    }
+
+    const card = document.createElement('article');
+    card.className = 'community-winner-card';
+    const art = document.createElement('div');
+    art.className = 'community-winner-art';
+    const openButton = makeOpenButton(selected);
+    if (openButton) art.appendChild(openButton);
+    const body = document.createElement('div');
+    body.className = 'community-winner-body';
+
+    const title = document.createElement('h3');
+    title.textContent = '🏆 ' + selected.title;
+    const score = document.createElement('p');
+    score.className = 'community-winner-score';
+    score.textContent = '★ ' + selected.score.toFixed(1) + '/5 · puntuación más alta';
+    const description = document.createElement('p');
+    description.className = 'community-winner-description';
+    description.textContent = selected.description;
+
+    const note = document.createElement('p');
+    note.className = 'community-winner-note';
+    note.textContent = 'Puntuación registrada en este navegador; no representa todavía un recuento global de visitantes.';
+    body.append(title,score,description);
+    if (selected.genre) {
+      const chips = document.createElement('div');
+      chips.className = 'community-winner-chips';
+      const chip = document.createElement('span');
+      chip.className = 'community-winner-chip';
+      chip.textContent = 'Género: ' + selected.genre;
+      chips.appendChild(chip);
+      body.appendChild(chips);
+    }
+    const jump = document.createElement('a');
+    jump.className = 'community-winner-link';
+    jump.href = '#ports-library';
+    jump.textContent = 'Ir a la biblioteca para votar ↗';
+    body.append(note,jump);
+    card.append(art,body);
+    container.appendChild(card);
+  }
+
+  renderFavorite();
+  window.addEventListener('udg:port-rating-updated', renderFavorite);
+  window.addEventListener('storage', event => {
+    if (event.key === storeKey || event.key === legacyStoreKey) renderFavorite();
+  });
 })();
 </script>
 </body>
