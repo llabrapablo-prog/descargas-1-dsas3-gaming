@@ -746,6 +746,88 @@ footer a{color:#A6FF00!important}
   }
 }
 </style>
+<style id="restore-hero-two-column-layout">
+/* Solo la sección de inicio: presentación a la izquierda y reproductor a la derecha */
+#inicio > .wrap.hero-grid{
+  display:grid!important;
+  grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr)!important;
+  align-items:center!important;
+  justify-items:stretch!important;
+  gap:28px!important;
+}
+#inicio > .wrap.hero-grid > .hero-copy{
+  width:auto!important;
+  max-width:none!important;
+  margin-left:0!important;
+  margin-right:0!important;
+  text-align:left!important;
+}
+#inicio .hero-copy > .eyebrow{
+  margin-left:0!important;
+  margin-right:0!important;
+}
+#inicio .hero-copy h1,
+#inicio .hero-copy > p{
+  text-align:left!important;
+}
+#inicio .hero-copy .actions{
+  justify-content:flex-start!important;
+}
+#inicio .hero-copy .gamer-poem{
+  width:100%!important;
+  max-width:650px!important;
+  margin-left:0!important;
+  margin-right:0!important;
+  text-align:left!important;
+}
+#inicio .console-stage.video-stage{
+  width:100%!important;
+  min-width:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  margin:0!important;
+  text-align:center!important;
+}
+#inicio .console-stage.video-stage .gameplay-wrap{
+  width:min(320px,100%)!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+#inicio .console-stage.video-stage .console-note{
+  right:max(0px,calc(50% - 190px))!important;
+}
+@media(max-width:900px){
+  #inicio > .wrap.hero-grid{
+    grid-template-columns:minmax(0,1fr) minmax(260px,.8fr)!important;
+    gap:20px!important;
+  }
+  #inicio .hero-copy h1{
+    font-size:clamp(38px,5.2vw,62px)!important;
+  }
+}
+@media(max-width:760px){
+  #inicio > .wrap.hero-grid{
+    grid-template-columns:minmax(0,1fr)!important;
+    gap:22px!important;
+  }
+  #inicio > .wrap.hero-grid > .hero-copy{
+    width:100%!important;
+    max-width:720px!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+    text-align:left!important;
+  }
+  #inicio .hero-copy .gamer-poem{
+    width:100%!important;
+    max-width:650px!important;
+  }
+  #inicio .console-stage.video-stage .gameplay-wrap{
+    width:min(300px,100%)!important;
+  }
+}
+</style>
 </head>
 <body>
 <a class="visitor-counter" href="https://hits.sh/llabrapablo-prog.github.io/descargas-1-dsas3-gaming/" target="_blank" rel="noopener noreferrer" aria-label="Ver estadísticas de visitas de 1dsas3 Gaming" title="Contador de visitas: ver estadísticas">
