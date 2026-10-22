@@ -528,6 +528,53 @@ footer a{color:#A6FF00!important}
 #ports-test-game-modal .game-detail-content a.button{display:inline-flex;align-items:center;justify-content:center;margin:8px 8px 0 0;padding:10px 14px;border:1px solid #465044;border-radius:11px;background:#202529;color:#a6ff00;font:800 12px Inter,ui-sans-serif,system-ui,sans-serif;text-decoration:none}
 @media(max-width:650px){#ports-test-game-modal.game-detail-overlay{align-items:flex-start;padding:10px}#ports-test-game-modal .game-detail-panel{max-height:calc(100vh - 20px);border-radius:16px}#ports-test-game-modal .game-detail-content .game-gallery{grid-template-columns:1fr}#ports-test-game-modal .game-detail-content .game-gallery img{aspect-ratio:16/9}#ports-test-game-modal .game-detail-content .spec-grid{grid-template-columns:1fr}#ports-test-game-modal .game-detail-top{padding:13px 14px}}
 </style>
+<style id="recent-ports-card-parity-style">
+/* Las tarjetas de Últimos ports agregados usan el mismo patrón que Ports disponibles */
+#app > main.wrap > .recent-ports .recent-ports-grid{
+  display:grid!important;width:100%!important;max-width:1180px!important;
+  margin:20px auto 24px!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  justify-content:center!important;align-items:stretch!important;gap:20px!important;
+}
+.recent-ports .port-library-card{
+  display:flex;min-width:0;min-height:0;height:auto;flex-direction:column;overflow:hidden;
+  border:1px solid #343b34;border-radius:18px;background:linear-gradient(180deg,#171b1e,#25292d);
+  box-shadow:0 10px 26px #0003;transition:transform .18s,border-color .18s,box-shadow .18s;
+}
+.recent-ports .port-library-card:hover{transform:translateY(-4px);border-color:#a6ff00;box-shadow:0 14px 32px #0005}
+.recent-ports .port-library-thumb{
+  flex:0 0 190px;height:190px;min-height:190px;overflow:hidden;background:#101315;display:flex;align-items:stretch;
+}
+.recent-ports .port-library-thumb .game-cover{
+  position:relative;display:block;width:100%;height:100%;min-height:0;padding:0;border:0;border-radius:0;
+  background:#101315;box-shadow:none;overflow:hidden;
+}
+.recent-ports .port-library-thumb .game-cover img{
+  display:block;width:100%;height:100%;aspect-ratio:auto;object-fit:contain;margin:0;border:0;background:#101315;
+}
+.recent-ports .port-library-thumb .game-cover span{
+  position:absolute;left:0;right:0;bottom:0;padding:12px 8px;background:linear-gradient(transparent,#080a0bf2);
+  color:#a6ff00;font:900 12px Inter,ui-sans-serif,system-ui,sans-serif;text-align:center;
+}
+.recent-ports .port-library-body{display:flex;flex:1;flex-direction:column;gap:10px;padding:16px;text-align:center}
+.recent-ports .port-library-body h3{margin:0;color:#f2f5ee;font-size:17px;line-height:1.3;letter-spacing:-.04em}
+.recent-ports .port-library-body p{margin:0;color:#b1bed4;font-size:13px;line-height:1.65}
+.recent-ports .port-library-meta{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+.recent-ports .port-library-chip{
+  padding:6px 8px;border:1px solid #35402a;border-radius:999px;background:#171b1e;color:#a6ff00;font-size:10px;font-weight:800;
+}
+.recent-ports .port-rating{display:grid;gap:5px;margin-top:auto;padding-top:10px;border-top:1px solid #343b34}
+.recent-ports .port-rating-label{font-size:11px;color:#c3ccb9}
+.recent-ports .port-stars{display:flex;justify-content:center;gap:4px}
+.recent-ports .port-star{padding:0 2px;border:0;background:transparent;color:#626a5c;font-size:22px;line-height:1;cursor:pointer}
+.recent-ports .port-star.is-active{color:#a6ff00}
+.recent-ports .port-rating-summary{font-size:10px;color:#929d89}
+@media(max-width:1050px){#app > main.wrap > .recent-ports .recent-ports-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:760px){#app > main.wrap > .recent-ports .recent-ports-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:16px!important}}
+@media(max-width:500px){
+  #app > main.wrap > .recent-ports .recent-ports-grid{grid-template-columns:minmax(0,1fr)!important;gap:14px!important}
+  .recent-ports .port-library-thumb{flex-basis:190px;height:190px;min-height:190px}
+}
+</style>
 </head>
 <body>
 <a class="visitor-counter" href="https://hits.sh/llabrapablo-prog.github.io/descargas-1-dsas3-gaming/" target="_blank" rel="noopener noreferrer" aria-label="Ver estadísticas de visitas de 1dsas3 Gaming" title="Contador de visitas: ver estadísticas">
@@ -618,6 +665,9 @@ footer a{color:#A6FF00!important}
         <button class="game-cover recent-port" type="button" data-recent-detail="pokemon-anil-detail"><img src="https://whackahack.com/uploads/images/games/pokemon-anil-cover.png" alt="Pantalla de título de Pokémon Añil" loading="lazy" onerror="this.style.display='none';this.closest('button').classList.add('image-unavailable')"><span>⚡ POKÉMON AÑIL · VER FICHA ↗</span></button>
         <button class="game-cover recent-port" type="button" data-recent-detail="flint-son-of-crimson-detail"><img src="https://assets.nintendo.com/image/upload/c_fill%2Cw_1200/q_auto%3Abest/f_auto/dpr_2.0/store/software/switch/70010000040238/e2ee0ed32d0b10c26270db4e0a7d086cea5bbe0ce116feeebbd25bbfc2083cd5" alt="Arte de portada de Flynn, Son of Crimson" loading="lazy" onerror="this.style.display='none';this.closest('button').classList.add('image-unavailable')"><span>⚔️ FLYNN, SON OF CRIMSON · VER FICHA ↗</span></button>
         <button class="game-cover recent-port" type="button" data-recent-detail="monster-hunter-3-detail"><img src="https://myshopville.com/cdn/shop/products/monster_hunter_tri_nintendo_wii_video_game_case_cover.jpg" alt="Carátula de Monster Hunter Tri para Wii" loading="lazy" onerror="this.style.display='none';this.closest('button').classList.add('image-unavailable')"><span>🐉 MONSTER HUNTER 3 TRI · VER FICHA ↗</span></button>
+          </div>
+    </section>
+
     <section class="game-detail" id="nfs-underground-2-detail" aria-labelledby="nfs-underground-2-title"><h2 id="nfs-underground-2-title">Need for Speed Underground 2</h2><p>Juego de carreras callejeras centrado en la conducción, la personalización de vehículos y las carreras nocturnas.</p><h3>🖼️ Capturas del gameplay</h3><div class="game-gallery"><figure><img src="https://images.cgames.de/images/gamestar/226/nfs-underground-2-pc_6233590.jpg" alt="Carrera nocturna en Bayview en Need for Speed Underground 2" loading="lazy" onerror="this.classList.add('image-unavailable')"><figcaption><a href="https://www.gamestar.de/" target="_blank" rel="noopener noreferrer">Carrera nocturna en Bayview</a></figcaption></figure><figure><img src="https://media.rawg.io/media/screenshots/bf3/bf320a2bfd80a5023abe430e6bf47cf0.jpg" alt="Carrera urbana con cambio perfecto en Need for Speed Underground 2" loading="lazy" onerror="this.classList.add('image-unavailable')"><figcaption><a href="https://rawg.io/games/need-for-speed-underground-2-2" target="_blank" rel="noopener noreferrer">Carrera urbana con cambio perfecto</a></figcaption></figure><figure><img src="https://images9.gry-online.pl/galeria/forum/8/620018463_492.jpg" alt="Circuito iluminado de noche en Need for Speed Underground 2" loading="lazy" onerror="this.classList.add('image-unavailable')"><figcaption><a href="https://www.gry-online.pl/" target="_blank" rel="noopener noreferrer">Circuito iluminado de noche</a></figcaption></figure></div><div class="spec-grid"><div class="spec"><strong>GÉNERO</strong>Conducción · Carreras</div><div class="spec"><strong>PLATAFORMA ORIGINAL</strong>PC y consolas de su generación</div><div class="spec"><strong>PORT / ESTADO</strong>Información por confirmar</div><div class="spec"><strong>COMPATIBILIDAD R36S</strong>Pendiente de verificar</div></div><p>No se confirma aquí que exista un port funcional para tu modelo. Consultá los detalles y requisitos en Discord.</p><a class="button download" href="https://discord.gg/JUhuwp9xa" target="_blank" rel="noopener noreferrer">💬 BUSCAR INFORMACIÓN EN DISCORD</a></section>
     <section class="game-detail" id="new-super-mario-bros-2-detail" aria-labelledby="new-super-mario-bros-2-title"><h2 id="new-super-mario-bros-2-title">New Super Mario Bros. 2</h2><p>Aventura de plataformas protagonizada por Mario, con énfasis en recolectar monedas y superar niveles.</p><h3>🖼️ Capturas del gameplay</h3><div class="game-gallery"><figure><img src="https://www.gamezone.de/screenshots/1280x1024/2012/07/3_N3DS_New_Super_Mario_Bros_2_Screenshots_Coin_Rush_03.jpg" alt="Modo Coin Rush en New Super Mario Bros. 2" loading="lazy" onerror="this.classList.add('image-unavailable')"><figcaption><a href="https://www.gamezone.de/" target="_blank" rel="noopener noreferrer">Modo Coin Rush</a></figcaption></figure><figure><img src="https://www.videogameszone.de/screenshots/970x546/2012/07/7_N3DS_New_Super_Mario_Bros_2_Screenshots_Courses_02.jpg" alt="Bloques y monedas en New Super Mario Bros. 2" loading="lazy" onerror="this.classList.add('image-unavailable')"><figcaption><a href="https://www.videogameszone.de/" target="_blank" rel="noopener noreferrer">Bloques y monedas</a></figcaption></figure><figure><img src="https://cdn.mobygames.com/screenshots/16691410-new-super-mario-bros-2-nintendo-3ds-raccoon-mario-in-world-3-1.png" alt="Mario mapache en el mundo 3-1 en New Super Mario Bros. 2" loading="lazy" onerror="this.classList.add('image-unavailable')"><figcaption><a href="https://www.mobygames.com/game/59159/new-super-mario-bros-2/screenshots/" target="_blank" rel="noopener noreferrer">Mario mapache en el mundo 3-1</a></figcaption></figure></div><div class="spec-grid"><div class="spec"><strong>GÉNERO</strong>Plataformas</div><div class="spec"><strong>PLATAFORMA ORIGINAL</strong>Nintendo 3DS</div><div class="spec"><strong>PORT / ESTADO</strong>Información por confirmar</div><div class="spec"><strong>COMPATIBILIDAD R36S</strong>Pendiente de verificar</div></div><p>La presencia en esta sección no garantiza que funcione en la R36S. Consultá requisitos y estado del proyecto en Discord.</p><a class="button download" href="https://discord.gg/JUhuwp9xa" target="_blank" rel="noopener noreferrer">💬 BUSCAR INFORMACIÓN EN DISCORD</a></section>
     <section class="game-detail" id="monster-hunter-3-detail" aria-labelledby="monster-hunter-3-title"><h2 id="monster-hunter-3-title">Monster Hunter 3 Tri</h2><p>Juego de acción y rol enfocado en la cacería de monstruos, la recolección de materiales y la creación de equipo.</p><h3>🖼️ Capturas del gameplay</h3><div class="game-gallery"><figure><img src="https://cdn.mobygames.com/promos/3478138-monster-hunter-tri-screenshot.jpg" alt="Combate contra un monstruo eléctrico en Monster Hunter 3 Tri" loading="lazy" onerror="this.classList.add('image-unavailable')"><figcaption><a href="https://ocremix.org/game/95541/monster-hunter-tri-wii" target="_blank" rel="noopener noreferrer">Combate contra un monstruo eléctrico</a></figcaption></figure><figure><img src="https://i.3djuegos.com/juegos/2573/monster_hunter_3/fotos/set/monster_hunter_3-1184917.webp" alt="Cacería submarina en Monster Hunter 3 Tri" loading="lazy" onerror="this.classList.add('image-unavailable')"><figcaption><a href="https://www.nintendolife.com/games/wii/monster_hunter_3_tri/screenshots" target="_blank" rel="noopener noreferrer">Cacería submarina</a></figcaption></figure><figure><img src="https://i.3djuegos.com/juegos/2573/monster_hunter_3/fotos/set/monster_hunter_3-1184919.webp" alt="Combate en una caverna volcánica en Monster Hunter 3 Tri" loading="lazy" onerror="this.classList.add('image-unavailable')"><figcaption><a href="https://www.gamesradar.com/monster-hunter-tri-wiis-first-superb-online-experience/" target="_blank" rel="noopener noreferrer">Combate en una caverna volcánica</a></figcaption></figure></div><div class="spec-grid"><div class="spec"><strong>GÉNERO</strong>Acción · Rol</div><div class="spec"><strong>PLATAFORMA ORIGINAL</strong>Wii; existe también Monster Hunter 3 Ultimate en otras plataformas</div><div class="spec"><strong>PORT / ESTADO</strong>Versión exacta por confirmar</div><div class="spec"><strong>COMPATIBILIDAD R36S</strong>Pendiente de verificar</div></div><p>Consultá qué versión y archivos se necesitan antes de intentar instalarlo.</p><a class="button download" href="https://discord.gg/JUhuwp9xa" target="_blank" rel="noopener noreferrer">💬 BUSCAR INFORMACIÓN EN DISCORD</a></section>
@@ -1063,6 +1113,105 @@ footer a{color:#A6FF00!important}
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape' && overlay.classList.contains('open')) closeModal();
   });
+})();
+</script>
+<script id="recent-ports-card-parity-functionality">
+(() => {
+  const section = document.querySelector('.recent-ports');
+  const grid = section?.querySelector('.recent-ports-grid');
+  if (!section || !grid || grid.dataset.cardParityReady === 'true') return;
+  grid.dataset.cardParityReady = 'true';
+
+  const normalize = value => String(value || '').normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+  const ratingKey = 'udg-port-ratings-v1';
+  let ratings = {};
+  try { ratings = JSON.parse(localStorage.getItem(ratingKey) || '{}') || {}; } catch (_) {}
+
+  function makeRating(key) {
+    const wrap = document.createElement('div');
+    wrap.className = 'port-rating';
+    const label = document.createElement('span');
+    label.className = 'port-rating-label';
+    label.textContent = 'Calificá este port';
+    const stars = document.createElement('div');
+    stars.className = 'port-stars';
+    stars.setAttribute('role', 'group');
+    stars.setAttribute('aria-label', 'Calificar port');
+    const current = Number(ratings[key] || 0);
+    for (let n = 1; n <= 5; n++) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'port-star' + (n <= current ? ' is-active' : '');
+      button.textContent = '★';
+      button.setAttribute('aria-label', n + ' de 5 estrellas');
+      button.setAttribute('aria-pressed', String(current === n));
+      button.addEventListener('click', event => {
+        event.preventDefault();
+        event.stopPropagation();
+        ratings[key] = n;
+        try { localStorage.setItem(ratingKey, JSON.stringify(ratings)); } catch (_) {}
+        const replacement = makeRating(key);
+        wrap.replaceWith(replacement);
+      });
+      stars.appendChild(button);
+    }
+    const summary = document.createElement('span');
+    summary.className = 'port-rating-summary';
+    summary.textContent = current
+      ? 'Tu voto: ' + current + '/5 · guardado en este navegador'
+      : 'Sin voto en este navegador';
+    wrap.append(label, stars, summary);
+    return wrap;
+  }
+
+  [...grid.querySelectorAll('.game-cover[data-recent-detail]')].forEach(button => {
+    const detailId = button.dataset.recentDetail;
+    const detail = document.getElementById(detailId);
+    const title = detail?.querySelector('h2,h3')?.textContent.trim()
+      || (button.querySelector('span')?.textContent || 'Port').replace(/\s*[·•]\s*VER FICHA.*$/i, '').trim();
+    const description = detail?.querySelector(':scope > p')?.textContent.trim()
+      || 'Abrí la ficha para consultar la información, capturas y requisitos disponibles.';
+    let genre = 'Por confirmar';
+    const genreSpec = [...(detail?.querySelectorAll('.spec') || [])]
+      .find(spec => normalize(spec.querySelector('strong')?.textContent).includes('genero'));
+    if (genreSpec) {
+      const label = genreSpec.querySelector('strong')?.textContent || '';
+      genre = genreSpec.textContent.replace(label, '').trim() || genre;
+    }
+
+    const card = document.createElement('article');
+    card.className = 'port-library-card';
+    card.dataset.portName = normalize(title);
+    card.dataset.genre = genre;
+    const thumb = document.createElement('div');
+    thumb.className = 'port-library-thumb';
+    button.className = 'game-cover recent-port';
+    button.setAttribute('aria-label', 'Ver ficha de ' + title);
+    thumb.appendChild(button);
+
+    const body = document.createElement('div');
+    body.className = 'port-library-body';
+    const heading = document.createElement('h3');
+    heading.textContent = title;
+    const descriptionNode = document.createElement('p');
+    descriptionNode.textContent = description;
+    const chips = document.createElement('div');
+    chips.className = 'port-library-meta';
+    const genreChip = document.createElement('span');
+    genreChip.className = 'port-library-chip';
+    genreChip.textContent = 'Género: ' + genre;
+    const openChip = document.createElement('span');
+    openChip.className = 'port-library-chip';
+    openChip.textContent = 'Tocá la carátula para ver la ficha';
+    chips.append(genreChip, openChip);
+    body.append(heading, descriptionNode, chips, makeRating(detailId));
+    card.append(thumb, body);
+    grid.appendChild(card);
+  });
+
+  grid.classList.remove('library-grid');
+  grid.classList.add('ports-library-list');
 })();
 </script>
 </body>
