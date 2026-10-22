@@ -1051,6 +1051,117 @@ footer { border-top:1px solid #343B34; padding:26px 0 35px; color:#A7B0A0; font-
 }
 </style>
 
+
+<style id="match-reference-card-shape">
+/* Unificar el formato de todas las fichas con la referencia: cuadradas, imagen superior grande y cuerpo compacto */
+#ports-library > .library-grid,
+.official-library-wrap .recent-ports-grid {
+  display:grid !important;
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  gap:14px !important;
+  max-width:900px !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+#ports-library > .library-grid > .official-port-card,
+.official-library-wrap .recent-ports-grid > .game-cover {
+  box-sizing:border-box !important;
+  width:100% !important;
+  min-width:0 !important;
+  height:auto !important;
+  aspect-ratio:1 / 1 !important;
+  display:flex !important;
+  flex-direction:column !important;
+  overflow:hidden !important;
+  padding:0 !important;
+  border:1px solid #343B34 !important;
+  border-radius:15px !important;
+  background:linear-gradient(180deg,#171B1E,#25292D) !important;
+  color:#F2F5EE !important;
+}
+#ports-library > .library-grid > .official-port-card > .game-body {
+  display:flex !important;
+  flex-direction:column !important;
+  flex:1 1 auto !important;
+  min-width:0 !important;
+  min-height:0 !important;
+  padding:0 14px 14px !important;
+  gap:7px !important;
+  overflow:hidden !important;
+}
+#ports-library > .library-grid > .official-port-card > .game-body > .game-cover {
+  order:-1 !important;
+  display:block !important;
+  flex:0 0 62% !important;
+  width:calc(100% + 28px) !important;
+  max-width:none !important;
+  height:62% !important;
+  aspect-ratio:auto !important;
+  align-self:center !important;
+  margin:0 -14px 4px !important;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:#111315 !important;
+  box-shadow:none !important;
+  overflow:hidden !important;
+}
+#ports-library > .library-grid > .official-port-card > .game-body > .game-cover img,
+.official-library-wrap .recent-ports-grid > .game-cover img {
+  display:block !important;
+  flex:0 0 62% !important;
+  width:100% !important;
+  height:62% !important;
+  min-height:0 !important;
+  aspect-ratio:auto !important;
+  object-fit:cover !important;
+  object-position:center !important;
+}
+#ports-library > .library-grid > .official-port-card > .game-body > .game-cover span {
+  display:none !important;
+}
+#ports-library > .library-grid > .official-port-card > .game-body > h3 {
+  order:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+  font-size:15px !important;
+  line-height:1.25 !important;
+  text-align:left !important;
+  overflow-wrap:anywhere !important;
+}
+.official-library-wrap .recent-ports-grid > .game-cover span {
+  display:block !important;
+  flex:1 1 auto !important;
+  min-height:0 !important;
+  padding:10px 12px !important;
+  overflow:hidden !important;
+  color:#F2F5EE !important;
+  font-size:14px !important;
+  line-height:1.25 !important;
+  text-align:left !important;
+}
+@media(max-width:760px) {
+  #ports-library > .library-grid,
+  .official-library-wrap .recent-ports-grid {
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:10px !important;
+    max-width:560px !important;
+  }
+  #ports-library > .library-grid > .official-port-card > .game-body {padding:0 10px 10px !important;gap:5px !important}
+  #ports-library > .library-grid > .official-port-card > .game-body > .game-cover {width:calc(100% + 20px) !important;margin:0 -10px 3px !important}
+  #ports-library > .library-grid > .official-port-card > .game-body > h3 {font-size:13px !important}
+  .official-library-wrap .recent-ports-grid > .game-cover span {padding:8px 9px !important;font-size:12px !important}
+}
+@media(max-width:500px) {
+  #ports-library > .library-grid,
+  .official-library-wrap .recent-ports-grid {gap:8px !important}
+  #ports-library > .library-grid > .official-port-card > .game-body {padding:0 8px 8px !important}
+  #ports-library > .library-grid > .official-port-card > .game-body > .game-cover {width:calc(100% + 16px) !important;margin:0 -8px 2px !important}
+  #ports-library > .library-grid > .official-port-card > .game-body > h3 {font-size:12px !important}
+  .official-library-wrap .recent-ports-grid > .game-cover span {padding:7px 8px !important;font-size:11px !important}
+}
+</style>
+
 </head>
 <body>
 <button class="ambient-toggle" id="ambient-toggle" type="button" aria-pressed="false" aria-label="Reproducir Nuclear Launch Detected">▶ NUCLEAR LAUNCH DETECTED</button>
