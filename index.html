@@ -2005,7 +2005,7 @@ footer a{color:#A6FF00!important}
 </style>
 
 
-<style id="sticky-shorts-player-while-scrolling">
+<style id="sticky-shorts-player-while-scrolling-style">
 /* El reproductor de Shorts pasa a una ventana fija cuando salís de la portada. */
 #shorts-floating-window{
   display:none;
@@ -2117,7 +2117,7 @@ footer a{color:#A6FF00!important}
   }
 
   function dockPlayer() {
-    if (!floatingMode) return;
+    if (!floatingMode || !placeholder.isConnected) return;
     homeParent.insertBefore(stage, placeholder);
     placeholder.remove();
     floatingMode = false;
@@ -2126,25 +2126,26 @@ footer a{color:#A6FF00!important}
 
   function syncScrollState() {
     scrollQueued = false;
-    if (!placeholder.isConnected) return;
-    const rect = placeholder.getBoundingClientRect();
-    if (!floatingMode && rect.bottom <= 0) floatPlayer();
-    else if (floatingMode && rect.top >= 0) dockPlayer();
+    if (!floatingMode) {
+      // Cuando la ventana original sale completamente de pantalla, reservar su espacio y fijarla.
+      const rect = stage.getBoundingClientRect();
+      if (rect.bottom <= 0) {
+        placeholder.style.height = Math.max(1, rect.height) + 'px';
+        placeholder.style.minHeight = '0';
+        placeholder.style.width = '100%';
+        homeParent.insertBefore(placeholder, stage);
+        floatPlayer();
+      }
+      return;
+    }
+    // Al volver hacia arriba, reinsertar el mismo reproductor en su posición original.
+    if (placeholder.isConnected && placeholder.getBoundingClientRect().top >= 0) dockPlayer();
   }
 
   function onScrollOrResize() {
     if (scrollQueued) return;
     scrollQueued = true;
     window.requestAnimationFrame(syncScrollState);
-  }
-
-  // La casilla invisible conserva el espacio del reproductor original y evita saltos en la página.
-  function insertPlaceholderAndFloat() {
-    const rect = stage.getBoundingClientRect();
-    placeholder.style.height = Math.max(1, rect.height) + 'px';
-    placeholder.style.minHeight = '0';
-    homeParent.insertBefore(placeholder, stage);
-    floatPlayer();
   }
 
   toggle.addEventListener('click', () => {
@@ -2154,13 +2155,10 @@ footer a{color:#A6FF00!important}
     toggle.title = collapsed ? 'Mostrar reproductor' : 'Minimizar reproductor';
   });
 
-  // A scroll check made once the placeholder is laid out avoids jumping on initial load.
   window.addEventListener('scroll', onScrollOrResize, {passive:true});
   window.addEventListener('resize', onScrollOrResize, {passive:true});
-  if (window.scrollY > 0) {
-    insertPlaceholderAndFloat();
-    onScrollOrResize();
-  }
+  // Respeta la posición de scroll restaurada por el navegador al abrir la página.
+  if (window.scrollY > 0) onScrollOrResize();
 })();
 </script>
 
