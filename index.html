@@ -1144,7 +1144,7 @@ footer a{color:#A6FF00!important}
             <p>Después llegaron las consolas,<br>los juegos de computadora,<br>las noches que se hicieron cortas<br>y el famoso: <em>«¡Una partida más y me voy ahora!»</em></p>
           </aside>
         </div>
-        <div class="console-stage video-stage" aria-label="Video de gameplay del canal 1DSAS3 Gaming"><div class="gameplay-wrap"><div class="gameplay-screen"><iframe id="gameplay-rotator" src="https://www.youtube-nocookie.com/embed/videoseries?list=PLJrpfhAJj7HA&amp;autoplay=1&amp;mute=1&amp;controls=1&amp;playsinline=1&amp;rel=0&amp;enablejsapi=1" title="Shorts de gameplay de 1DSAS3 Gaming en rotación" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="eager"></iframe><span class="screen-caption">GAMEPLAY · UN DESASTRE GAMING</span></div><div class="short-navigation" aria-label="Controles de Shorts"><button class="short-nav-button previous" id="short-previous" type="button" aria-label="Video anterior" title="Video anterior">‹</button><button class="short-nav-button next" id="short-next" type="button" aria-label="Video siguiente" title="Video siguiente">›</button></div><div class="gameplay-actions"><a id="short-like-link" href="https://youtube.com/playlist?list=PLJrpfhAJj7HA" target="_blank" rel="noopener noreferrer" class="gameplay-action like-action">👍 Me gusta</a><a href="https://youtube.com/playlist?list=PLJrpfhAJj7HA&amp;si=kbnzOV4P9r0QlAJm" target="_blank" rel="noopener noreferrer" class="gameplay-action shorts-playlist-action">📃 Lista de Shorts</a><a href="https://www.youtube.com/channel/UC3df3xTqYwnomS9FwvD1lwA?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="gameplay-action subscribe-action">🔔 Suscribirse</a></div><p class="gameplay-hint">Para dar Me gusta, abrí el Short en YouTube. El volumen se controla desde el reproductor.</p></div><div class="console-note">¡A jugar! 🎮</div></div>
+        <div class="console-stage video-stage" aria-label="Video de gameplay del canal 1DSAS3 Gaming"><div class="gameplay-wrap"><div class="gameplay-screen"><iframe id="gameplay-rotator" src="about:blank" title="Shorts de gameplay de 1DSAS3 Gaming en rotación" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="eager"></iframe><span class="screen-caption">GAMEPLAY · UN DESASTRE GAMING</span></div><div class="short-navigation" aria-label="Controles de Shorts"><button class="short-nav-button previous" id="short-previous" type="button" aria-label="Video anterior" title="Video anterior">‹</button><button class="short-nav-button next" id="short-next" type="button" aria-label="Video siguiente" title="Video siguiente">›</button></div><div class="gameplay-actions"><a id="short-like-link" href="#" target="_blank" rel="noopener noreferrer" class="gameplay-action like-action">👍 Me gusta</a><a href="#" target="_blank" rel="noopener noreferrer" class="gameplay-action shorts-playlist-action">📃 Lista de Shorts</a><a href="https://www.youtube.com/channel/UC3df3xTqYwnomS9FwvD1lwA?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="gameplay-action subscribe-action">🔔 Suscribirse</a></div><p class="gameplay-hint">Para dar Me gusta, abrí el Short en YouTube. El volumen se controla desde el reproductor.</p></div><div class="console-note">¡A jugar! 🎮</div></div>
       </div>
     </section>
 
@@ -1418,55 +1418,7 @@ footer a{color:#A6FF00!important}
 </script>
 
 <script id="official-gameplay-rotator">
-(() => {
-  const screen = document.getElementById('gameplay-rotator');
-  if (!screen) return;
-  const playlistId = 'PLJrpfhAJj7HA';
-  let player = null, apiReady = false, pendingDirection = 0;
-  const updateLinks = () => {
-    if (!player || typeof player.getVideoUrl !== 'function') return;
-    const url = player.getVideoUrl() || '';
-    const match = url.match(/[?&]v=([^&]+)/);
-    if (match) {
-      const likeLink = document.getElementById('short-like-link');
-      if (likeLink) likeLink.href = 'https://www.youtube.com/shorts/' + match[1];
-      screen.title = 'Lista de reproducción de Un Desastre Gaming';
-    }
-  };
-  const moveVideo = direction => {
-    if (!player) { pendingDirection = direction; return; }
-    if (direction < 0 && typeof player.previousVideo === 'function') player.previousVideo();
-    if (direction > 0 && typeof player.nextVideo === 'function') player.nextVideo();
-    window.setTimeout(updateLinks, 700);
-  };
-  document.addEventListener('click', event => {
-    const button = event.target.closest('#short-previous, #short-next');
-    if (!button) return;
-    event.preventDefault();
-    event.stopPropagation();
-    moveVideo(button.id === 'short-previous' ? -1 : 1);
-  }, true);
-  const initPlayer = () => {
-    if (apiReady || !window.YT || !window.YT.Player) return;
-    apiReady = true;
-    player = new YT.Player('gameplay-rotator', {events:{
-      onReady:event=>{
-        player=event.target;
-        if (typeof player.mute === 'function') player.mute();
-        if (typeof player.loadPlaylist === 'function') player.loadPlaylist({listType:'playlist', list:playlistId, index:0});
-        if (typeof player.loadPlaylist === 'function') {
-          player.loadPlaylist({listType:'playlist', list:playlistId, index:0});
-        }
-        window.setTimeout(updateLinks, 900);
-        if (pendingDirection) { const direction=pendingDirection; pendingDirection=0; moveVideo(direction); }
-      },
-      onStateChange:event=>{ if (event.data===YT.PlayerState.PLAYING) updateLinks(); }
-    }});
-  };
-  window.onYouTubeIframeAPIReady = initPlayer;
-  if(window.YT&&window.YT.Player)initPlayer();
-  else{const apiScript=document.createElement('script');apiScript.src='https://www.youtube.com/iframe_api';apiScript.async=true;document.head.appendChild(apiScript);}
-})();
+// Reproductor vacío: se cargarán videos nuevos desde cero.
 </script>
 
 
@@ -2131,7 +2083,7 @@ footer a{color:#A6FF00!important}
   const floating = document.createElement('aside');
   floating.id = 'shorts-floating-window';
   floating.setAttribute('aria-label', 'Reproductor de Shorts siempre visible');
-  floating.innerHTML = '<div class="shorts-floating-head"><span class="shorts-floating-label">▶ SHORTS <span class="shorts-floating-head-text">· 1DSAS3 GAMING</span></span><a class="shorts-playlist-link" href="https://youtube.com/playlist?list=PLJrpfhAJj7HA&amp;si=kbnzOV4P9r0QlAJm" target="_blank" rel="noopener noreferrer" title="Abrir la lista de reproducción de Shorts">☷ Lista</a><span class="shorts-floating-restore">▶ Shorts sigue acá</span><button class="shorts-floating-toggle" type="button" aria-label="Minimizar reproductor" title="Minimizar reproductor">−</button></div><div class="shorts-floating-stage"></div>';
+  floating.innerHTML = '<div class="shorts-floating-head"><span class="shorts-floating-label">▶ SHORTS <span class="shorts-floating-head-text">· 1DSAS3 GAMING</span></span><a class="shorts-playlist-link" href="#" target="_blank" rel="noopener noreferrer" title="Abrir la lista de reproducción de Shorts">☷ Lista</a><span class="shorts-floating-restore">▶ Shorts sigue acá</span><button class="shorts-floating-toggle" type="button" aria-label="Minimizar reproductor" title="Minimizar reproductor">−</button></div><div class="shorts-floating-stage"></div>';
   const stageHost = floating.querySelector('.shorts-floating-stage');
   const toggle = floating.querySelector('.shorts-floating-toggle');
   document.body.appendChild(floating);
@@ -2433,7 +2385,7 @@ footer a{color:#A6FF00!important}
             <p>Después llegaron las consolas,<br>los juegos de computadora,<br>las noches que se hicieron cortas<br>y el famoso: <em>«¡Una partida más y me voy ahora!»</em></p>
           </aside>
         </div>
-        <div class="console-stage video-stage" aria-label="Video de gameplay del canal 1DSAS3 Gaming"><div class="gameplay-wrap"><div class="gameplay-screen"><iframe id="gameplay-rotator" src="https://www.youtube-nocookie.com/embed/videoseries?list=PLJrpfhAJj7HA&amp;autoplay=1&amp;mute=1&amp;controls=1&amp;playsinline=1&amp;rel=0&amp;enablejsapi=1" title="Shorts de gameplay de 1DSAS3 Gaming en rotación" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="eager"></iframe><span class="screen-caption">GAMEPLAY · UN DESASTRE GAMING</span></div><div class="short-navigation" aria-label="Controles de Shorts"><button class="short-nav-button previous" id="short-previous" type="button" aria-label="Video anterior" title="Video anterior">‹</button><button class="short-nav-button next" id="short-next" type="button" aria-label="Video siguiente" title="Video siguiente">›</button></div><div class="gameplay-actions"><a id="short-like-link" href="https://youtube.com/playlist?list=PLJrpfhAJj7HA" target="_blank" rel="noopener noreferrer" class="gameplay-action like-action">👍 Me gusta</a><a href="https://youtube.com/playlist?list=PLJrpfhAJj7HA&amp;si=kbnzOV4P9r0QlAJm" target="_blank" rel="noopener noreferrer" class="gameplay-action shorts-playlist-action">📃 Lista de Shorts</a><a href="https://www.youtube.com/channel/UC3df3xTqYwnomS9FwvD1lwA?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="gameplay-action subscribe-action">🔔 Suscribirse</a></div><p class="gameplay-hint">Para dar Me gusta, abrí el Short en YouTube. El volumen se controla desde el reproductor.</p></div><div class="console-note">¡A jugar! 🎮</div></div>
+        <div class="console-stage video-stage" aria-label="Video de gameplay del canal 1DSAS3 Gaming"><div class="gameplay-wrap"><div class="gameplay-screen"><iframe id="gameplay-rotator" src="about:blank" title="Shorts de gameplay de 1DSAS3 Gaming en rotación" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="eager"></iframe><span class="screen-caption">GAMEPLAY · UN DESASTRE GAMING</span></div><div class="short-navigation" aria-label="Controles de Shorts"><button class="short-nav-button previous" id="short-previous" type="button" aria-label="Video anterior" title="Video anterior">‹</button><button class="short-nav-button next" id="short-next" type="button" aria-label="Video siguiente" title="Video siguiente">›</button></div><div class="gameplay-actions"><a id="short-like-link" href="#" target="_blank" rel="noopener noreferrer" class="gameplay-action like-action">👍 Me gusta</a><a href="#" target="_blank" rel="noopener noreferrer" class="gameplay-action shorts-playlist-action">📃 Lista de Shorts</a><a href="https://www.youtube.com/channel/UC3df3xTqYwnomS9FwvD1lwA?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="gameplay-action subscribe-action">🔔 Suscribirse</a></div><p class="gameplay-hint">Para dar Me gusta, abrí el Short en YouTube. El volumen se controla desde el reproductor.</p></div><div class="console-note">¡A jugar! 🎮</div></div>
       </div>
     </section>
 
@@ -2707,62 +2659,7 @@ footer a{color:#A6FF00!important}
 </script>
 
 <script id="official-gameplay-rotator">
-(() => {
-  const screen = document.getElementById('gameplay-rotator');
-  if (!screen) return;
-  const playlistId = 'PLJrpfhAJj7HA';
-  let player = null, apiReady = false, pendingDirection = 0;
-  const updateLinks = () => {
-    if (!player || typeof player.getVideoUrl !== 'function') return;
-    const url = player.getVideoUrl() || '';
-    const match = url.match(/[?&]v=([^&]+)/);
-    if (match) {
-      const likeLink = document.getElementById('short-like-link');
-      if (likeLink) likeLink.href = 'https://www.youtube.com/watch?v=' + match[1];
-      screen.title = 'Video de la lista de reproducción de Un Desastre Gaming';
-    }
-  };
-  const moveVideo = direction => {
-    if (!player) { pendingDirection = direction; return; }
-    if (direction < 0 && typeof player.previousVideo === 'function') player.previousVideo();
-    if (direction > 0 && typeof player.nextVideo === 'function') player.nextVideo();
-    window.setTimeout(updateLinks, 700);
-  };
-  document.addEventListener('click', event => {
-    const button = event.target.closest('#short-previous, #short-next');
-    if (!button) return;
-    event.preventDefault();
-    event.stopPropagation();
-    moveVideo(button.id === 'short-previous' ? -1 : 1);
-  }, true);
-  window.__unDesastreShowShort = index => {
-    if (!player) return;
-    const playlist = typeof player.getPlaylist === 'function' ? player.getPlaylist() : null;
-    if (playlist && playlist.length) {
-      const target = (index % playlist.length + playlist.length) % playlist.length;
-      player.playVideoAt(target);
-    }
-  };
-  window.__unDesastreShortPlayer = () => player;
-  const initPlayer = () => {
-    if (apiReady || !window.YT || !window.YT.Player) return;
-    apiReady = true;
-    player = new YT.Player('gameplay-rotator', {events:{
-      onReady:event=>{
-        player=event.target;
-        if (typeof player.mute === 'function') player.mute();
-        if (typeof player.loadPlaylist === 'function') player.loadPlaylist({listType:'playlist', list:playlistId, index:0});
-        if (typeof player.playVideo === 'function') player.playVideo();
-        updateLinks();
-        if (pendingDirection) { const direction=pendingDirection; pendingDirection=0; moveVideo(direction); }
-      },
-      onStateChange:event=>{ if (event.data===YT.PlayerState.PLAYING) updateLinks(); }
-    }});
-  };
-  window.onYouTubeIframeAPIReady = initPlayer;
-  if(window.YT&&window.YT.Player)initPlayer();
-  else{const apiScript=document.createElement('script');apiScript.src='https://www.youtube.com/iframe_api';apiScript.async=true;document.head.appendChild(apiScript);}
-})();
+// Reproductor vacío: se cargarán videos nuevos desde cero.
 </script>
 
 
@@ -3427,7 +3324,7 @@ footer a{color:#A6FF00!important}
   const floating = document.createElement('aside');
   floating.id = 'shorts-floating-window';
   floating.setAttribute('aria-label', 'Reproductor de Shorts siempre visible');
-  floating.innerHTML = '<div class="shorts-floating-head"><span class="shorts-floating-label">▶ SHORTS <span class="shorts-floating-head-text">· 1DSAS3 GAMING</span></span><a class="shorts-playlist-link" href="https://youtube.com/playlist?list=PLJrpfhAJj7HA&amp;si=kbnzOV4P9r0QlAJm" target="_blank" rel="noopener noreferrer" title="Abrir la lista de reproducción de Shorts">☷ Lista</a><span class="shorts-floating-restore">▶ Shorts sigue acá</span><button class="shorts-floating-toggle" type="button" aria-label="Minimizar reproductor" title="Minimizar reproductor">−</button></div><div class="shorts-floating-stage"></div>';
+  floating.innerHTML = '<div class="shorts-floating-head"><span class="shorts-floating-label">▶ SHORTS <span class="shorts-floating-head-text">· 1DSAS3 GAMING</span></span><a class="shorts-playlist-link" href="#" target="_blank" rel="noopener noreferrer" title="Abrir la lista de reproducción de Shorts">☷ Lista</a><span class="shorts-floating-restore">▶ Shorts sigue acá</span><button class="shorts-floating-toggle" type="button" aria-label="Minimizar reproductor" title="Minimizar reproductor">−</button></div><div class="shorts-floating-stage"></div>';
   const stageHost = floating.querySelector('.shorts-floating-stage');
   const toggle = floating.querySelector('.shorts-floating-toggle');
   document.body.appendChild(floating);
