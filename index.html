@@ -282,7 +282,7 @@ body::before{background:linear-gradient(180deg,#111315 0%,#111315 24%,#141719 45
 .gameplay-wrap{width:min(320px,100%)!important;position:relative!important;z-index:1!important}
 .gameplay-screen{position:relative!important;width:100%!important;aspect-ratio:9/16!important;padding:10px!important;border-radius:28px!important;background:linear-gradient(145deg,#25292D,#35402A)!important;border:1px solid #343B34!important;box-shadow:0 28px 60px #A6FF0030!important;overflow:hidden!important}
 .gameplay-screen iframe{display:block!important;width:100%!important;height:100%!important;border:0!important;border-radius:19px!important;background:#171426!important}
-.short-nav-button{position:absolute!important;top:50%!important;transform:translateY(-50%)!important;z-index:3!important;width:42px!important;height:54px!important;border:1px solid #A6FF00!important;border-radius:12px!important;background:#111315d9!important;color:#A6FF00!important;font-size:32px!important;line-height:1!important;cursor:pointer!important;opacity:0!important;transition:opacity .18s,background .18s!important}
+.short-nav-button{pointer-events:auto!important;position:absolute!important;top:50%!important;transform:translateY(-50%)!important;z-index:20!important;width:42px!important;height:54px!important;border:1px solid #A6FF00!important;border-radius:12px!important;background:#111315d9!important;color:#A6FF00!important;font-size:32px!important;line-height:1!important;cursor:pointer!important;opacity:0!important;transition:opacity .18s,background .18s!important}
 .gameplay-screen:hover .short-nav-button,.short-nav-button:focus-visible{opacity:1!important}
 .short-nav-button.previous{left:8px!important}.short-nav-button.next{right:8px!important}
 .gameplay-actions{display:flex!important;gap:10px!important;justify-content:center!important;margin-top:14px!important}
@@ -1434,9 +1434,18 @@ footer a{color:#A6FF00!important}
     updateLinks();
     if (player) player.loadVideoById({videoId:shorts[current],startSeconds:0});
   };
-  const previous = document.getElementById('short-previous'), next = document.getElementById('short-next');
-  if (previous) previous.addEventListener('click',()=>showShort(current-1));
-  if (next) next.addEventListener('click',()=>showShort(current+1));
+  // Delegación en document: los botones se mueven junto con el reproductor al abrir la ventana flotante.
+  // Así siguen funcionando tanto en la ubicación original como en la pantallita fija.
+  document.addEventListener('click', event => {
+    const button = event.target.closest('#short-previous, #short-next');
+    if (!button) return;
+    event.preventDefault();
+    event.stopPropagation();
+    if (button.id === 'short-previous') showShort(current - 1);
+    else showShort(current + 1);
+  }, true);
+  window.__unDesastreShowShort = index => showShort(index);
+  window.__unDesastreShortPlayer = () => player;
   const initPlayer = () => {
     if (apiReady || !window.YT || !window.YT.Player) return;
     apiReady = true;
