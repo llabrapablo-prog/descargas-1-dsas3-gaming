@@ -1418,7 +1418,71 @@ footer a{color:#A6FF00!important}
 </script>
 
 <script id="official-gameplay-rotator">
-// Reproductor vacío: se cargarán videos nuevos desde cero.
+(() => {
+  if (window.__udgPlaylistPlayerSetup) return;
+  window.__udgPlaylistPlayerSetup = true;
+  const playlistId = 'PLJrpfhAJj7HA';
+  const screens = [...document.querySelectorAll('.gameplay-screen iframe#gameplay-rotator')];
+  if (!screens.length) return;
+  const players = new Map();
+  const updateLink = (screen, player) => {
+    if (!player || typeof player.getVideoUrl !== 'function') return;
+    const match = (player.getVideoUrl() || '').match(/[?&]v=([^&]+)/);
+    const wrap = screen.closest('.gameplay-wrap');
+    const likeLink = wrap && wrap.querySelector('#short-like-link');
+    if (match && likeLink) likeLink.href = 'https://www.youtube.com/watch?v=' + match[1];
+  };
+  const moveVideo = (screen, direction) => {
+    const player = players.get(screen);
+    if (!player) return;
+    if (direction < 0 && typeof player.previousVideo === 'function') player.previousVideo();
+    if (direction > 0 && typeof player.nextVideo === 'function') player.nextVideo();
+    window.setTimeout(() => updateLink(screen, player), 700);
+  };
+  document.addEventListener('click', event => {
+    const button = event.target.closest('#short-previous, #short-next');
+    if (!button) return;
+    const wrap = button.closest('.gameplay-wrap');
+    const screen = wrap && wrap.querySelector('.gameplay-screen iframe');
+    if (!screen) return;
+    event.preventDefault();
+    moveVideo(screen, button.id === 'short-previous' ? -1 : 1);
+  });
+  const initPlayers = () => {
+    if (!window.YT || !window.YT.Player) return;
+    screens.forEach(screen => {
+      if (players.has(screen)) return;
+      const player = new YT.Player(screen, {
+        playerVars: { listType: 'playlist', list: playlistId, autoplay: 1, mute: 1, controls: 1, playsinline: 1, rel: 0 },
+        events: {
+          onReady: event => {
+            const readyPlayer = event.target;
+            players.set(screen, readyPlayer);
+            if (typeof readyPlayer.mute === 'function') readyPlayer.mute();
+            if (typeof readyPlayer.loadPlaylist === 'function') readyPlayer.loadPlaylist({ listType: 'playlist', list: playlistId, index: 0 });
+            window.setTimeout(() => updateLink(screen, readyPlayer), 900);
+          },
+          onStateChange: event => {
+            if (event.data === YT.PlayerState.PLAYING) updateLink(screen, event.target);
+          }
+        }
+      });
+      players.set(screen, player);
+    });
+  };
+  const previousReady = window.onYouTubeIframeAPIReady;
+  window.onYouTubeIframeAPIReady = () => {
+    if (typeof previousReady === 'function') previousReady();
+    initPlayers();
+  };
+  if (window.YT && window.YT.Player) initPlayers();
+  else {
+    const apiScript = document.createElement('script');
+    apiScript.src = 'https://www.youtube.com/iframe_api';
+    apiScript.async = true;
+    document.head.appendChild(apiScript);
+  }
+})();
 </script>
 
 
@@ -2083,7 +2147,7 @@ footer a{color:#A6FF00!important}
   const floating = document.createElement('aside');
   floating.id = 'shorts-floating-window';
   floating.setAttribute('aria-label', 'Reproductor de Shorts siempre visible');
-  floating.innerHTML = '<div class="shorts-floating-head"><span class="shorts-floating-label">▶ SHORTS <span class="shorts-floating-head-text">· 1DSAS3 GAMING</span></span><a class="shorts-playlist-link" href="#" target="_blank" rel="noopener noreferrer" title="Abrir la lista de reproducción de Shorts">☷ Lista</a><span class="shorts-floating-restore">▶ Shorts sigue acá</span><button class="shorts-floating-toggle" type="button" aria-label="Minimizar reproductor" title="Minimizar reproductor">−</button></div><div class="shorts-floating-stage"></div>';
+  floating.innerHTML = '<div class="shorts-floating-head"><span class="shorts-floating-label">▶ SHORTS <span class="shorts-floating-head-text">· 1DSAS3 GAMING</span></span><a class="shorts-playlist-link" href="https://youtube.com/playlist?list=PLJrpfhAJj7HA&amp;si=EJSXA9aVhc_TW3Bc" target="_blank" rel="noopener noreferrer" title="Abrir la lista de reproducción de Shorts">☷ Lista</a><span class="shorts-floating-restore">▶ Shorts sigue acá</span><button class="shorts-floating-toggle" type="button" aria-label="Minimizar reproductor" title="Minimizar reproductor">−</button></div><div class="shorts-floating-stage"></div>';
   const stageHost = floating.querySelector('.shorts-floating-stage');
   const toggle = floating.querySelector('.shorts-floating-toggle');
   document.body.appendChild(floating);
@@ -2658,8 +2722,7 @@ footer a{color:#A6FF00!important}
   });
 </script>
 
-<script id="official-gameplay-rotator">
-// Reproductor vacío: se cargarán videos nuevos desde cero.
+<script id="official-gameplay-rotator-secondary">// El reproductor principal inicializa ambas pantallas.
 </script>
 
 
@@ -3324,7 +3387,7 @@ footer a{color:#A6FF00!important}
   const floating = document.createElement('aside');
   floating.id = 'shorts-floating-window';
   floating.setAttribute('aria-label', 'Reproductor de Shorts siempre visible');
-  floating.innerHTML = '<div class="shorts-floating-head"><span class="shorts-floating-label">▶ SHORTS <span class="shorts-floating-head-text">· 1DSAS3 GAMING</span></span><a class="shorts-playlist-link" href="#" target="_blank" rel="noopener noreferrer" title="Abrir la lista de reproducción de Shorts">☷ Lista</a><span class="shorts-floating-restore">▶ Shorts sigue acá</span><button class="shorts-floating-toggle" type="button" aria-label="Minimizar reproductor" title="Minimizar reproductor">−</button></div><div class="shorts-floating-stage"></div>';
+  floating.innerHTML = '<div class="shorts-floating-head"><span class="shorts-floating-label">▶ SHORTS <span class="shorts-floating-head-text">· 1DSAS3 GAMING</span></span><a class="shorts-playlist-link" href="https://youtube.com/playlist?list=PLJrpfhAJj7HA&amp;si=EJSXA9aVhc_TW3Bc" target="_blank" rel="noopener noreferrer" title="Abrir la lista de reproducción de Shorts">☷ Lista</a><span class="shorts-floating-restore">▶ Shorts sigue acá</span><button class="shorts-floating-toggle" type="button" aria-label="Minimizar reproductor" title="Minimizar reproductor">−</button></div><div class="shorts-floating-stage"></div>';
   const stageHost = floating.querySelector('.shorts-floating-stage');
   const toggle = floating.querySelector('.shorts-floating-toggle');
   document.body.appendChild(floating);
