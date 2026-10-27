@@ -1421,8 +1421,7 @@ footer a{color:#A6FF00!important}
 (() => {
   const screen = document.getElementById('gameplay-rotator');
   if (!screen) return;
-  // Lista manual sin IDs repetidos para evitar repetir videos de la playlist original.
-  const uniqueShorts = ['jZEHH0i2VqQ','3pSBb6J_s7k','CAuxNqfQoBU','_v69ih1duJA','q-Oi---gMH0','VMLnNBFwzus','1F_pCbtsuVE','AwrKZ1Wgo2w','ijvdR4dkQUY','EvRUf0coR-k','bjOG8T4Kuwk'];
+  const playlistId = 'PLJrpfhAJj7HA';
   let player = null, apiReady = false, pendingDirection = 0;
   const updateLinks = () => {
     if (!player || typeof player.getVideoUrl !== 'function') return;
@@ -1431,7 +1430,7 @@ footer a{color:#A6FF00!important}
     if (match) {
       const likeLink = document.getElementById('short-like-link');
       if (likeLink) likeLink.href = 'https://www.youtube.com/shorts/' + match[1];
-      screen.title = 'Shorts de Un Desastre Gaming';
+      screen.title = 'Lista de reproducción de Un Desastre Gaming';
     }
   };
   const moveVideo = direction => {
@@ -1447,12 +1446,6 @@ footer a{color:#A6FF00!important}
     event.stopPropagation();
     moveVideo(button.id === 'short-previous' ? -1 : 1);
   }, true);
-  window.__unDesastreShowShort = index => {
-    if (!player || !uniqueShorts.length) return;
-    const target = (index % uniqueShorts.length + uniqueShorts.length) % uniqueShorts.length;
-    player.playVideoAt(target);
-  };
-  window.__unDesastreShortPlayer = () => player;
   const initPlayer = () => {
     if (apiReady || !window.YT || !window.YT.Player) return;
     apiReady = true;
@@ -1460,8 +1453,9 @@ footer a{color:#A6FF00!important}
       onReady:event=>{
         player=event.target;
         if (typeof player.mute === 'function') player.mute();
-        if (typeof player.loadPlaylist === 'function') player.loadPlaylist(uniqueShorts, 0, 0);
-        else if (typeof player.cueVideoById === 'function') player.cueVideoById(uniqueShorts[0]);
+        if (typeof player.loadPlaylist === 'function') {
+          player.loadPlaylist({listType:'playlist', list:playlistId, index:0});
+        }
         window.setTimeout(updateLinks, 900);
         if (pendingDirection) { const direction=pendingDirection; pendingDirection=0; moveVideo(direction); }
       },
