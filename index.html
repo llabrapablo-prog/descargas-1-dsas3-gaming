@@ -2400,5 +2400,51 @@ footer a{color:#A6FF00!important}
 })();
 </script>
 
+
+<!-- DesastreBot: asistente gratuito de búsqueda en la página -->
+<style>
+#desastrebot-launcher{position:fixed;right:20px;bottom:20px;z-index:9998;border:0;border-radius:999px;padding:13px 18px;background:#ef4444;color:#fff;font-weight:800;box-shadow:0 8px 28px #0005;cursor:pointer;font:inherit}
+#desastrebot-widget{position:fixed;right:20px;bottom:78px;width:min(360px,calc(100vw - 28px));height:min(500px,calc(100vh - 115px));z-index:9999;background:#111827;color:#f9fafb;border:1px solid #374151;border-radius:18px;box-shadow:0 18px 55px #0008;display:none;overflow:hidden;font-family:inherit}
+#desastrebot-widget *{box-sizing:border-box}#desastrebot-widget.db-open{display:flex;flex-direction:column}
+.db-head{padding:14px 16px;background:#b91c1c;display:flex;align-items:center;justify-content:space-between;font-weight:800}
+.db-head small{display:block;font-weight:500;font-size:12px;opacity:.9;margin-top:3px}.db-close{background:transparent;border:0;color:white;font-size:24px;cursor:pointer}
+.db-messages{flex:1;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
+.db-msg{padding:10px 12px;border-radius:13px;max-width:92%;font-size:14px;line-height:1.45;white-space:pre-wrap;overflow-wrap:anywhere}
+.db-bot{align-self:flex-start;background:#273449}.db-user{align-self:flex-end;background:#b91c1c;color:white}
+.db-form{display:flex;gap:8px;padding:12px;border-top:1px solid #374151}.db-input{min-width:0;flex:1;border-radius:10px;border:1px solid #4b5563;background:#1f2937;color:white;padding:11px;font:inherit}
+.db-send{border:0;border-radius:10px;background:#ef4444;color:white;font-weight:800;padding:0 14px;cursor:pointer}.db-send:disabled{opacity:.55;cursor:wait}
+@media(max-width:480px){#desastrebot-launcher{right:12px;bottom:12px}#desastrebot-widget{right:8px;bottom:68px;width:calc(100vw - 16px);height:min(70vh,520px)}}
+</style>
+<button id="desastrebot-launcher" type="button" aria-controls="desastrebot-widget" aria-expanded="false">🤖 DesastreBot</button>
+<section id="desastrebot-widget" role="dialog" aria-label="Chat con DesastreBot" aria-modal="false">
+ <div class="db-head"><div>🎮 DesastreBot<small>Asistente gratuito de Un Desastre Gaming</small></div><button class="db-close" id="desastrebot-close" aria-label="Cerrar chat">×</button></div>
+ <div class="db-messages" id="desastrebot-messages" aria-live="polite"><div class="db-msg db-bot">¡Buenas! Soy DesastreBot. Por ahora puedo ayudarte a buscar juegos que aparecen en esta página. Escribí el nombre de un juego para empezar.</div></div>
+ <form class="db-form" id="desastrebot-form"><input class="db-input" id="desastrebot-input" maxlength="300" autocomplete="off" placeholder="Buscá un juego…" aria-label="Nombre del juego" required><button class="db-send" type="submit">Buscar</button></form>
+</section>
+<script>
+(function(){
+ const launcher=document.getElementById('desastrebot-launcher'),panel=document.getElementById('desastrebot-widget'),close=document.getElementById('desastrebot-close'),messages=document.getElementById('desastrebot-messages'),form=document.getElementById('desastrebot-form'),input=document.getElementById('desastrebot-input');
+ function toggle(open){panel.classList.toggle('db-open',open);launcher.setAttribute('aria-expanded',String(open));if(open)input.focus();}
+ launcher.addEventListener('click',()=>toggle(!panel.classList.contains('db-open')));close.addEventListener('click',()=>toggle(false));
+ function addMessage(text,who){const el=document.createElement('div');el.className='db-msg '+(who==='user'?'db-user':'db-bot');el.textContent=text;messages.appendChild(el);messages.scrollTop=messages.scrollHeight;}
+ function findGames(query){
+  const q=query.toLocaleLowerCase('es'),found=[],seen=new Set();
+  const selectors='[data-game],.game-card,.game-cover,[id$="-detail"]';
+  for(const el of document.querySelectorAll(selectors)){
+   let title=(el.getAttribute('data-game')||'').trim();
+   if(!title){const heading=el.querySelector('h1,h2,h3,h4,.game-title,.title');title=(heading?.innerText||heading?.textContent||'').trim();}
+   if(!title&&el.matches('[id$="-detail"]'))title=el.id.replace(/-detail$/,'').replace(/[-_]/g,' ');
+   if(title&&title.length<180&&title.toLocaleLowerCase('es').includes(q)&&!seen.has(title.toLocaleLowerCase('es'))){seen.add(title.toLocaleLowerCase('es'));found.push(title);if(found.length>=8)break;}
+  }
+  return found;
+ }
+ form.addEventListener('submit',e=>{e.preventDefault();const q=input.value.trim();if(!q)return;addMessage(q,'user');input.value='';
+  const results=findGames(q);
+  if(results.length)addMessage('Encontré estas coincidencias en la página:\n• '+results.join('\n• ')+'\n\nEntrá a la ficha del juego para ver la información y los enlaces disponibles. Esta versión busca nombres; todavía no es una IA generativa.','bot');
+  else addMessage('No encontré coincidencias exactas para «'+q+'». Probá con otra parte del nombre o buscá el juego en la biblioteca de la página. Esta versión gratuita no puede confirmar compatibilidad ni inventar enlaces.','bot');
+ });
+})();
+</script>
+
 </body>
 </html>
