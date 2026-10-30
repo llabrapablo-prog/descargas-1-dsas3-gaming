@@ -28,6 +28,11 @@ main{padding:44px 0 64px}.hero{position:relative;overflow:hidden;padding:clamp(2
 footer{padding:22px 0 34px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
 @media(max-width:600px){nav a{flex:1 1 100%}.hero{box-shadow:5px 5px 0 #040611}.hero:after{right:3%;top:12%}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+
+.notice{margin-top:28px;padding:clamp(20px,3.5vw,28px);border:1px solid rgba(255,184,92,.62);border-left:5px solid #ffb85c;border-radius:16px;background:linear-gradient(145deg,rgba(75,48,28,.28),rgba(19,22,39,.97) 58%);box-shadow:0 10px 28px rgba(0,0,0,.16)}
+.notice h3{display:flex;align-items:center;gap:10px;margin:0 0 12px;color:#ffd39a;font-size:1.2rem}
+.notice p{margin:9px 0;color:#d1d6e5}
+.notice strong{color:#fff}
 </style>
 </head>
 <body>
@@ -52,6 +57,12 @@ footer{padding:22px 0 34px;border-top:1px solid var(--line);color:var(--muted);f
 <h4>¡La biblioteca está preparada!</h4>
 <p>Próximamente vamos a incorporar los primeros ports para PC. Cada juego tendrá su propia ficha y la información necesaria para instalarlo y ejecutarlo en Windows.</p>
 </div>
+</section>
+<section class="notice" aria-labelledby="pc-notice-title">
+<h3 id="pc-notice-title">⚠️ Aviso importante</h3>
+<p>Los ports, archivos, programas e instrucciones publicados en esta sección se comparten con fines informativos y para facilitar el acceso a la comunidad. Antes de descargar o ejecutar cualquier archivo, cada usuario debe verificar su procedencia, analizarlo con las herramientas de seguridad que considere necesarias y comprobar que sea compatible con su computadora y su versión de Windows.</p>
+<p>Recomendamos realizar copias de seguridad de los archivos importantes antes de instalar, modificar o ejecutar programas, y seguir cuidadosamente las instrucciones correspondientes.</p>
+<p><strong>Un Desastre Gaming no se hace responsable de daños en equipos, pérdida de datos, fallos de funcionamiento, problemas de seguridad o cualquier inconveniente derivado de descargas, instalaciones, configuraciones o modificaciones realizadas por los usuarios.</strong> El funcionamiento puede variar según el hardware, los controladores, el sistema operativo y la versión de cada port.</p>
 </section>
 </main>
 <footer><div class="wrap">© Un Desastre Gaming · Biblioteca independiente de ports para PC</div></footer>
