@@ -3,27 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#090d1b">
+<meta name="theme-color" content="#080b18">
 <title>Ports para PC | Un Desastre Gaming</title>
 <meta name="description" content="Biblioteca independiente de ports para PC de Un Desastre Gaming. Fichas, imágenes, requisitos e instrucciones para Windows.">
 <style>
-:root{color-scheme:dark;--bg:#090d1b;--panel:#151b32;--panel2:#10162a;--cyan:#56f6d2;--blue:#60a5fa;--text:#f4f7ff;--muted:#aab4cc;--line:rgba(96,165,250,.28)}
+:root{color-scheme:dark;--bg:#080b18;--panel:#141a31;--panel2:#10152a;--blue:#438cff;--violet:#a879ff;--text:#f5f6ff;--muted:#aeb7d0;--line:rgba(111,139,255,.3);--glow:rgba(83,111,255,.22)}
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(ellipse at 15% 0%,rgba(37,99,235,.2),transparent 42%),var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at 12% 0%,rgba(67,140,255,.22),transparent 38%),radial-gradient(ellipse at 90% 18%,rgba(168,121,255,.16),transparent 34%),var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
 a{color:inherit}.wrap{width:min(1100px,calc(100% - 32px));margin:auto}
-header{padding:24px 0 18px;border-bottom:1px solid var(--line)}
-.brand{display:flex;align-items:center;gap:14px;text-decoration:none}.logo{display:grid;place-items:center;width:52px;height:52px;border:2px solid var(--cyan);border-radius:15px;background:#101a2c;font-size:27px;box-shadow:4px 4px 0 #050713}
-.eyebrow{color:var(--cyan);font-size:.75rem;font-weight:900;letter-spacing:.16em}.brand h1{margin:0;font-size:clamp(1.1rem,3vw,1.55rem);line-height:1.2}
-nav{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}nav a,.btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 15px;border:1px solid var(--line);border-radius:10px;text-decoration:none;font-weight:800;background:#121a30}nav a:hover,.btn:hover{border-color:var(--cyan);transform:translateY(-1px)}
-main{padding:44px 0 64px}.hero{padding:clamp(24px,5vw,48px);border:2px solid var(--cyan);border-radius:20px;background:linear-gradient(145deg,rgba(21,35,65,.96),rgba(15,19,38,.98));box-shadow:8px 8px 0 #050713}
-.kicker{color:var(--cyan);font-weight:900;letter-spacing:.13em;font-size:.78rem}.hero h2{font-size:clamp(2rem,6vw,3.5rem);line-height:1.08;margin:12px 0}.hero h2 span{color:var(--cyan)}.hero p{max-width:760px;color:var(--muted);font-size:1.05rem}
-.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}.btn.primary{background:var(--cyan);color:#07131a;border-color:var(--cyan)}.btn.secondary{background:transparent}
-.library{margin-top:34px;padding:clamp(20px,4vw,32px);border:1px solid var(--line);border-radius:18px;background:rgba(16,22,42,.92)}
+header{padding:24px 0 18px;border-bottom:1px solid var(--line);background:rgba(8,11,24,.72);backdrop-filter:blur(12px)}
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none}.logo{display:grid;place-items:center;width:54px;height:54px;border:2px solid var(--blue);border-radius:15px;background:linear-gradient(145deg,#18264a,#17132f);font-size:28px;box-shadow:0 0 22px rgba(67,140,255,.24),4px 4px 0 #040611}
+.eyebrow{color:#8bb8ff;font-size:.75rem;font-weight:900;letter-spacing:.16em}.brand h1{margin:0;font-size:clamp(1.1rem,3vw,1.55rem);line-height:1.2}
+nav{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}nav a,.btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 15px;border:1px solid var(--line);border-radius:10px;text-decoration:none;font-weight:800;background:linear-gradient(135deg,rgba(26,38,73,.92),rgba(27,22,54,.92));transition:transform .18s,border-color .18s,box-shadow .18s}nav a:hover,.btn:hover{border-color:var(--blue);box-shadow:0 0 18px var(--glow);transform:translateY(-2px)}
+main{padding:44px 0 64px}.hero{position:relative;overflow:hidden;padding:clamp(24px,5vw,48px);border:1px solid rgba(112,153,255,.75);border-radius:22px;background:linear-gradient(120deg,rgba(22,43,83,.98),rgba(28,23,65,.97) 62%,rgba(18,18,42,.98));box-shadow:0 0 35px rgba(67,105,255,.12),8px 8px 0 #040611}
+.hero:after{content:"PC";position:absolute;right:4%;top:4%;font-size:clamp(5rem,16vw,11rem);font-weight:1000;letter-spacing:-.1em;color:rgba(170,190,255,.055);line-height:1;pointer-events:none}
+.kicker{position:relative;z-index:1;color:#b7a0ff;font-weight:900;letter-spacing:.13em;font-size:.78rem}.hero h2{position:relative;z-index:1;font-size:clamp(2rem,6vw,3.7rem);line-height:1.08;margin:12px 0}.hero h2 span{background:linear-gradient(90deg,#78b7ff,#c2a0ff);-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{position:relative;z-index:1;max-width:760px;color:#c2cbe1;font-size:1.05rem}
+.actions{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}.btn.primary{background:linear-gradient(100deg,#438cff,#916bff);color:white;border-color:#8eb5ff;box-shadow:0 5px 22px rgba(89,119,255,.22)}.btn.secondary{background:rgba(9,13,29,.35)}
+.library{margin-top:34px;padding:clamp(20px,4vw,32px);border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,rgba(20,26,49,.97),rgba(13,17,35,.97));box-shadow:0 12px 32px rgba(0,0,0,.16)}
 .library h3{font-size:1.5rem;margin:0 0 8px}.muted{color:var(--muted)}
-.empty{margin-top:22px;padding:34px 20px;text-align:center;border:1px dashed rgba(86,246,210,.42);border-radius:15px;background:rgba(86,246,210,.04)}
-.empty .icon{font-size:2.5rem}.empty h4{margin:8px 0;font-size:1.2rem}.empty p{max-width:620px;margin:0 auto;color:var(--muted)}
+.pc-label{display:inline-flex;align-items:center;gap:7px;margin-top:12px;padding:6px 11px;border:1px solid rgba(168,121,255,.4);border-radius:999px;background:rgba(133,91,220,.12);color:#d0baff;font-size:.78rem;font-weight:850;letter-spacing:.04em}
+.empty{margin-top:22px;padding:36px 20px;text-align:center;border:1px dashed rgba(116,149,255,.5);border-radius:15px;background:radial-gradient(ellipse at center,rgba(89,103,210,.12),rgba(13,17,35,.25) 70%)}
+.empty .icon{font-size:2.7rem;filter:drop-shadow(0 0 12px rgba(116,149,255,.35))}.empty h4{margin:8px 0;font-size:1.2rem}.empty p{max-width:620px;margin:0 auto;color:var(--muted)}
 footer{padding:22px 0 34px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
-@media(max-width:600px){nav a{flex:1 1 100%}.hero{box-shadow:5px 5px 0 #050713}}
+@media(max-width:600px){nav a{flex:1 1 100%}.hero{box-shadow:5px 5px 0 #040611}.hero:after{right:3%;top:12%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
 </style>
 </head>
 <body>
@@ -42,7 +46,7 @@ footer{padding:22px 0 34px;border-top:1px solid var(--line);color:var(--muted);f
 </section>
 <section class="library" id="pc-library">
 <h3>🎮 Biblioteca de juegos para PC</h3>
-<p class="muted">Este catálogo es independiente de los ports para R36S y sus clones. Los juegos de esta página no se mezclan con la biblioteca de consolas.</p>
+<p class="muted">Este catálogo es independiente de los ports para R36S y sus clones. Los juegos de esta página no se mezclan con la biblioteca de consolas.</p><span class="pc-label">🖥️ CATÁLOGO EXCLUSIVO · PC / WINDOWS</span>
 <div class="empty">
 <div class="icon" aria-hidden="true">🕹️</div>
 <h4>¡La biblioteca está preparada!</h4>
