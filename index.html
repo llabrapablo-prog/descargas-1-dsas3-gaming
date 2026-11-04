@@ -2530,5 +2530,47 @@ footer a{color:#A6FF00!important}
 
 
 
+
+<script id="recent-ports-auto-cycle">
+(() => {
+  const recentGrid = document.querySelector('.recent-ports-grid');
+  const library = document.querySelector('#ports-library');
+  if (!recentGrid || !library) return;
+
+  // La biblioteca principal es la única fuente de orden: el primer port es el más nuevo.
+  const newestPorts = [...library.querySelectorAll('.game-cover[data-game]')]
+    .slice(0, 8)
+    .map(source => {
+      const key = source.dataset.game;
+      const detail = document.getElementById(key + '-detail');
+      if (!detail) return null;
+
+      const title = detail.querySelector('h2,h3')?.textContent.trim()
+        || (source.querySelector('span')?.textContent || key)
+          .replace(/\\s*[·•]\\s*VER FICHA.*$/i, '').trim();
+      const sourceImage = source.querySelector('img');
+      const sourceLabel = source.querySelector('span');
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'game-cover recent-port';
+      button.dataset.recentDetail = detail.id;
+      button.setAttribute('aria-label', 'Ver ficha de ' + title);
+
+      if (sourceImage) {
+        const image = sourceImage.cloneNode(true);
+        image.loading = 'lazy';
+        button.appendChild(image);
+      }
+      const label = document.createElement('span');
+      label.textContent = sourceLabel?.textContent.trim() || title + ' · VER FICHA ↗';
+      button.appendChild(label);
+      return button;
+    })
+    .filter(Boolean);
+
+  recentGrid.replaceChildren(...newestPorts);
+})();
+</script>
+
 </body>
 </html>
