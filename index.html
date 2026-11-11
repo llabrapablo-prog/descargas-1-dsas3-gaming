@@ -1923,14 +1923,41 @@ footer a{color:#A6FF00!important}
   }
 
   // Capture at document level so legacy per-card handlers cannot cancel opening.
+  const inlineDetailKeys = new Set([
+    'street-chaves', 'viviette', 'ducktales-remastered', 'the-simpsons-arcade'
+  ]);
+
   document.addEventListener('click', event => {
-    const target = event.target instanceof Element
-      ? event.target.closest('.game-cover[data-game], .game-cover[data-recent-detail]')
-      : null;
+    const element = event.target instanceof Element ? event.target : null;
+    const backButton = element?.closest('#ports-library .game-detail .back-library');
+    if (backButton) {
+      const detail = backButton.closest('.game-detail');
+      if (detail && inlineDetailKeys.has(detail.id.replace(/-detail$/, ''))) {
+        event.preventDefault();
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        detail.classList.remove('show');
+        document.getElementById('ports-library')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
+    }
+
+    const target = element?.closest('.game-cover[data-game], .game-cover[data-recent-detail]');
     if (!target) return;
     event.preventDefault();
     event.stopPropagation();
     event.stopImmediatePropagation();
+
+    const key = (target.dataset.recentDetail || target.dataset.game || '').replace(/-detail$/, '');
+    if (inlineDetailKeys.has(key)) {
+      const detail = document.getElementById(key + '-detail');
+      if (detail) {
+        document.querySelectorAll('#ports-library .game-detail.show').forEach(item => item.classList.remove('show'));
+        detail.classList.add('show');
+        detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
+    }
     openModal(target);
   }, true);
 
