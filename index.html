@@ -1900,7 +1900,7 @@ footer a{color:#A6FF00!important}
   let previousOverflow = '';
 
   function openModal(button) {
-    const detailId = button.dataset.recentDetail || ((button.dataset.game || '') + '-detail');
+    const detailId = button.dataset.recentDetail || ((button.dataset.game || '') + '-detail') || (button.getAttribute('href') || '').replace(/^#/, '');
     const source = document.getElementById(detailId);
     const card = button.closest('.port-library-card');
     modalContent.replaceChildren();
@@ -1949,42 +1949,14 @@ footer a{color:#A6FF00!important}
     if (previousFocus && document.contains(previousFocus)) previousFocus.focus({ preventScroll: true });
   }
 
-  // Capture at document level so legacy per-card handlers cannot cancel opening.
-  const inlineDetailKeys = new Set([
-    'street-chaves', 'viviette', 'ducktales-remastered', 'the-simpsons-arcade'
-  ]);
-
+  // Capture card clicks and direct links so all four new game sheets open in the modal.
   document.addEventListener('click', event => {
     const element = event.target instanceof Element ? event.target : null;
-    const backButton = element?.closest('#ports-library .game-detail .back-library');
-    if (backButton) {
-      const detail = backButton.closest('.game-detail');
-      if (detail && inlineDetailKeys.has(detail.id.replace(/-detail$/, ''))) {
-        event.preventDefault();
-        event.stopPropagation();
-        event.stopImmediatePropagation();
-        detail.classList.remove('show');
-        document.getElementById('ports-library')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        return;
-      }
-    }
-
-    const target = element?.closest('.game-cover[data-game], .game-cover[data-recent-detail]');
+    const target = element?.closest('.game-cover[data-game], .game-cover[data-recent-detail], .r36s-new-port-link[href^="#"]');
     if (!target) return;
     event.preventDefault();
     event.stopPropagation();
     event.stopImmediatePropagation();
-
-    const key = (target.dataset.recentDetail || target.dataset.game || '').replace(/-detail$/, '');
-    if (inlineDetailKeys.has(key)) {
-      const detail = document.getElementById(key + '-detail');
-      if (detail) {
-        document.querySelectorAll('#ports-library .game-detail.show').forEach(item => item.classList.remove('show'));
-        detail.classList.add('show');
-        detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        return;
-      }
-    }
     openModal(target);
   }, true);
 
