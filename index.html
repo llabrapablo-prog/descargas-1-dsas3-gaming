@@ -1975,14 +1975,11 @@ footer a{color:#A6FF00!important}
   const library = document.querySelector('#ports-library');
   if (!recentGrid || !library) return;
 
-  // Priorizar los cuatro juegos recién agregados; completar con los más recientes de la biblioteca.
+  // Mantener fuera de "Últimos ports agregados" las cuatro fichas nuevas.
+  const excludedKeys = new Set(['street-chaves', 'viviette', 'ducktales-remastered', 'the-simpsons-arcade']);
   const allSources = [...library.querySelectorAll('.game-cover[data-game]')];
-  const priorityKeys = ['street-chaves', 'viviette', 'ducktales-remastered', 'the-simpsons-arcade'];
-  const prioritySources = priorityKeys
-    .map(key => allSources.find(source => source.dataset.game === key))
-    .filter(Boolean);
-  const remainingSources = allSources.filter(source => !priorityKeys.includes(source.dataset.game));
-  const newestPorts = [...prioritySources, ...remainingSources]
+  const newestPorts = allSources
+    .filter(source => !excludedKeys.has(source.dataset.game))
     .slice(0, 8)
     .map(source => {
       const key = source.dataset.game;
