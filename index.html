@@ -1900,7 +1900,7 @@ footer a{color:#A6FF00!important}
   let previousOverflow = '';
 
   function openModal(button) {
-    const detailId = button.dataset.recentDetail || ((button.dataset.game || '') + '-detail') || (button.getAttribute('href') || '').replace(/^#/, '');
+    const detailId = button.dataset.recentDetail || (button.dataset.game ? button.dataset.game + '-detail' : (button.getAttribute('href') || '').replace(/^#/, ''));
     const source = document.getElementById(detailId);
     const card = button.closest('.port-library-card');
     modalContent.replaceChildren();
