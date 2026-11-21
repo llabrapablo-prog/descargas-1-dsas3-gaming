@@ -2125,11 +2125,16 @@ footer a{color:#A6FF00!important}
   const library = document.querySelector('#ports-library');
   if (!recentGrid || !library) return;
 
-  // Mantener fuera de "Últimos ports agregados" las cuatro fichas nuevas.
-  const excludedKeys = new Set(); // Incluir los cuatro ports nuevos en Últimos ports agregados.
+  // Priorizar el juego agregado más recientemente y completar con los siete siguientes.
+  const priorityKeys = ['need-for-speed-hot-pursuit-2'];
   const allSources = [...library.querySelectorAll('.game-cover[data-game]')];
-  const newestPorts = allSources
-    .filter(source => !excludedKeys.has(source.dataset.game))
+  const prioritizedSources = priorityKeys
+    .map(key => allSources.find(source => source.dataset.game === key))
+    .filter(Boolean);
+  const newestPorts = [
+    ...prioritizedSources,
+    ...allSources.filter(source => !priorityKeys.includes(source.dataset.game))
+  ]
     .slice(0, 8)
     .map(source => {
       const key = source.dataset.game;
