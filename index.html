@@ -1217,6 +1217,7 @@ footer a{color:#A6FF00!important}
       <section id="ports-library" aria-labelledby="library-title"><h2 class="library-heading" id="library-title">🎮 PORTS DISPONIBLES</h2>
 
 <div class="library-grid">
+        <button class="game-cover" type="button" data-game="shadow-of-the-colossus" aria-label="Ver ficha de Shadow of the Colossus para PlayStation 2"><img src="https://psxdatacenter.com/psx2/images2/hires/SCUS-97472/SCUS-97472-F-ALL.jpg" alt="Carátula de Shadow of the Colossus para PlayStation 2" loading="lazy" onerror="this.onerror=null;this.src='https://psxdatacenter.com/psx2/images2/covers/SCUS-97472/SCUS-97472-F-ALL.jpg';"><span>🗿 SHADOW OF THE COLOSSUS · PS2 · VER FICHA ↗</span></button>
         <button class="game-cover" type="button" data-game="silent-hill-2" aria-label="Ver ficha de Silent Hill 2 para PlayStation 2"><img src="https://www.psxdatacenter.com/psx2/images2/hires/SLUS-20228/SLUS-20228-F-ALL.jpg" alt="Carátula de Silent Hill 2 para PlayStation 2" loading="lazy" onerror="this.onerror=null;this.src='https://psxdatacenter.com/psx2/images2/covers/SLUS-20228/SLUS-20228-F.jpg';"><span>👻 SILENT HILL 2 · PS2 · VER FICHA ↗</span></button>
         <button class="game-cover" type="button" data-game="crash-twinsanity" aria-label="Ver ficha de Crash Twinsanity"><img src="https://m.media-amazon.com/images/I/71RIjf9kDSL._SL1500_.jpg" alt="Carátula de Crash Twinsanity para PlayStation 2" loading="lazy" onerror="this.onerror=null;this.src='https://psxdatacenter.com/psx2/images2/covers/SLES-52568/SLES-52568-F-S.jpg';"><span>🦊 CRASH TWINSANITY · VER FICHA ↗</span></button>
         <button class="game-cover" type="button" data-game="mario-kart-7" aria-label="Ver ficha de Mario Kart 7 para Nintendo 3DS"><img src="https://multimedia.bbycastatic.ca/multimedia/products/1500x1500/162/16297/16297821.jpeg" alt="Carátula de Mario Kart 7 para Nintendo 3DS" loading="lazy" onerror="this.closest('button').classList.add('image-unavailable')"><span>🏁 MARIO KART 7 · 3DS · VER FICHA ↗</span></button>
@@ -1633,6 +1634,27 @@ footer a{color:#A6FF00!important}
         <div class="spec"><strong>COMPATIBILIDAD R36S</strong>Pendiente de verificar</div>
       </div>
       <p>Esta ficha describe la edición oficial de PS Vita; no confirma que exista una compilación funcional para R36S. Consultá los requisitos y las novedades del port en Discord.</p>
+      <a class="button download" href="https://discord.gg/Sje8aBZbe" target="_blank" rel="noopener noreferrer">💬 BUSCAR INFORMACIÓN EN DISCORD</a>
+    </article>
+    <article class="game-detail" id="shadow-of-the-colossus-detail" aria-labelledby="shadow-of-the-colossus-title">
+      <span class="pixel-badge">AVENTURA · ACCIÓN · PLAYSTATION 2</span>
+      <h2 id="shadow-of-the-colossus-title">Shadow of the Colossus</h2>
+      <div class="game-gallery" aria-label="Tres capturas de gameplay de Shadow of the Colossus para PS2">
+        <figure><img src="https://cdn.sanity.io/images/vlhyuihz/production/a85c0de6e52638195d44b8e5f38f26dfda7958a1-1536x2048.jpg" alt="Wander y Agro frente a un enorme coloso" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption>Wander frente a un coloso</figcaption></figure>
+        <figure><img src="https://cdn.sanity.io/images/vlhyuihz/production/3f131668594366362693e3ff48fec33dd14010ab-1280x960.jpg" alt="Wander junto a su caballo Agro" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption>Exploración junto a Agro</figcaption></figure>
+        <figure><img src="https://cdn.sanity.io/images/vlhyuihz/production/feea93fab23c43f53e95bb44492a73254af4d452-1280x960.jpg" alt="Wander explora las ruinas de un templo" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption>Las ruinas del mundo prohibido</figcaption></figure>
+      </div>
+      <div class="spec-grid">
+        <div class="spec"><strong>GÉNERO</strong>Acción · Aventura · Puzles</div>
+        <div class="spec"><strong>DESARROLLADOR</strong>Team Ico · Japan Studio</div>
+        <div class="spec"><strong>LANZAMIENTO ORIGINAL</strong>2005</div>
+        <div class="spec"><strong>PLATAFORMA ORIGINAL</strong>PlayStation 2</div>
+        <div class="spec"><strong>PUBLICADOR</strong>Sony Computer Entertainment</div>
+        <div class="spec"><strong>COMPATIBILIDAD R36S</strong>Pendiente de verificar</div>
+      </div>
+      <h3>🗿 Sobre el juego</h3>
+      <p>Shadow of the Colossus cuenta la historia de Wander, un joven que llega a una tierra prohibida acompañado por su caballo Agro. Para intentar devolverle la vida a Mono, deberá encontrar y derrotar a dieciséis colosos gigantes. Cada enfrentamiento funciona como un gran desafío de exploración y puzles: hay que descubrir cómo trepar por cada criatura y alcanzar sus puntos débiles.</p>
+      <p>Esta ficha corresponde al juego original de PlayStation 2. No confirma que exista un port funcional para R36S o clones; consultá en Discord si hay novedades sobre compatibilidad.</p>
       <a class="button download" href="https://discord.gg/Sje8aBZbe" target="_blank" rel="noopener noreferrer">💬 BUSCAR INFORMACIÓN EN DISCORD</a>
     </article>
     <article class="game-detail" id="silent-hill-2-detail" aria-labelledby="silent-hill-2-title">
@@ -2151,7 +2173,7 @@ footer a{color:#A6FF00!important}
   if (!recentGrid || !library) return;
 
   // Priorizar el juego agregado más recientemente y completar con los siete siguientes.
-  const priorityKeys = ['silent-hill-2', 'crash-twinsanity', 'need-for-speed-hot-pursuit-2'];
+  const priorityKeys = ['shadow-of-the-colossus', 'silent-hill-2', 'crash-twinsanity', 'need-for-speed-hot-pursuit-2'];
   const allSources = [...library.querySelectorAll('.game-cover[data-game]')];
   const prioritizedSources = priorityKeys
     .map(key => allSources.find(source => source.dataset.game === key))
@@ -2792,6 +2814,7 @@ footer a{color:#A6FF00!important}
     'mario-kart-7-detail': 'Nintendo 3DS',
     'animal-crossing-new-leaf-detail': 'Nintendo 3DS',
     'nfs-underground-2-detail': 'PlayStation 2, Xbox, GameCube, PC, GBA y Nintendo DS',
+    'shadow-of-the-colossus-detail': 'PlayStation 2',
     'silent-hill-2-detail': 'PlayStation 2, Xbox y PC',
     'crash-twinsanity-detail': 'PlayStation 2 y Xbox',
     'need-for-speed-hot-pursuit-2-detail': 'PlayStation 2, PC, Nintendo GameCube y Xbox',
