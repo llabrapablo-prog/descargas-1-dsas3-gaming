@@ -1217,6 +1217,7 @@ footer a{color:#A6FF00!important}
       <section id="ports-library" aria-labelledby="library-title"><h2 class="library-heading" id="library-title">🎮 PORTS DISPONIBLES</h2>
 
 <div class="library-grid">
+        <button class="game-cover" type="button" data-game="silent-hill-2" aria-label="Ver ficha de Silent Hill 2 para PlayStation 2"><img src="https://psxdatacenter.com/psx2/images2/covers/SLUS-20228/SLUS-20228-F-ALL.jpg" alt="Carátula de Silent Hill 2 para PlayStation 2" loading="lazy" onerror="this.onerror=null;this.src='https://psxdatacenter.com/psx2/images2/covers/SLUS-20228/SLUS-20228-F.jpg';"><span>👻 SILENT HILL 2 · PS2 · VER FICHA ↗</span></button>
         <button class="game-cover" type="button" data-game="crash-twinsanity" aria-label="Ver ficha de Crash Twinsanity"><img src="https://m.media-amazon.com/images/I/71RIjf9kDSL._SL1500_.jpg" alt="Carátula de Crash Twinsanity para PlayStation 2" loading="lazy" onerror="this.onerror=null;this.src='https://psxdatacenter.com/psx2/images2/covers/SLES-52568/SLES-52568-F-S.jpg';"><span>🦊 CRASH TWINSANITY · VER FICHA ↗</span></button>
         <button class="game-cover" type="button" data-game="mario-kart-7" aria-label="Ver ficha de Mario Kart 7 para Nintendo 3DS"><img src="https://multimedia.bbycastatic.ca/multimedia/products/1500x1500/162/16297/16297821.jpeg" alt="Carátula de Mario Kart 7 para Nintendo 3DS" loading="lazy" onerror="this.closest('button').classList.add('image-unavailable')"><span>🏁 MARIO KART 7 · 3DS · VER FICHA ↗</span></button>
         <button class="game-cover" type="button" data-game="animal-crossing-new-leaf" aria-label="Ver ficha de Animal Crossing: New Leaf para Nintendo 3DS"><img src="https://yellow-pos.com/storage/products/product_1772098843_2eME2HvLpd.webp" alt="Carátula de Animal Crossing: New Leaf para Nintendo 3DS" loading="lazy" onerror="this.closest('button').classList.add('image-unavailable')"><span>🍃 ANIMAL CROSSING: NEW LEAF · 3DS · VER FICHA ↗</span></button>
@@ -1632,6 +1633,28 @@ footer a{color:#A6FF00!important}
         <div class="spec"><strong>COMPATIBILIDAD R36S</strong>Pendiente de verificar</div>
       </div>
       <p>Esta ficha describe la edición oficial de PS Vita; no confirma que exista una compilación funcional para R36S. Consultá los requisitos y las novedades del port en Discord.</p>
+      <a class="button download" href="https://discord.gg/Sje8aBZbe" target="_blank" rel="noopener noreferrer">💬 BUSCAR INFORMACIÓN EN DISCORD</a>
+    </article>
+    <article class="game-detail" id="silent-hill-2-detail" aria-labelledby="silent-hill-2-title">
+      <span class="pixel-badge">TERROR · SURVIVAL HORROR · PLAYSTATION 2</span>
+      <h2 id="silent-hill-2-title">Silent Hill 2</h2>
+      <div class="game-gallery" aria-label="Tres capturas de gameplay de Silent Hill 2 para PS2">
+        <figure><img src="https://thekingofgrabs.files.wordpress.com/2022/10/silent-hill-2-ps2-003.jpg?w=1024" alt="James Sunderland frente al espejo de un baño abandonado" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption>El comienzo de la pesadilla</figcaption></figure>
+        <figure><img src="https://thekingofgrabs.files.wordpress.com/2022/10/silent-hill-2-ps2-004.jpg?w=1024" alt="James explora un estacionamiento cubierto de niebla" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption>Exploración en Silent Hill</figcaption></figure>
+        <figure><img src="https://thekingofgrabs.files.wordpress.com/2022/10/silent-hill-2-ps2-010.jpg" alt="James avanza por un pasillo oscuro y deteriorado" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption>Pasillos y escenarios inquietantes</figcaption></figure>
+      </div>
+      <div class="spec-grid">
+        <div class="spec"><strong>GÉNERO</strong>Survival horror · Terror psicológico</div>
+        <div class="spec"><strong>DESARROLLADOR</strong>Team Silent (Konami Computer Entertainment Tokyo)</div>
+        <div class="spec"><strong>EDITOR</strong>Konami</div>
+        <div class="spec"><strong>AÑO</strong>2001</div>
+        <div class="spec"><strong>PLATAFORMA ORIGINAL</strong>PlayStation 2; luego Xbox y PC</div>
+        <div class="spec"><strong>PORT / ESTADO</strong>Información por confirmar</div>
+        <div class="spec"><strong>COMPATIBILIDAD R36S</strong>Pendiente de verificar</div>
+      </div>
+      <h3>🌫️ Sobre el juego</h3>
+      <p>Silent Hill 2 sigue la historia de James Sunderland, quien recibe una carta aparentemente escrita por su esposa Mary, fallecida años atrás. La carta lo lleva de regreso al misterioso pueblo de Silent Hill, donde deberá explorar escenarios abandonados, resolver acertijos y enfrentarse a criaturas mientras descubre los secretos de su pasado.</p>
+      <p>Esta ficha corresponde al juego original de 2001. No confirma que exista un port funcional para R36S o clones; consultá en Discord si hay novedades sobre compatibilidad.</p>
       <a class="button download" href="https://discord.gg/Sje8aBZbe" target="_blank" rel="noopener noreferrer">💬 BUSCAR INFORMACIÓN EN DISCORD</a>
     </article>
     <article class="game-detail" id="silent-hill-4-the-room-detail" aria-labelledby="silent-hill-4-the-room-title">
@@ -2128,7 +2151,7 @@ footer a{color:#A6FF00!important}
   if (!recentGrid || !library) return;
 
   // Priorizar el juego agregado más recientemente y completar con los siete siguientes.
-  const priorityKeys = ['crash-twinsanity', 'need-for-speed-hot-pursuit-2'];
+  const priorityKeys = ['silent-hill-2', 'crash-twinsanity', 'need-for-speed-hot-pursuit-2'];
   const allSources = [...library.querySelectorAll('.game-cover[data-game]')];
   const prioritizedSources = priorityKeys
     .map(key => allSources.find(source => source.dataset.game === key))
@@ -2769,6 +2792,7 @@ footer a{color:#A6FF00!important}
     'mario-kart-7-detail': 'Nintendo 3DS',
     'animal-crossing-new-leaf-detail': 'Nintendo 3DS',
     'nfs-underground-2-detail': 'PlayStation 2, Xbox, GameCube, PC, GBA y Nintendo DS',
+    'silent-hill-2-detail': 'PlayStation 2, Xbox y PC',
     'crash-twinsanity-detail': 'PlayStation 2 y Xbox',
     'need-for-speed-hot-pursuit-2-detail': 'PlayStation 2, PC, Nintendo GameCube y Xbox',
     'new-super-mario-bros-2-detail': 'Nintendo 3DS',
